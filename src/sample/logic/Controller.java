@@ -1,4 +1,4 @@
-package sample;
+package sample.logic;
 
 public class Controller {
 }
