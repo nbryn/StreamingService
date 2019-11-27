@@ -7,16 +7,25 @@ public class User {
 
     private String name;
     private String username;
-    private int year;
+    private String password;
+    private int birthYear;
+    private static int count;
+    private int id;
 
     private List<Media> myList;
 
-    public User(String name, int year, String username) {
+    public User(String name, int birthYear, String username, String password) {
         this.name = name;
         this.username = username;
-        this.year = year;
+        this.password = password;
+        this.birthYear = birthYear;
 
+        id = count++;
         myList = new ArrayList<>();
+    }
+
+    public int getId() {
+        return this.id;
     }
 
     public String getName() {
@@ -27,8 +36,12 @@ public class User {
         return this.username;
     }
 
-    public int getYear() {
-        return this.year;
+    public String getPassword() {
+        return this.password;
+    }
+
+    public int getBirthYear() {
+        return this.birthYear;
     }
 
     public List<Media> getMyList() {
