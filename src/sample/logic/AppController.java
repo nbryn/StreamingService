@@ -1,28 +1,35 @@
 package sample.logic;
 
 import sample.logic.entities.User;
-import sample.logic.interfaces.MediaDAO;
-import sample.logic.interfaces.UserDAO;
+import sample.logic.exceptions.NoSuchUserException;
+import sample.logic.interfaces.MediaMapper;
+import sample.logic.interfaces.UserMapper;
 
 public class AppController {
 
-    private UserDAO userDAO;
-    private MediaDAO mediaDAO;
+    private UserMapper userMapper;
+    private MediaMapper mediaMapper;
 
-    public AppController(UserDAO userDAO, MediaDAO mediaDAO) {
+    public AppController(UserMapper userMapper, MediaMapper mediaMapper) {
 
-        this.userDAO = userDAO;
-        this.mediaDAO = mediaDAO;
+        this.userMapper = userMapper;
+        this.mediaMapper = mediaMapper;
     }
 
     public boolean validateUser(String username, String password) {
 
-        User user = userDAO.getUser(username, password);
-        if (user == null) {
+        try {
+            User user = userMapper.getUser(username, password);
+
+            if (user.getUsername().equals(user) && user.getPassword().equals(password)) {
+                return true;
+            }
+
+        } catch (NoSuchUserException e) {
             return false;
-        } else {
-            return true;
         }
+
+        return false;
     }
 }
 

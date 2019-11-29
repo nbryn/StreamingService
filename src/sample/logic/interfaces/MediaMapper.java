@@ -6,13 +6,15 @@ import sample.logic.entities.Series;
 
 import java.util.List;
 
-public interface MediaDAO {
+public interface MediaMapper {
 
     public List<Media> getAll();
 
-    public List<Movie> getAllMovies();
+    public List<Media> getAllMovies();
 
-    public List<Series> getAllSeries();
+    public List<Media> getAllSeries();
+
+    public List<Media> getAllFromCategory(String category);
 
     public Media get(int id);
 }

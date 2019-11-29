@@ -1,16 +1,17 @@
 package sample.data;
 
 import sample.logic.entities.User;
-import sample.logic.interfaces.UserDAO;
+import sample.logic.exceptions.NoSuchUserException;
+import sample.logic.interfaces.UserMapper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MockUserDAO implements UserDAO {
+public class MockUserMapper implements UserMapper {
 
     List<User> users;
 
-    public MockUserDAO() {
+    public MockUserMapper() {
         users = new ArrayList<>();
         users.add(new User("Kristian", 1996, "KR", "Hejsa"));
         users.add(new User("Niklas", 1992, "NBRYN", "Suppe"));
@@ -23,21 +24,29 @@ public class MockUserDAO implements UserDAO {
     }
 
     @Override
-    public User getUser(String username, String password) {
+    public User getUser(String username, String password) throws NoSuchUserException {
         User matchingUser = users.stream()
                 .filter(user -> user.getUsername().equalsIgnoreCase(username) && user.getPassword().equalsIgnoreCase(password))
                 .findAny()
                 .orElse(null);
 
+        if (matchingUser == null) {
+            throw new NoSuchUserException();
+        }
+
         return matchingUser;
     }
 
     @Override
-    public User getUser(int id) {
+    public User getUser(int id) throws NoSuchUserException {
         User matchingUser = users.stream()
                 .filter(user -> user.getId() == id)
                 .findAny()
                 .orElse(null);
+
+        if (matchingUser == null) {
+            throw new NoSuchUserException();
+        }
 
         return matchingUser;
     }
