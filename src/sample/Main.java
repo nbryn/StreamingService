@@ -11,7 +11,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = (AnchorPane) FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = (AnchorPane) FXMLLoader.load(getClass().getResource("OverviewTest.fxml"));
         primaryStage.setTitle("StreamingService");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
