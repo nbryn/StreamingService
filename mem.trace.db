@@ -1,0 +1,140 @@
+11-29 10:55:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE USERS(
+    USER_ID INT PRIMARY KEY AUTO_INCREMENT,
+    USERNAME VARCHAR(50) NOT NULL,
+    PASSWORD VARCHAR(50) NOT NULL
+)INSERT[*] INTO USERS(USERNAME, PASSWORD)
+VALUES
+('username','password');
+COMMIT;
+SELECT *FROM USERS
+WHERE USERNAME = 'username' "; SQL statement:
+CREATE TABLE users(
+    user_id int PRIMARY KEY AUTO_INCREMENT,
+    username varchar(50) NOT NULL,
+    password varchar(50) NOT NULL
+)INSERT INTO users(username, password)
+VALUES
+('username','password');
+commit;
+SELECT *FROM users
+WHERE username = 'username' [42000-175]
+11-29 10:56:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Method is only allowed for a query. Use execute or executeUpdate instead of executeQuery; SQL statement:
+CREATE TABLE users(
+    user_id int PRIMARY KEY AUTO_INCREMENT,
+    username varchar(50) NOT NULL,
+    password varchar(50) NOT NULL
+);INSERT INTO users(username, password)
+VALUES
+('username','password');
+commit;
+SELECT *FROM users
+WHERE username = 'username' [90002-175]
+	at h2@1.3.175/org.h2.message.DbException.getJdbcSQLException(DbException.java:332)
+	at h2@1.3.175/org.h2.message.DbException.get(DbException.java:172)
+	at h2@1.3.175/org.h2.message.DbException.get(DbException.java:149)
+	at h2@1.3.175/org.h2.message.DbException.get(DbException.java:138)
+	at h2@1.3.175/org.h2.command.Prepared.query(Prepared.java:211)
+	at h2@1.3.175/org.h2.command.CommandContainer.query(CommandContainer.java:91)
+	at h2@1.3.175/org.h2.command.CommandList.query(CommandList.java:50)
+	at h2@1.3.175/org.h2.command.Command.executeQuery(Command.java:196)
+	at h2@1.3.175/org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:78)
+	at javafx/sample.JavaSeH2Memory.main(JavaSeH2Memory.java:9)
+11-29 10:59:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE USERS(USER_ID INT PRIMARY KEY AUTO_INCREMENT,USERNAME VARCHAR(50) NOT NULL ),[*]PASSWORD VARCHAR(50) NOT NULL) "; SQL statement:
+CREATE TABLE users(user_id int PRIMARY KEY AUTO_INCREMENT,username varchar(50) NOT NULL ),password varchar(50) NOT NULL) [42000-175]
+11-29 10:59:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Method is only allowed for a query. Use execute or executeUpdate instead of executeQuery; SQL statement:
+CREATE TABLE users(user_id int PRIMARY KEY AUTO_INCREMENT,username varchar(50) NOT NULL ,password varchar(50) NOT NULL) [90002-175]
+	at h2@1.3.175/org.h2.message.DbException.getJdbcSQLException(DbException.java:332)
+	at h2@1.3.175/org.h2.message.DbException.get(DbException.java:172)
+	at h2@1.3.175/org.h2.message.DbException.get(DbException.java:149)
+	at h2@1.3.175/org.h2.message.DbException.get(DbException.java:138)
+	at h2@1.3.175/org.h2.command.Prepared.query(Prepared.java:211)
+	at h2@1.3.175/org.h2.command.CommandContainer.query(CommandContainer.java:91)
+	at h2@1.3.175/org.h2.command.Command.executeQuery(Command.java:196)
+	at h2@1.3.175/org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:78)
+	at javafx/sample.JavaSeH2Memory.main(JavaSeH2Memory.java:9)
+11-29 11:00:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Method is only allowed for a query. Use execute or executeUpdate instead of executeQuery; SQL statement:
+CREATE TABLE users(user_id int PRIMARY KEY AUTO_INCREMENT,username varchar(50) NOT NULL ,password varchar(50) NOT NULL); [90002-175]
+	at h2@1.3.175/org.h2.message.DbException.getJdbcSQLException(DbException.java:332)
+	at h2@1.3.175/org.h2.message.DbException.get(DbException.java:172)
+	at h2@1.3.175/org.h2.message.DbException.get(DbException.java:149)
+	at h2@1.3.175/org.h2.message.DbException.get(DbException.java:138)
+	at h2@1.3.175/org.h2.command.Prepared.query(Prepared.java:211)
+	at h2@1.3.175/org.h2.command.CommandContainer.query(CommandContainer.java:91)
+	at h2@1.3.175/org.h2.command.Command.executeQuery(Command.java:196)
+	at h2@1.3.175/org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:78)
+	at javafx/sample.JavaSeH2Memory.main(JavaSeH2Memory.java:9)
+11-29 11:06:01 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(user_id int PRIMARY KEY AUTO_INCREMENT,username varchar(50) NOT NULL ,password varchar(50) NOT NULL);insert into users(username, password) VALUES ('username','password')commit; [42101-175]
+11-29 11:07:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(user_id int PRIMARY KEY AUTO_INCREMENT,username varchar(50) NOT NULL ,password varchar(50) NOT NULL);insert into users(username, password) VALUES ('username','password')commit; [42101-175]
+11-29 11:07:10 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(user_id int PRIMARY KEY AUTO_INCREMENT,username varchar(50) NOT NULL ,password varchar(50) NOT NULL);insert into users(username, password) VALUES ('username','password')commit; [42101-175]
+11-29 11:08:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(user_id int PRIMARY KEY AUTO_INCREMENT,username varchar(50) NOT NULL ,password varchar(50) NOT NULL);insert into users(username, password) VALUES ('username','password')commit; [42101-175]
+11-29 11:14:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-175]
+11-29 11:15:26 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(user_id int PRIMARY KEY AUTO_INCREMENT,username varchar(50) NOT NULL ,password varchar(50) NOT NULL);insert into users(username, password) VALUES ('username','password')commit; [42101-175]
+11-29 11:16:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "users" not found [42122-175]
+	at h2@1.3.175/org.h2.message.DbException.getJdbcSQLException(DbException.java:332)
+	at h2@1.3.175/org.h2.message.DbException.get(DbException.java:172)
+	at h2@1.3.175/org.h2.message.DbException.get(DbException.java:149)
+	at h2@1.3.175/org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3047)
+	at h2@1.3.175/org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3133)
+	at h2@1.3.175/org.h2.jdbc.JdbcResultSet.getString(JdbcResultSet.java:296)
+	at javafx/sample.JavaSeH2Memory.main(JavaSeH2Memory.java:13)
+11-29 11:17:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column  not found [42122-175]
+	at h2@1.3.175/org.h2.message.DbException.getJdbcSQLException(DbException.java:332)
+	at h2@1.3.175/org.h2.message.DbException.get(DbException.java:172)
+	at h2@1.3.175/org.h2.message.DbException.get(DbException.java:149)
+	at h2@1.3.175/org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3047)
+	at h2@1.3.175/org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3133)
+	at h2@1.3.175/org.h2.jdbc.JdbcResultSet.getString(JdbcResultSet.java:296)
+	at javafx/sample.JavaSeH2Memory.main(JavaSeH2Memory.java:13)
+11-29 11:18:25 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-175]
+11-29 11:27:45 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(user_id int PRIMARY KEY AUTO_INCREMENT,username varchar(50) NOT NULL ,password varchar(50) NOT NULL);insert into users(username, password) VALUES ('username','password')commit; [42101-175]
+11-29 11:31:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(user_id int PRIMARY KEY AUTO_INCREMENT,username varchar(50) NOT NULL ,password varchar(50) NOT NULL);insert into users(username, password) VALUES ('username','password')commit; [42101-175]
+11-29 11:32:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO USERS(USERNAME, PASSWORD) VALUES ('Kris','Suppe')COMMIT[*]; "; SQL statement:
+insert into users(username, password) VALUES ('Kris','Suppe')commit; [42000-175]
+11-29 11:33:46 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "Kris" not found [42122-175]
+	at h2@1.3.175/org.h2.message.DbException.getJdbcSQLException(DbException.java:332)
+	at h2@1.3.175/org.h2.message.DbException.get(DbException.java:172)
+	at h2@1.3.175/org.h2.message.DbException.get(DbException.java:149)
+	at h2@1.3.175/org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3047)
+	at h2@1.3.175/org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3133)
+	at h2@1.3.175/org.h2.jdbc.JdbcResultSet.getString(JdbcResultSet.java:296)
+	at javafx/sample.JavaSeH2Memory.main(JavaSeH2Memory.java:21)
+11-29 11:38:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(user_id int PRIMARY KEY AUTO_INCREMENT,username varchar(50) NOT NULL ,password varchar(50) NOT NULL);insert into users(username, password) VALUES ('username','password')commit; [42101-175]
+11-29 11:39:28 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "DROP TABLE USERSCREATE TABLE[*] USERS(USER_ID INT PRIMARY KEY AUTO_INCREMENT,USERNAME VARCHAR(50) NOT NULL ,PASSWORD VARCHAR(50) NOT NULL);INSERT INTO USERS(USERNAME, PASSWORD) VALUES ('username','password')COMMIT; "; SQL statement:
+DROP TABLE usersCREATE TABLE users(user_id int PRIMARY KEY AUTO_INCREMENT,username varchar(50) NOT NULL ,password varchar(50) NOT NULL);insert into users(username, password) VALUES ('username','password')commit; [42000-175]
+11-29 11:39:52 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "DROP TABLE USERS,CREATE TABLE[*] USERS(USER_ID INT PRIMARY KEY AUTO_INCREMENT,USERNAME VARCHAR(50) NOT NULL ,PASSWORD VARCHAR(50) NOT NULL);INSERT INTO USERS(USERNAME, PASSWORD) VALUES ('username','password')COMMIT; "; SQL statement:
+DROP TABLE users,CREATE TABLE users(user_id int PRIMARY KEY AUTO_INCREMENT,username varchar(50) NOT NULL ,password varchar(50) NOT NULL);insert into users(username, password) VALUES ('username','password')commit; [42000-175]
+11-29 11:40:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO USERS(USERNAME, PASSWORD) VALUES ('username','password')COMMIT[*]; "; SQL statement:
+insert into users(username, password) VALUES ('username','password')commit; [42000-175]
+11-29 11:41:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO USERS(USERNAME, PASSWORD) VALUES ('username','password')COMMIT[*]; "; SQL statement:
+insert into users(username, password) VALUES ('username','password')commit; [42000-175]
