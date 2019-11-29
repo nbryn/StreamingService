@@ -53,7 +53,7 @@ public class SQLMediaMapper implements MediaMapper {
     public List<Media> getAllSeriesFromGenre(Genre genre) {
         return null;
     }
-    
+
 
     @Override
     public Media get(int id) {
