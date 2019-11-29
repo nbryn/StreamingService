@@ -2,7 +2,13 @@ package sample.logic.entities;
 
 public class Movie extends Media {
 
-    public Movie(String name, int year, String genre, double rating) {
+    public Movie(String name, int year, Genre genre, double rating) {
         super(name, year, genre, rating);
+    }
+
+    @Override
+    public String toString() {
+
+        return "Movie: Name: " + super.getName() + " Year: " + super.getYear() + " Genre: " + super.getGenre() + " Rating: " + super.getRating();
     }
 }

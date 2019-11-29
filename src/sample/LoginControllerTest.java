@@ -6,11 +6,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import sample.data.MockMediaMapper;
-import sample.data.MockUserMapper;
+import sample.data.mock.MockMediaMapper;
+import sample.data.mock.MockUserMapper;
 import sample.logic.AppController;
 
-public class LoginController {
+public class LoginControllerTest {
 
     private AppController appController;
 
@@ -23,7 +23,7 @@ public class LoginController {
     @FXML
     private TextArea errorMsg;
 
-    public LoginController() {
+    public LoginControllerTest() {
         appController = new AppController(new MockUserMapper(), new MockMediaMapper());
     }
 

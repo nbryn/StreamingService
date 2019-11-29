@@ -1,4 +1,4 @@
-package sample.data;
+package sample.data.mock;
 
 import sample.logic.entities.User;
 import sample.logic.exceptions.NoSuchUserException;
@@ -26,7 +26,7 @@ public class MockUserMapper implements UserMapper {
     @Override
     public User getUser(String username, String password) throws NoSuchUserException {
         User matchingUser = users.stream()
-                .filter(user -> user.getUsername().equalsIgnoreCase(username) && user.getPassword().equalsIgnoreCase(password))
+                .filter(user -> user.getUsername().equals(username))
                 .findAny()
                 .orElse(null);
 
@@ -53,6 +53,7 @@ public class MockUserMapper implements UserMapper {
 
     @Override
     public void saveUser(User user) {
+        users.add(user);
 
     }
 
