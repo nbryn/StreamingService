@@ -17,13 +17,15 @@ public class JavaSeH2Memory {
                             "VALUES ('username','password');"
             );
 
-            var retur = stm.executeQuery("SELECT * FROM users WHERE username = 'username'");
+            var retur = stm.executeQuery("SELECT * FROM users WHERE username = 'username' ");
             String test = null;
+            String test2 = null;
             while(retur.next()){
                 System.out.println("");
                 test = retur.getString("username");
+                test2 = retur.getString("password");
             }if (test != null){
-                System.out.println(test);
+                System.out.println(test + test2);
 
             }else System.out.println("Du dummede dig");
             conn.close();
