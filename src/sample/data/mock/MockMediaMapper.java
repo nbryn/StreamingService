@@ -9,23 +9,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 public class MockMediaMapper implements MediaMapper {
 
-    private List<Media> media;
+    private List<Media> allMedia;
 
     public MockMediaMapper() {
-        media = new ArrayList<>();
+        allMedia = new ArrayList<>();
         List<String> sawGenre = new ArrayList<>();
         sawGenre.add("Horror");
-        media.add(new Movie("Saw", 1992, sawGenre, 9.2));
+        allMedia.add(new Movie("Saw", 1992, sawGenre, 9.2));
         List<String> hoodGenre = new ArrayList<>();
         hoodGenre.add("Adventure");
-        media.add(new Movie("Robin Hood", 1994, hoodGenre, 8.2));
+        allMedia.add(new Movie("Robin Hood", 1994, hoodGenre, 8.2));
         List<String> anneGenre = new ArrayList<>();
         anneGenre.add("Crime");
-        media.add(new Movie("Anna", 1991, anneGenre, 6.2));
+        allMedia.add(new Movie("Anna", 1991, anneGenre, 6.2));
 
 
         Map<Integer, Integer> gotSeasons = new HashMap<>();
@@ -47,45 +48,103 @@ public class MockMediaMapper implements MediaMapper {
         collarGenre.add("Thriller");
 
 
-        media.add(new Series("GoT", 2011, gotGenre, 9.2, gotSeasons));
-        media.add(new Series("Mafia", 1991, mafiaGenre, 7.2, mafiaSeasons));
-        media.add(new Series("Blue Collar", 1991, collarGenre, 2.2, blueCollarSeasons));
+        allMedia.add(new Series("GoT", 2011, gotGenre, 9.2, gotSeasons));
+        allMedia.add(new Series("Mafia", 1991, mafiaGenre, 7.2, mafiaSeasons));
+        allMedia.add(new Series("Blue Collar", 1991, collarGenre, 2.2, blueCollarSeasons));
     }
 
 
     @Override
     public List<Media> getAll() {
-        return media;
+        return allMedia;
     }
 
     @Override
     public List<Media> getMovies() {
-        return null;
+        List<Media> movies = allMedia.stream()
+                .filter(media -> media instanceof Movie)
+                .collect(Collectors.toList());
+
+        return movies;
     }
 
     @Override
     public List<Media> getSeries() {
-        return null;
+        List<Media> series = allMedia.stream()
+                .filter(media -> media instanceof Series)
+                .collect(Collectors.toList());
+
+        return series;
     }
 
     @Override
     public List<Media> getByName(String name, String media) {
-        return null;
+        List<Media> result;
+        if (media.equalsIgnoreCase("all")) {
+            result = allMedia.stream()
+                    .filter(ms -> media.equalsIgnoreCase(ms.getName()))
+                    .collect(Collectors.toList());
+        } else {
+            result = allMedia.stream()
+                    .filter(ms -> media.equalsIgnoreCase(ms.getName()))
+                    .filter(ms -> ms.getClass().getName().equalsIgnoreCase(media))
+                    .collect(Collectors.toList());
+        }
+        return result;
     }
 
     @Override
     public List<Media> getByRating(double rating, String media) {
-        return null;
+        List<Media> result;
+        if (media.equalsIgnoreCase("all")) {
+            result = allMedia.stream()
+                    .filter(ms -> ms.getRating() > rating)
+                    .collect(Collectors.toList());
+        } else {
+            result = allMedia.stream()
+                    .filter(ms -> ms.getRating() > rating)
+                    .filter(ms -> ms.getClass().getName().equalsIgnoreCase(media))
+                    .collect(Collectors.toList());
+        }
+        return result;
     }
 
     @Override
     public List<Media> getAllFromGenre(String genre, String media) {
-        return null;
+        List<Media> result;
+        if (media.equalsIgnoreCase("all")) {
+            result = allMedia.stream()
+                    .filter((ms) -> {
+                        List<String> genres = ms.getGenre();
+                        return genres.contains(genre);
+                    })
+                    .collect(Collectors.toList());
+        } else {
+            result = allMedia.stream()
+                    .filter((ms) -> {
+                        List<String> genres = ms.getGenre();
+                        return genres.contains(genre);
+                    })
+                    .filter(ms -> ms.getClass().getName().equalsIgnoreCase(media))
+                    .collect(Collectors.toList());
+        }
+        return result;
     }
 
     @Override
     public List<Media> getByRelease(int year, String media) {
-        return null;
+        List<Media> result;
+        if (media.equalsIgnoreCase("all")) {
+            result = allMedia.stream()
+                    .filter(ms -> ms.getYear() == year)
+                    .collect(Collectors.toList());
+        } else {
+            result = allMedia.stream()
+                    .filter(ms -> ms.getRating() == year)
+                    .filter(ms -> ms.getClass().getName().equalsIgnoreCase(media))
+                    .collect(Collectors.toList());
+        }
+        return result;
     }
 
 }
