@@ -1,6 +1,5 @@
 package sample.data.mock;
 
-import sample.logic.entities.Genre;
 import sample.logic.entities.Media;
 import sample.logic.entities.Movie;
 import sample.logic.entities.Series;
@@ -10,7 +9,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 
 public class MockMediaMapper implements MediaMapper {
@@ -19,34 +17,41 @@ public class MockMediaMapper implements MediaMapper {
 
     public MockMediaMapper() {
         media = new ArrayList<>();
-        media.add(new Movie("God", 1992, Genre.ACTION, 9.2));
-        media.add(new Movie("Hejsa", 1994, Genre.ADVENTURE, 8.2));
-        media.add(new Movie("Luppe", 1991, Genre.CRIME, 6.2));
-        media.add(new Movie("Tab", 2011, Genre.DOCUMENTARY, 4.2));
-        media.add(new Movie("SQL", 1991, Genre.FAMILY, 7.2));
-        media.add(new Movie("DTW", 1991, Genre.BIOGRAPHY, 2.2));
+        List<String> sawGenre = new ArrayList<>();
+        sawGenre.add("Horror");
+        media.add(new Movie("Saw", 1992, sawGenre, 9.2));
+        List<String> hoodGenre = new ArrayList<>();
+        hoodGenre.add("Adventure");
+        media.add(new Movie("Robin Hood", 1994, hoodGenre, 8.2));
+        List<String> anneGenre = new ArrayList<>();
+        anneGenre.add("Crime");
+        media.add(new Movie("Anna", 1991, anneGenre, 6.2));
+
 
         Map<Integer, Integer> gotSeasons = new HashMap<>();
         gotSeasons.put(1, 10);
         gotSeasons.put(2, 5);
+        List<String> gotGenre = new ArrayList<>();
+        gotGenre.add("History");
 
         Map<Integer, Integer> mafiaSeasons = new HashMap<>();
         gotSeasons.put(1, 8);
         gotSeasons.put(2, 7);
+        List<String> mafiaGenre = new ArrayList<>();
+        mafiaGenre.add("Crime");
 
         Map<Integer, Integer> blueCollarSeasons = new HashMap<>();
         blueCollarSeasons.put(1, 6);
         blueCollarSeasons.put(2, 9);
+        List<String> collarGenre = new ArrayList<>();
+        collarGenre.add("Thriller");
 
-        media.add(new Series("GoT", 2011, Genre.HISTORY, 9.2, gotSeasons));
-        media.add(new Series("Mafia", 1991, Genre.TALKSHOW, 7.2, mafiaSeasons));
-        media.add(new Series("Blue Collar", 1991, Genre.THRILLER, 2.2, blueCollarSeasons));
+
+        media.add(new Series("GoT", 2011, gotGenre, 9.2, gotSeasons));
+        media.add(new Series("Mafia", 1991, mafiaGenre, 7.2, mafiaSeasons));
+        media.add(new Series("Blue Collar", 1991, collarGenre, 2.2, blueCollarSeasons));
     }
 
-    @Override
-    public Media get(int id) {
-        return null;
-    }
 
     @Override
     public List<Media> getAll() {
@@ -54,94 +59,33 @@ public class MockMediaMapper implements MediaMapper {
     }
 
     @Override
-    public List<Media> getAllMovies( ) {
-        List<Media> movies = media.stream()
-                .filter(media -> media instanceof Movie)
-                .collect(Collectors.toList());
-
-
-        return movies;
+    public List<Media> getMovies() {
+        return null;
     }
 
     @Override
-    public List<Media> getAllSeries() {
-        List<Media> series = media.stream()
-                .filter(media -> media instanceof Series)
-                .collect(Collectors.toList());
-
-        return series;
-
+    public List<Media> getSeries() {
+        return null;
     }
 
     @Override
-    public List<Media> getAllWithRatingOver(double rating) {
-        List<Media> result = media.stream()
-                .filter(media -> media.getRating() > rating)
-                .collect(Collectors.toList());
-
-        return result;
+    public List<Media> getByName(String name, String media) {
+        return null;
     }
 
     @Override
-    public List<Media> getAllSeriesWithRatingOver(double rating) {
-        List<Media> temp = media.stream()
-                .filter(media -> media.getRating() > rating)
-                .collect(Collectors.toList());
-
-        List<Media> result = temp.stream()
-                .filter(media -> media instanceof Series)
-                .collect(Collectors.toList());
-
-        return result;
+    public List<Media> getByRating(double rating, String media) {
+        return null;
     }
 
     @Override
-    public List<Media> getAllMoviesWithRatingOver(double rating) {
-        List<Media> temp = media.stream()
-                .filter(media -> media.getRating() > rating)
-                .collect(Collectors.toList());
-
-        List<Media> result = temp.stream()
-                .filter(media -> media instanceof Movie)
-                .collect(Collectors.toList());
-
-        return result;
+    public List<Media> getAllFromGenre(String genre, String media) {
+        return null;
     }
 
     @Override
-    public List<Media> getAllFromGenre(Genre genre) {
-        List<Media> result = media.stream()
-                .filter(media -> media.getGenre() == genre)
-                .collect(Collectors.toList());
-
-        return result;
+    public List<Media> getByRelease(int year, String media) {
+        return null;
     }
-
-    @Override
-    public List<Media> getAllMoviesFromGenre(Genre genre) {
-        List<Media> temp = media.stream()
-                .filter(media -> media.getGenre() == genre)
-                .collect(Collectors.toList());
-
-        List<Media> result = temp.stream()
-                .filter(media -> media instanceof Movie)
-                .collect(Collectors.toList());
-
-        return result;
-    }
-
-    @Override
-    public List<Media> getAllSeriesFromGenre(Genre genre) {
-        List<Media> temp = media.stream()
-                .filter(media -> media.getGenre() == genre)
-                .collect(Collectors.toList());
-
-        List<Media> result = temp.stream()
-                .filter(media -> media instanceof Series)
-                .collect(Collectors.toList());
-
-        return result;
-    }
-
 
 }

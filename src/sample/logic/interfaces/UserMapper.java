@@ -7,18 +7,14 @@ import java.util.List;
 
 public interface UserMapper {
 
-    public List<User> getAllUsers();
+    public List<User> getAll();
 
     public User getUser(String username, String password) throws NoSuchUserException;
 
-    public User getUser(int id) throws NoSuchUserException;
-
     public void saveUser(User user);
 
-    public void updateUser(int id);
+    public void updateUser(String username, String password);
 
-    public void deleteUser(int id);
-
-
+    public void deleteUser(String username, String password);
 
 }

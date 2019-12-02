@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sample.data.H2DataBase;
+import sample.data.H2Init;
 
 public class Main extends Application {
 
@@ -16,6 +18,10 @@ public class Main extends Application {
         primaryStage.setTitle("NKG");
         primaryStage.setScene(login);
         primaryStage.show();
+    }
+    public void startSQL(){
+        /* Initialisering af SQL database */
+        H2Init.initialize();
     }
 
     public static void main(String[] args) {

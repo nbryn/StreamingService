@@ -8,17 +8,17 @@ public class User {
     private String name;
     private String username;
     private String password;
-    private int birthYear;
+    private String birthday;
     private static int count;
     private int id;
 
     private List<Media> myList;
 
-    public User(String name, int birthYear, String username, String password) {
+    public User(String name, String birthday, String username, String password) {
         this.name = name;
         this.username = username;
         this.password = password;
-        this.birthYear = birthYear;
+        this.birthday = birthday;
 
         id = count++;
         myList = new ArrayList<>();
@@ -40,8 +40,8 @@ public class User {
         return this.password;
     }
 
-    public int getBirthYear() {
-        return this.birthYear;
+    public String getBirthday() {
+        return this.birthday;
     }
 
     public List<Media> getMyList() {

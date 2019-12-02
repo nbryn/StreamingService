@@ -1,6 +1,5 @@
 package sample.logic;
 
-import sample.logic.entities.Genre;
 import sample.logic.entities.Media;
 import sample.logic.entities.User;
 import sample.logic.exceptions.NoSuchUserException;
@@ -36,50 +35,26 @@ public class AppController {
         return false;
     }
 
-    public List<Media> fetchAllMedia() {
-        List<Media> medias = mediaMapper.getAll();
-
-        return medias;
-    }
-
-    public List<Media> fetchAllSeries() {
-        List<Media> series = mediaMapper.getAllSeries();
-
-        return series;
-    }
-
-    public List<Media> fetchAllMovies() {
-        List<Media> movies = mediaMapper.getAllMovies();
-
-        return movies;
-    }
-
-    public List<Media> fetchAllFromGenre(String genre, String mediaToFetch) {
+    public List<Media> fetchAll(String media) {
         List<Media> result;
-        Genre gen = Genre.valueOf(genre.toUpperCase());
-
-        if (mediaToFetch.equals("all")) {
-            result = mediaMapper.getAllFromGenre(gen);
-        } else if (mediaToFetch.equals("series")) {
-            result = mediaMapper.getAllSeriesFromGenre(gen);
+        if (media.equalsIgnoreCase("all")) {
+            result = mediaMapper.getAll();
+        } else if (media.equalsIgnoreCase("movie")) {
+            result = mediaMapper.getMovies();
         } else {
-            result = mediaMapper.getAllMoviesFromGenre(gen);
+            result = mediaMapper.getSeries();
         }
         return result;
     }
 
-    public List<Media> fetchAllWithRatingOver(double rating, String mediaToFetch) {
+    public List<Media> fetchAllFromGenre(String genre, String media) {
         List<Media> result;
 
-        if (mediaToFetch.equals("all")) {
-            result = mediaMapper.getAllWithRatingOver(rating);
-        } else if (mediaToFetch.equals("series")) {
-            result = mediaMapper.getAllSeriesWithRatingOver(rating);
-        } else {
-            result = mediaMapper.getAllMoviesWithRatingOver(rating);
-        }
+        result = mediaMapper.getAllFromGenre(genre, media);
+
         return result;
     }
+
 
 }
 

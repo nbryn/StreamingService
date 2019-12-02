@@ -1,8 +1,10 @@
 package sample.logic.entities;
 
+import java.util.List;
+
 public class Movie extends Media {
 
-    public Movie(String name, int year, Genre genre, double rating) {
+    public Movie(String name, int year, List<String> genre, double rating) {
         super(name, year, genre, rating);
     }
 
