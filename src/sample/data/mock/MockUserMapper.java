@@ -13,8 +13,8 @@ public class MockUserMapper implements UserMapper {
 
     public MockUserMapper() {
         users = new ArrayList<>();
-        users.add(new User("Kristian", 1996, "KR", "Hejsa"));
-        users.add(new User("Niklas", 1992, "NBRYN", "Suppe"));
+        users.add(new User("Kristian", "10.03.1996", "KR", "Hejsa"));
+        users.add(new User("Niklas", "12.02.1992", "NBRYN", "Suppe"));
     }
 
     @Override

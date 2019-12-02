@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?language Java??>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.collections.*?>
 
-<?import java.lang.String?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="404.0" prefWidth="624.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.OverviewControllerTest">
     <children>
         <Pane layoutX="129.0" layoutY="73.0" prefHeight="254.0" prefWidth="423.0">
@@ -16,19 +15,20 @@
         </Pane>
       <Button fx:id="loadAll" layoutX="0" layoutY="80" mnemonicParsing="false" onMouseClicked="#loadAllMedia" prefHeight="26.0" prefWidth="129.0" text="Load All" />
       <Button fx:id="loadAllSeries" layoutX="0" layoutY="145" mnemonicParsing="false" onMouseClicked="#loadAllSeries" prefHeight="26.0" prefWidth="129.0" text="Load Series" />
-        <Button fx:id="loadAllMovies" layoutX="0" layoutY="205" mnemonicParsing="false" onMouseClicked="#loadAllMovies" prefHeight="26.0" prefWidth="129.0" text="Load Movies" />
-      <ComboBox fx:id="genres"  prefWidth="150.0" value="Genres" >
-          <items>
-              <FXCollections fx:factory="observableArrayList">
-                  <String fx:value="Crime" />
-                  <String fx:value="Thriller" />
-                  <String fx:value="Horror" />
-                  <String fx:value="Crime" />
+        <Button fx:id="loadAllMovies" layoutX="0" layoutY="205" mnemonicParsing="false" onAction="#loadAllMovies" prefHeight="26.0" prefWidth="129.0" text="Load Movies" />
+        <MenuBar layoutY="1.0" prefHeight="26.0" prefWidth="121.0">
+            <Menu fx:id="genres" text="Genre">
+                <items>
+                    <MenuItem fx:id="horror" onAction="#loadHorror" text="Horror" />
+                    <MenuItem fx:id="thriller" onAction="#loadThriller"  text="Thriller" />
+                    <MenuItem fx:id="adventure" onAction="#loadAdventure" text="Adventure" />
+                </items>
 
 
-              </FXCollections>
-          </items>
-      </ComboBox>
+
+            </Menu>
+
+        </MenuBar>
     </children>
 
 </AnchorPane>

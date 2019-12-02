@@ -1,10 +1,8 @@
 package sample;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import sample.data.mock.MockMediaMapper;
 import sample.data.mock.MockUserMapper;
@@ -18,8 +16,11 @@ public class OverviewControllerTest {
 
     private AppController appController;
 
+
     @FXML
-    private ComboBox genres;
+    private MenuItem horror;
+    @FXML
+    private MenuItem thriller;
     @FXML
     private Button loadAll;
     @FXML
@@ -58,11 +59,50 @@ public class OverviewControllerTest {
 
         List<Media> movies = appController.fetchAllMovies();
 
-        movies.forEach(media -> sb.append(media.toString() + "\n"));
+        setOutputText(movies);
+    }
+
+    @FXML
+    public void loadHorror(ActionEvent event) {
+        MenuItem h = (MenuItem) event.getSource();
+
+        String genre = h.getText();
+
+        List<Media> media = appController.fetchAllFromGenre(genre, "all");
+
+        setOutputText(media);
+
+    }
+
+    @FXML
+    public void loadAdventure(ActionEvent event) {
+        MenuItem h = (MenuItem) event.getSource();
+
+        String genre = h.getText();
+
+        List<Media> media = appController.fetchAllFromGenre(genre, "all");
+
+        setOutputText(media);
+    }
+
+    @FXML
+    public void loadThriller(ActionEvent event) {
+        MenuItem h = (MenuItem) event.getSource();
+
+        String genre = h.getText();
+
+        List<Media> media = appController.fetchAllFromGenre(genre, "all");
+
+        setOutputText(media);
+    }
+
+    private void setOutputText(List<Media> list) {
+        StringBuilder sb = new StringBuilder("");
+
+        list.forEach(media -> sb.append(media.toString()));
 
         output.setText(sb.toString());
     }
-
 
 }
 
