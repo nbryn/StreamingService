@@ -6,24 +6,19 @@ import java.util.List;
 
 public interface MediaMapper {
 
-    public Media get(int id);
-
     public List<Media> getAll();
 
-    public List<Media> getAllMovies();
+    public List<Media> getMovies();
 
-    public List<Media> getAllSeries();
+    public List<Media> getSeries();
 
-    public List<Media> getAllWithRatingOver(double rating);
+    public List<Media> getByName(String name, String media);
 
-    public List<Media> getAllSeriesWithRatingOver(double rating);
+    public List<Media> getByRating(double rating, String media);
 
-    public List<Media> getAllMoviesWithRatingOver(double rating);
+    public List<Media> getAllFromGenre(String genre, String media);
 
-    public List<Media> getAllFromGenre(String genre);
+    public List<Media> getByRelease(int year, String media);
 
-    public List<Media> getAllMoviesFromGenre(String genre);
-
-    public List<Media> getAllSeriesFromGenre(String genre);
 
 }

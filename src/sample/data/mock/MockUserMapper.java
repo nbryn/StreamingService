@@ -18,9 +18,8 @@ public class MockUserMapper implements UserMapper {
     }
 
     @Override
-    public List<User> getAllUsers() {
-
-        return users;
+    public List<User> getAll() {
+        return null;
     }
 
     @Override
@@ -38,32 +37,20 @@ public class MockUserMapper implements UserMapper {
     }
 
     @Override
-    public User getUser(int id) throws NoSuchUserException {
-        User matchingUser = users.stream()
-                .filter(user -> user.getId() == id)
-                .findAny()
-                .orElse(null);
-
-        if (matchingUser == null) {
-            throw new NoSuchUserException();
-        }
-
-        return matchingUser;
-    }
-
-    @Override
     public void saveUser(User user) {
         users.add(user);
 
     }
 
     @Override
-    public void updateUser(int id) {
+    public void updateUser(String username, String password) {
 
     }
 
     @Override
-    public void deleteUser(int id) {
+    public void deleteUser(String username, String password) {
 
     }
+
+
 }

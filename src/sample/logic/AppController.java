@@ -34,50 +34,26 @@ public class AppController {
         return false;
     }
 
-    public List<Media> fetchAllMedia() {
-        List<Media> medias = mediaMapper.getAll();
-
-        return medias;
-    }
-
-    public List<Media> fetchAllSeries() {
-        List<Media> series = mediaMapper.getAllSeries();
-
-        return series;
-    }
-
-    public List<Media> fetchAllMovies() {
-        List<Media> movies = mediaMapper.getAllMovies();
-
-        return movies;
-    }
-
-    public List<Media> fetchAllFromGenre(String genre, String mediaToFetch) {
+    public List<Media> fetchAll(String media) {
         List<Media> result;
-
-
-        if (mediaToFetch.equals("all")) {
-            result = mediaMapper.getAllFromGenre(genre);
-        } else if (mediaToFetch.equals("series")) {
-            result = mediaMapper.getAllSeriesFromGenre(genre);
+        if (media.equalsIgnoreCase("all")) {
+            result = mediaMapper.getAll();
+        } else if (media.equalsIgnoreCase("movie")) {
+            result = mediaMapper.getMovies();
         } else {
-            result = mediaMapper.getAllMoviesFromGenre(genre);
+            result = mediaMapper.getSeries();
         }
         return result;
     }
 
-    public List<Media> fetchAllWithRatingOver(double rating, String mediaToFetch) {
+    public List<Media> fetchAllFromGenre(String genre, String media) {
         List<Media> result;
 
-        if (mediaToFetch.equals("all")) {
-            result = mediaMapper.getAllWithRatingOver(rating);
-        } else if (mediaToFetch.equals("series")) {
-            result = mediaMapper.getAllSeriesWithRatingOver(rating);
-        } else {
-            result = mediaMapper.getAllMoviesWithRatingOver(rating);
-        }
+        result = mediaMapper.getAllFromGenre(genre, media);
+
         return result;
     }
+
 
 }
 

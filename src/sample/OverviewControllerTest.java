@@ -34,7 +34,7 @@ public class OverviewControllerTest {
     public void loadAllMedia(MouseEvent event) {
         StringBuilder sb = new StringBuilder("");
 
-        List<Media> medias = appController.fetchAllMedia();
+        List<Media> medias = appController.fetchAll("all");
 
         medias.forEach(media -> sb.append(media.toString() + "\n"));
 
@@ -46,7 +46,7 @@ public class OverviewControllerTest {
     public void loadAllSeries(MouseEvent event) {
         StringBuilder sb = new StringBuilder("");
 
-        List<Media> series = appController.fetchAllSeries();
+        List<Media> series = appController.fetchAll("series");
 
         series.forEach(media -> sb.append(media.toString() + "\n"));
 
@@ -57,18 +57,14 @@ public class OverviewControllerTest {
     public void loadAllMovies(MouseEvent event) {
         StringBuilder sb = new StringBuilder("");
 
-        List<Media> movies = appController.fetchAllMovies();
+        List<Media> movies = appController.fetchAll("movies");
 
         setOutputText(movies);
     }
 
     @FXML
     public void loadHorror(ActionEvent event) {
-        MenuItem h = (MenuItem) event.getSource();
-
-        String genre = h.getText();
-
-        List<Media> media = appController.fetchAllFromGenre(genre, "all");
+        List<Media> media = appController.fetchAllFromGenre("horror", "all");
 
         setOutputText(media);
 
@@ -76,24 +72,48 @@ public class OverviewControllerTest {
 
     @FXML
     public void loadAdventure(ActionEvent event) {
-        MenuItem h = (MenuItem) event.getSource();
-
-        String genre = h.getText();
-
-        List<Media> media = appController.fetchAllFromGenre(genre, "all");
+        List<Media> media = appController.fetchAllFromGenre("adventure", "all");
 
         setOutputText(media);
     }
 
     @FXML
     public void loadThriller(ActionEvent event) {
-        MenuItem h = (MenuItem) event.getSource();
-
-        String genre = h.getText();
-
-        List<Media> media = appController.fetchAllFromGenre(genre, "all");
+        List<Media> media = appController.fetchAllFromGenre("thriller", "all");
 
         setOutputText(media);
+    }
+
+    @FXML
+    public void loadDocumentary(ActionEvent event) {
+        List<Media> media = appController.fetchAllFromGenre("documentary", "all");
+
+        setOutputText(media);
+
+    }
+
+    @FXML
+    public void loadComedy(ActionEvent event) {
+        List<Media> media = appController.fetchAllFromGenre("comedy", "all");
+
+        setOutputText(media);
+
+    }
+
+    @FXML
+    public void loadAction(ActionEvent event) {
+        List<Media> media = appController.fetchAllFromGenre("action", "all");
+
+        setOutputText(media);
+
+    }
+
+    @FXML
+    public void loadCrime(ActionEvent event) {
+        List<Media> media = appController.fetchAllFromGenre("crime", "all");
+
+        setOutputText(media);
+
     }
 
     private void setOutputText(List<Media> list) {

@@ -19,16 +19,27 @@
         <MenuBar layoutY="1.0" prefHeight="26.0" prefWidth="121.0">
             <Menu fx:id="genres" text="Genre">
                 <items>
-                    <MenuItem fx:id="horror" onAction="#loadHorror" text="Horror" />
-                    <MenuItem fx:id="thriller" onAction="#loadThriller"  text="Thriller" />
+                    <MenuItem fx:id="horrorr" onAction="#loadHorror" text="Horror" />
+                    <MenuItem fx:id="thrillerr" onAction="#loadThriller" text="Thriller" />
                     <MenuItem fx:id="adventure" onAction="#loadAdventure" text="Adventure" />
+                    <MenuItem fx:id="documentary" onAction="#loadDocumentary" text="Documentary" />
+                    <MenuItem fx:id="comedy" onAction="#loadComedy" text="Comedy" />
+                    <MenuItem fx:id="action" onAction="#loadAction" text="Action" />
+                    <MenuItem fx:id="crime" onAction="#loadCrime" text="Crime" />
                 </items>
 
-
+                
 
             </Menu>
 
         </MenuBar>
+      <Hyperlink onAction="#loadHorror" text="Horror" layoutX="129.0" layoutY="4.0"  />
+      <Hyperlink onAction="#loadThriller" text="Thriller" layoutX="202.0" layoutY="4.0"  />
+      <Hyperlink onAction="#loadAdventure" text="Adventure" layoutX="276.0" layoutY="4.0" />
+      <Hyperlink onAction="#loadDocumentary" text="Documentary" layoutX="357.0" layoutY="4.0" />
+      <Hyperlink onAction="#loadComedy" text="Comedy" layoutX="430.0" layoutY="4.0" />
+      <Hyperlink onAction="#loadAction" text="Action" layoutX="176.0" layoutY="28.0" />
+      <Hyperlink onAction="#loadCrime" text="Crime" layoutX="503.0" layoutY="4.0"  />
     </children>
 
 </AnchorPane>
