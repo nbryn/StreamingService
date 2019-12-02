@@ -110,7 +110,7 @@ public class MockMediaMapper implements MediaMapper {
     @Override
     public List<Media> getAllFromGenre(String genre) {
         List<Media> result = media.stream()
-                .filter(media -> media.getGenre() == genre)
+                .filter(media -> media.getGenre().equalsIgnoreCase(genre))
                 .collect(Collectors.toList());
 
         return result;
@@ -119,7 +119,7 @@ public class MockMediaMapper implements MediaMapper {
     @Override
     public List<Media> getAllMoviesFromGenre(String genre) {
         List<Media> temp = media.stream()
-                .filter(media -> media.getGenre() == genre)
+                .filter(media -> media.getGenre().equalsIgnoreCase(genre))
                 .collect(Collectors.toList());
 
         List<Media> result = temp.stream()
@@ -132,7 +132,7 @@ public class MockMediaMapper implements MediaMapper {
     @Override
     public List<Media> getAllSeriesFromGenre(String genre) {
         List<Media> temp = media.stream()
-                .filter(media -> media.getGenre() == genre)
+                .filter(media -> media.getGenre().equalsIgnoreCase(genre))
                 .collect(Collectors.toList());
 
         List<Media> result = temp.stream()
