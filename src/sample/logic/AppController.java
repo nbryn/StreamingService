@@ -1,6 +1,5 @@
 package sample.logic;
 
-import sample.logic.entities.Genre;
 import sample.logic.entities.Media;
 import sample.logic.entities.User;
 import sample.logic.exceptions.NoSuchUserException;
@@ -55,14 +54,14 @@ public class AppController {
 
     public List<Media> fetchAllFromGenre(String genre, String mediaToFetch) {
         List<Media> result;
-        Genre gen = Genre.valueOf(genre.toUpperCase());
+
 
         if (mediaToFetch.equals("all")) {
-            result = mediaMapper.getAllFromGenre(gen);
+            result = mediaMapper.getAllFromGenre(genre);
         } else if (mediaToFetch.equals("series")) {
-            result = mediaMapper.getAllSeriesFromGenre(gen);
+            result = mediaMapper.getAllSeriesFromGenre(genre);
         } else {
-            result = mediaMapper.getAllMoviesFromGenre(gen);
+            result = mediaMapper.getAllMoviesFromGenre(genre);
         }
         return result;
     }

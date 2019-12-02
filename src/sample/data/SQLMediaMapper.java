@@ -1,11 +1,8 @@
 package sample.data;
 
-import sample.logic.entities.Genre;
 import sample.logic.entities.Media;
 import sample.logic.interfaces.MediaMapper;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 public class SQLMediaMapper implements MediaMapper {
@@ -40,17 +37,17 @@ public class SQLMediaMapper implements MediaMapper {
     }
 
     @Override
-    public List<Media> getAllFromGenre(Genre genre) {
+    public List<Media> getAllFromGenre(String genre) {
         return null;
     }
 
     @Override
-    public List<Media> getAllMoviesFromGenre(Genre genre) {
+    public List<Media> getAllMoviesFromGenre(String genre) {
         return null;
     }
 
     @Override
-    public List<Media> getAllSeriesFromGenre(Genre genre) {
+    public List<Media> getAllSeriesFromGenre(String genre) {
         return null;
     }
 

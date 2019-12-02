@@ -6,7 +6,7 @@ public class Series extends Media {
 
     private Map<Integer, Integer> seasons;
 
-    public Series(String name, int year, Genre genre, double rating, Map seasons) {
+    public Series(String name, int year, String genre, double rating, Map seasons) {
         super(name, year, genre, rating);
 
         this.seasons = seasons;

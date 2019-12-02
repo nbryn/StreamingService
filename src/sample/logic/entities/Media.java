@@ -3,12 +3,12 @@ package sample.logic.entities;
 public abstract class Media {
 
     private String name;
-    private Genre genre;
+    private String genre;
     private int year;
     private double rating;
 
 
-    public Media(String name, int year, Genre genre, double rating) {
+    public Media(String name, int year, String genre, double rating) {
         this.name = name;
         this.genre = genre;
         this.year = year;
@@ -19,7 +19,7 @@ public abstract class Media {
         return this.name;
     }
 
-    public Genre getGenre() {
+    public String getGenre() {
         return this.genre;
     }
 
