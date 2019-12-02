@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import sample.data.H2DataBase;
+import sample.data.H2Init;
 
 public class Main extends Application {
 
@@ -15,6 +17,10 @@ public class Main extends Application {
         primaryStage.setTitle("StreamingService");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
+    }
+    public void startSQL(){
+        /* Initialisering af SQL database */
+        H2Init.initialize();
     }
 
 
