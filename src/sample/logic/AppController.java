@@ -14,8 +14,8 @@ public class AppController {
     private UserMapper userMapper;
     private MediaMapper mediaMapper;
 
-    public AppController(UserMapper userMapper, MediaMapper mediaMapper) {
-
+    public AppController(UserMapper userMapper, MediaMapper mediaMapper)
+    {
         this.userMapper = userMapper;
         this.mediaMapper = mediaMapper;
     }
@@ -28,7 +28,8 @@ public class AppController {
                 return true;
             }
 
-        } catch (NoSuchUserException e) {
+        } catch (NoSuchUserException e)
+        {
             return false;
         }
 

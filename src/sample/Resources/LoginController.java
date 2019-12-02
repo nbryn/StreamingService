@@ -1,4 +1,4 @@
-package sample;
+package sample.Controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -9,16 +9,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import sample.data.MockMediaMapper;
-import sample.data.MockUserMapper;
+import sample.data.mock.MockMediaMapper;
+import sample.data.mock.MockUserMapper;
 import sample.logic.AppController;
-
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 public class LoginController
 {
     private AppController appController;
-
     public Button loginButton;
     public TextField usernameField;
     public PasswordField passwordField;
@@ -37,10 +37,12 @@ public class LoginController
 
         if (userFound)
         {
-            Parent streamingRoot = FXMLLoader.load(getClass().getResource("Streaming.fxml"));
-            Scene streamingScene = new Scene(streamingRoot);
+            //Parent overviewRoot = FXMLLoader.load(getClass().getResource("Resources/Login.fxml"));
+            URL url = new File("D:\\Streaming\\StreamingService\\src\\sample\\OverviewTest.fxml").toURI().toURL();
+            Parent overviewRoot = FXMLLoader.load(url);
+            Scene overviewScene = new Scene(overviewRoot);
             Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-            window.setScene(streamingScene);
+            window.setScene(overviewScene);
             window.show();
             System.out.println("JA");
         }
@@ -51,4 +53,3 @@ public class LoginController
         }
     }
 }
-
