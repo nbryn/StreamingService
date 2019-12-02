@@ -5,19 +5,20 @@ public class JavaSeH2Memory {
     public static void main(String[] a) throws SQLException {
 
             Connection conn = DriverManager.getConnection("jdbc:h2:mem");
-
+            Connection conn2 = DriverManager.getConnection("jdbc:h2:mem");
             var stm = conn.createStatement();
-            stm.executeUpdate("DROP TABLE IF EXISTS users;");
-            stm.executeUpdate(
+            var stm2 = conn2.createStatement();
+            stm2.executeUpdate("DROP TABLE IF EXISTS users;");
+            stm2.executeUpdate(
                          "CREATE TABLE users(" +
                             "user_id int PRIMARY KEY AUTO_INCREMENT,"+
                             "username varchar(50) NOT NULL ," +
                             "password varchar(50) NOT NULL);" +
                             "insert into users (username, password) "+
-                            "VALUES ('username','password');"
+                            "VALUES ('Kris','Suppe');"
             );
 
-            var retur = stm.executeQuery("SELECT * FROM users WHERE username = 'username' ");
+            var retur = stm.executeQuery("SELECT * FROM users WHERE username = 'Kris' ");
             String test = null;
             String test2 = null;
             while(retur.next()){
