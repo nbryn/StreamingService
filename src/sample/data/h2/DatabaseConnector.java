@@ -1,4 +1,4 @@
-package sample.data;
+package sample.data.h2;
 
 import javax.sql.DataSource;
 import java.sql.*;

@@ -9,13 +9,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import sample.data.MockMediaMapper;
-import sample.data.MockUserMapper;
+import sample.data.mock.MockMediaMapper;
+import sample.data.mock.MockUserMapper;
 import sample.logic.AppController;
 
 import java.io.IOException;
 
-public class LoginController
+public class LoginControllerTest
 {
     private AppController appController;
 
@@ -23,7 +23,7 @@ public class LoginController
     public TextField usernameField;
     public PasswordField passwordField;
 
-    public LoginController()
+    public LoginControllerTest()
     {
         appController = new AppController(new MockUserMapper(), new MockMediaMapper());
     }
@@ -51,4 +51,3 @@ public class LoginController
         }
     }
 }
-

@@ -1,4 +1,4 @@
-package sample.data;
+package sample.data.h2.setup;
 
 public class SQLDataScript {
     public static String buildTables(){

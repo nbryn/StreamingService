@@ -5,15 +5,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import sample.data.H2DataBase;
-import sample.data.H2Init;
+import sample.data.h2.setup.H2Init;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception
     {
-        Parent loginRoot = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        Parent loginRoot = FXMLLoader.load(getClass().getResource("OverviewTest.fxml"));
         Scene login = new Scene(loginRoot);
         primaryStage.setTitle("NKG");
         primaryStage.setScene(login);

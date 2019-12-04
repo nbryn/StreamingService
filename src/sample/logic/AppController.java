@@ -39,11 +39,12 @@ public class AppController {
         List<Media> result;
         if (media.equalsIgnoreCase("all")) {
             result = mediaMapper.getAll();
-        } else if (media.equalsIgnoreCase("movie")) {
+        } else if (media.equalsIgnoreCase("movies")) {
             result = mediaMapper.getMovies();
         } else {
             result = mediaMapper.getSeries();
         }
+
         return result;
     }
 
@@ -51,6 +52,14 @@ public class AppController {
         List<Media> result;
 
         result = mediaMapper.getAllFromGenre(genre, media);
+
+        return result;
+    }
+
+    public List<Media> fetchRatingOver(double rating, String media) {
+        List<Media> result;
+
+        result = mediaMapper.getByRating(rating, media);
 
         return result;
     }

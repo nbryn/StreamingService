@@ -1,4 +1,4 @@
-package sample.data;
+package sample.data.h2.setup;
 
 public class H2Init {
     public static void initialize(){

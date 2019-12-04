@@ -1,13 +1,13 @@
-package sample.data;
+package sample.data.h2.setup;
 
 
 
+import sample.data.h2.DatabaseConnector;
 import sample.logic.entities.Media;
 import sample.logic.entities.Movie;
 import sample.logic.entities.Series;
 import sample.logic.entities.User;
 
-import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.*;
