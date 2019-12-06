@@ -24,7 +24,7 @@ public class MockUserMapper implements UserMapper {
     }
 
     @Override
-    public User getUser(String username, String password) throws NoSuchUserException {
+    public User getUser(String username) throws NoSuchUserException {
         User matchingUser = users.stream()
                 .filter(user -> user.getUsername().equals(username))
                 .findAny()

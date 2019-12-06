@@ -33,7 +33,7 @@ public class LoginControllerTest
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        boolean userFound = appController.validateUser(username, password);
+        boolean userFound = appController.validateLogin(username, password);
 
         if (userFound)
         {

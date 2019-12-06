@@ -32,12 +32,13 @@ public class AppController {
         return true;
     }
 
-    public boolean validateUser(String username, String password) {
+    public boolean validateLogin(String username, String password) {
+        boolean success = false;
         try {
-            User user = userMapper.getUser(username, password);
+            User user = userMapper.getUser(username);
 
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
-                return true;
+                success = true;
             }
 
         } catch (NoSuchUserException e)
@@ -45,7 +46,7 @@ public class AppController {
             return false;
         }
 
-        return false;
+        return success;
     }
 
     public List<Media> fetchAll(String media) {
@@ -91,10 +92,14 @@ public class AppController {
     }
 
     public List<Media> fetchByName(String name, String media) {
-        List<Media> result;
+        List<Media> result = null;
 
-        result = mediaMapper.getByName(name, media);
+        try {
+            result = mediaMapper.getByName(name, media);
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return result;
     }
 

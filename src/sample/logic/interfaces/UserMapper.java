@@ -10,7 +10,7 @@ public interface UserMapper {
 
     public List<User> getAll();
 
-    public User getUser(String username, String password) throws NoSuchUserException;
+    public User getUser(String username) throws NoSuchUserException;
 
     public void saveUser(User user) throws EmailAlreadyExistException;
 

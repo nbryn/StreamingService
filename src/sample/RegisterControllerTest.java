@@ -48,13 +48,12 @@ public class RegisterControllerTest {
         } else {
             User user = new User(fullName, birthday, email, password);
 
-            boolean succes = appController.registerUser(user);
+            boolean success = appController.registerUser(user);
 
-            if(!succes) {
+            if(!success) {
                 setOutput("Email already exists in the system");
             }
         }
-
 
     }
 
