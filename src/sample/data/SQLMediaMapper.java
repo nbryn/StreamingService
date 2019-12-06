@@ -44,7 +44,17 @@ public class SQLMediaMapper implements MediaMapper {
 
     @Override
     public List<Media> getByRating(double rating, String media){
-        return sendQuery("SELECT * FROM movies WHERE rating >= " + rating,"SELECT * FROM series WHERE rating >=" + rating, media);
+        List<Media> allMedia = new ArrayList<>();
+        if (media.equalsIgnoreCase("series")) {
+            allMedia = getSeries();
+        }else if (media.equalsIgnoreCase("movies")){
+            allMedia = getMovies();
+        }else allMedia = getAll();
+        List<Media> mediaByRating = new ArrayList<>();
+        for (Media mediaInternal: allMedia){
+            if (mediaInternal.getRelease() >= rating) mediaByRating.add(mediaInternal);
+        }
+        return mediaByRating;
     }
 
     @Override
@@ -54,7 +64,17 @@ public class SQLMediaMapper implements MediaMapper {
 
     @Override
     public List<Media> getByRelease(int year, String media){
-        return sendQuery("SELECT * FROM movies WHERE release >= " + year,"SELECT * FROM series WHERE release >= " + year, media);
+        List<Media> allMedia = new ArrayList<>();
+        if (media.equalsIgnoreCase("series")) {
+            allMedia = getSeries();
+        }else if (media.equalsIgnoreCase("movies")){
+            allMedia = getMovies();
+        }else allMedia = getAll();
+        List<Media> mediaByRelease = new ArrayList<>();
+        for (Media mediaInternal: allMedia){
+            if (mediaInternal.getRelease() >= year) mediaByRelease.add(mediaInternal);
+        }
+        return mediaByRelease;
     }
     private List<Media> sendQuery(String movieQuery, String seriesQuery, String media){
         List<Media> allMovies = null;
