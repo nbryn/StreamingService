@@ -7,7 +7,8 @@ public class H2Init {
         sql.executeUpdate("DROP TABLE IF EXISTS users;");
         sql.executeUpdate("DROP TABLE IF EXISTS movies;");
         sql.executeUpdate("DROP TABLE IF EXISTS series;");
-        sql.executeUpdate("DROP TABLE IF EXISTS mylist");
+        sql.executeUpdate("DROP TABLE IF EXISTS myMovieList");
+        sql.executeUpdate("DROP TABLE IF EXISTS mySeriesList");
         if (!test) {
             String tableInitQuery = SQLDataScript.buildTables();
             String movieInitQuery = SQLDataScript.buildMovies();
