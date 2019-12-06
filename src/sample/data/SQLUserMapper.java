@@ -41,9 +41,7 @@ public class SQLUserMapper implements UserMapper {
 
     @Override
     public void addToUserList(int userID, String media, int mediaID) {
-        if (media.equalsIgnoreCase("movie")) {
-            dataBase.executeUpdate("INSERT INTO mymovielist (");
-        }
+
     }
 
     @Override

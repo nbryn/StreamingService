@@ -16,7 +16,7 @@ public class Series extends Media {
     }
 
     public String getSpan() {
-        return this.getSpan();
+        return this.span;
     }
 
     public Map<Integer, Integer> getSeasons() {

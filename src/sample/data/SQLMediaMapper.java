@@ -10,14 +10,15 @@ import java.util.List;
 
 public class SQLMediaMapper implements MediaMapper {
     private H2DataBase dataBase;
-    public SQLMediaMapper(){
+
+    public SQLMediaMapper() {
         dataBase = new H2DataBase("jdbc:h2:mem");
     }
+
     @Override
-    public List<Media> getAll(){
-        List<Media> allMovies = null;
-        List<Media> allSeries = null;
+    public List<Media> getAll() {
         List<Media> allMedia = new ArrayList<>();
+        List<Media> allMovies, allSeries = null;
 
         allMovies = dataBase.getMovies("SELECT * FROM movies");
         allSeries = dataBase.getSeries("SELECT * FROM series");
@@ -28,21 +29,22 @@ public class SQLMediaMapper implements MediaMapper {
     }
 
     @Override
-    public List<Media> getMovies(){
+    public List<Media> getMovies() {
         return dataBase.getMovies("SELECT * FROM movies");
     }
 
     @Override
-    public List<Media> getSeries(){
+    public List<Media> getSeries() {
         return dataBase.getSeries("SELECT * FROM series");
     }
 
     @Override
-    public List<Media> getByName(String name, String media){
-        return sendQuery("SELECT * FROM movies WHERE name  = " + name, "SELECT * FROM series WHERE name = " +name,media);
+    public List<Media> getByName(String name, String media) {
+        return sendQuery("SELECT * FROM movies WHERE name  = " + name, "SELECT * FROM series WHERE name = " + name, media);
     }
 
     @Override
+
     public List<Media> getByRating(double rating, String media){
         List<Media> allMedia = new ArrayList<>();
         if (media.equalsIgnoreCase("series")) {
@@ -55,11 +57,14 @@ public class SQLMediaMapper implements MediaMapper {
             if (mediaInternal.getRelease() >= rating) mediaByRating.add(mediaInternal);
         }
         return mediaByRating;
+
     }
 
     @Override
-    public List<Media> getAllFromGenre(String genre, String media){
-        return sendQuery("SELECT * FROM movies WHERE genre LIKE '%" + genre +"%'","SELECT * FROM series WHERE genre LIKE '%" + genre +"%'", media);
+    public List<Media> getAllFromGenre(String genre, String media) {
+
+        return sendQuery("SELECT * FROM movies WHERE genre LIKE '%" + genre + "%'", "SELECT * FROM series WHERE genre LIKE '%" + genre + "%'", media);
+
     }
 
     @Override
@@ -75,22 +80,30 @@ public class SQLMediaMapper implements MediaMapper {
             if (mediaInternal.getRelease() >= year) mediaByRelease.add(mediaInternal);
         }
         return mediaByRelease;
+
     }
-    private List<Media> sendQuery(String movieQuery, String seriesQuery, String media){
-        List<Media> allMovies = null;
-        List<Media> allSeries = null;
+
+    private List<Media> sendQuery(String movieQuery, String seriesQuery, String media) {
         List<Media> allMedia = new ArrayList<>();
-        if (media.equalsIgnoreCase("movies")){
+        List<Media> allMovies, allSeries = null;
+
+        if (media.equalsIgnoreCase("movies")) {
             allMedia = dataBase.getMovies(movieQuery);
+
             if (allMedia != null) return allMedia;
-        }else if (media.equalsIgnoreCase("series")){
+
+        } else if (media.equalsIgnoreCase("series")) {
             allMedia = dataBase.getSeries(seriesQuery);
+
             if (allMedia != null) return allMedia;
-        }else {
+
+        } else {
             allMovies = dataBase.getMovies(movieQuery);
             allSeries = dataBase.getSeries(seriesQuery);
+
             allMedia.addAll(allMovies);
             allMedia.addAll(allSeries);
+
             if (allMedia != null) return allMedia;
         }
         return null;
