@@ -15,9 +15,9 @@ public interface UserMapper {
 
     public void saveUser(User user) throws EmailAlreadyExistException;
 
-    public void addToUserList(int userID, int mediaID);
+    public void addToUserList(int userID, String media, int mediaID);
 
-    public void removeFromUserList(int userID, int mediaID);
+    public void removeFromUserList(int userID, String media, int mediaID);
 
     public void updateUserInfo(String username, String password);
 
