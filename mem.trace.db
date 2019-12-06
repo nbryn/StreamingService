@@ -1060,3 +1060,9 @@ SELECT * FROM movies WHERE 'genre' LIKE %Horror% [42001-175]
 12-06 14:01:44 jdbc[4]: exception
 org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT * FROM SERIES WHERE 'genre' LIKE %[*]HORROR% "; expected "SELECT, FROM"; SQL statement:
 SELECT * FROM series WHERE 'genre' LIKE %Horror% [42001-175]
+12-06 14:14:54 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "rating"; SQL statement:
+SELECT * FROM movies WHERE 'rating' >= 8.0 [22018-175]
+12-06 14:14:54 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Data conversion error converting "rating"; SQL statement:
+SELECT * FROM series WHERE 'rating' >=8.0 [22018-175]

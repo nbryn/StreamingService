@@ -50,6 +50,7 @@ public class H2DataBase {
         }
     public List<Media> getMovies(String query) {
         ResultSet results = sendStatement(query);
+
         String name;
         String genre;
         int release;

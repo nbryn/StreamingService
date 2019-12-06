@@ -49,7 +49,8 @@ public class SQLMediaMapper implements MediaMapper {
 
     @Override
     public List<Media> getAllFromGenre(String genre, String media){
-        return sendQuery("SELECT * FROM movies WHERE 'genre' LIKE '%" + genre +"%'","SELECT * FROM series WHERE 'genre' LIKE '%" + genre +"%'", media);
+
+        return sendQuery("SELECT * FROM movies WHERE 'genre' LIKE '%" + genre +"%'","SELECT * FROM series WHERE genre LIKE '%" + genre +"%'", media);
     }
 
     @Override
@@ -67,8 +68,10 @@ public class SQLMediaMapper implements MediaMapper {
             allMedia = dataBase.getSeries(seriesQuery);
             if (allMedia != null) return allMedia;
         }else {
+
             allMovies = dataBase.getMovies(movieQuery);
             allSeries = dataBase.getSeries(seriesQuery);
+
             allMedia.addAll(allMovies);
             allMedia.addAll(allSeries);
             if (allMedia != null) return allMedia;
