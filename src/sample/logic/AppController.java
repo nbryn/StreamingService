@@ -2,6 +2,7 @@ package sample.logic;
 
 import sample.logic.entities.Media;
 import sample.logic.entities.User;
+import sample.logic.exceptions.EmailAlreadyExistException;
 import sample.logic.exceptions.NoSuchUserException;
 import sample.logic.interfaces.MediaMapper;
 import sample.logic.interfaces.UserMapper;
@@ -17,6 +18,17 @@ public class AppController {
     {
         this.userMapper = userMapper;
         this.mediaMapper = mediaMapper;
+    }
+
+    public boolean registerUser(User user) {
+        try {
+            userMapper.saveUser(user);
+
+        } catch (EmailAlreadyExistException e) {
+            return false;
+        }
+
+        return true;
     }
 
     public boolean validateUser(String username, String password) {
@@ -60,6 +72,14 @@ public class AppController {
         List<Media> result;
 
         result = mediaMapper.getByRating(rating, media);
+
+        return result;
+    }
+
+    public List<Media> fetchByName(String name, String media) {
+        List<Media> result;
+
+        result = mediaMapper.getByName(name, media);
 
         return result;
     }

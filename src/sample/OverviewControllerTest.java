@@ -20,6 +20,9 @@ public class OverviewControllerTest {
     @FXML
     private ListView<Media> mediaListView;
 
+    @FXML
+    private TextField searchField;
+
 
     public OverviewControllerTest() {
         appController = new AppController(new MockUserMapper(), new MockMediaMapper());
@@ -44,6 +47,15 @@ public class OverviewControllerTest {
         List<Media> movies = appController.fetchAll("movies");
 
         setListView(movies);
+    }
+
+    @FXML
+    public void search(ActionEvent event) {
+        String searchString = searchField.getText().trim();
+
+        List<Media> result = appController.fetchByName(searchString, "all");
+
+        setListView(result);
     }
 
     @FXML

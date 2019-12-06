@@ -1,6 +1,7 @@
 package sample.data.mock;
 
 import sample.logic.entities.User;
+import sample.logic.exceptions.EmailAlreadyExistException;
 import sample.logic.exceptions.NoSuchUserException;
 import sample.logic.interfaces.UserMapper;
 
@@ -37,15 +38,31 @@ public class MockUserMapper implements UserMapper {
     }
 
     @Override
-    public void saveUser(User user) {
+    public void saveUser(User user) throws EmailAlreadyExistException {
+        users.forEach(us -> {
+            if(us.getUsername().equalsIgnoreCase(user.getUsername())) {
+                throw new EmailAlreadyExistException();
+            }
+        });
+
         users.add(user);
+    }
+
+    @Override
+    public void addToUserList(int userID, int mediaID) {
 
     }
 
     @Override
-    public void updateUser(String username, String password) {
+    public void removeFromUserList(int userID, int mediaID) {
 
     }
+
+    @Override
+    public void updateUserInfo(String username, String password) {
+
+    }
+
 
     @Override
     public void deleteUser(String username, String password) {
