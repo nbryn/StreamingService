@@ -1,13 +1,21 @@
 package sample;
 
+import sample.data.SQLMediaMapper;
+import sample.data.setup.H2Init;
+import sample.logic.entities.Media;
+
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
 public class JavaSeH2Memory {
-    public static void main(String[] a) throws SQLException {
+    /**public static void test() throws SQLException {
 
             Connection conn = DriverManager.getConnection("jdbc:h2:mem");
             Connection conn2 = DriverManager.getConnection("jdbc:h2:mem");
             var stm = conn.createStatement();
             var stm2 = conn2.createStatement();
+            stm2.executeUpdate("DROP TABLE IF EXISTS users;");
             stm2.executeUpdate("DROP TABLE IF EXISTS users;");
             stm2.executeUpdate(
                          "CREATE TABLE users(" +
@@ -32,5 +40,16 @@ public class JavaSeH2Memory {
             conn.close();
 
 
+    }
+**/
+
+    public static void main(String[] args) throws SQLException {
+        H2Init.initialize(false);
+        SQLMediaMapper test = new SQLMediaMapper();
+        List<Media> test2 = new ArrayList<>();
+        test2 = test.getAll();
+        for(Media media: test2){
+            System.out.println(media.getName());
+        }
     }
 }

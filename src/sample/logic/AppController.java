@@ -7,6 +7,7 @@ import sample.logic.exceptions.NoSuchUserException;
 import sample.logic.interfaces.MediaMapper;
 import sample.logic.interfaces.UserMapper;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class AppController {
@@ -48,30 +49,43 @@ public class AppController {
     }
 
     public List<Media> fetchAll(String media) {
-        List<Media> result;
-        if (media.equalsIgnoreCase("all")) {
-            result = mediaMapper.getAll();
-        } else if (media.equalsIgnoreCase("movies")) {
-            result = mediaMapper.getMovies();
-        } else {
-            result = mediaMapper.getSeries();
+        List<Media> result = null;
+        try {
+            if (media.equalsIgnoreCase("all")) {
+                result = mediaMapper.getAll();
+            } else if (media.equalsIgnoreCase("movies")) {
+                result = mediaMapper.getMovies();
+            } else {
+                result = mediaMapper.getSeries();
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
         }
 
         return result;
     }
 
     public List<Media> fetchAllFromGenre(String genre, String media) {
-        List<Media> result;
+        List<Media> result = null;
 
-        result = mediaMapper.getAllFromGenre(genre, media);
+        try {
+            result = mediaMapper.getAllFromGenre(genre, media);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         return result;
     }
 
     public List<Media> fetchRatingOver(double rating, String media) {
-        List<Media> result;
+        List<Media> result = null;
 
-        result = mediaMapper.getByRating(rating, media);
+        try {
+            result = mediaMapper.getByRating(rating, media);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         return result;
     }

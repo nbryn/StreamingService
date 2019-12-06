@@ -20,7 +20,7 @@ public class Main extends Application {
     }
     public void startSQL(){
         /* Initialisering af SQL database */
-        H2Init.initialize();
+        H2Init.initialize(true);
     }
 
     public static void main(String[] args) {
