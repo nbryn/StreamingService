@@ -78,4 +78,12 @@ public class AppController {
 
         return result;
     }
+
+    public List<Media> fetchReleaseAfter(int release, String media) {
+    List<Media> result = null;
+
+    result = mediaMapper.getByRelease(release, media);
+
+    return result;
+    }
 }
