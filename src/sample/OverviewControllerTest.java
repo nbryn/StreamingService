@@ -5,6 +5,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import sample.data.SQLMediaMapper;
+import sample.data.SQLUserMapper;
 import sample.data.mock.MockMediaMapper;
 import sample.data.mock.MockUserMapper;
 import sample.logic.AppController;
@@ -25,7 +27,7 @@ public class OverviewControllerTest {
 
 
     public OverviewControllerTest() {
-        appController = new AppController(new MockUserMapper(), new MockMediaMapper());
+        appController = new AppController(new SQLUserMapper(), new SQLMediaMapper());
     }
 
     @FXML
