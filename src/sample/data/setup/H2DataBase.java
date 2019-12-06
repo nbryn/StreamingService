@@ -1,7 +1,6 @@
 package sample.data.setup;
 
 
-
 import sample.data.DatabaseConnector;
 import sample.logic.entities.Media;
 import sample.logic.entities.Movie;
@@ -18,8 +17,8 @@ public class H2DataBase {
     DatabaseConnector SQL;
 
     public H2DataBase(String url) {
-
         Connection connection = null;
+
         try {
             connection = DriverManager.getConnection(url);
         } catch (SQLException e) {
@@ -28,9 +27,11 @@ public class H2DataBase {
         this.SQL = new DatabaseConnector();
         this.SQL.setConnection(connection);
     }
-    public ResultSet sendStatement(String query){
+
+    public ResultSet sendStatement(String query) {
         ResultSet resultSet = null;
         PreparedStatement preparedStatement;
+
         try {
             preparedStatement = SQL.preparedStatement(query);
             resultSet = preparedStatement.executeQuery();
@@ -39,23 +40,26 @@ public class H2DataBase {
         }
         return resultSet;
     }
-    public void  executeUpdate (String query){
-            PreparedStatement preparedStatement;
-            try {
-                preparedStatement = SQL.preparedStatement(query);
-                preparedStatement.executeUpdate();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+
+    public void executeUpdate(String query) {
+        PreparedStatement preparedStatement;
+
+        try {
+            preparedStatement = SQL.preparedStatement(query);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+    }
+
     public List<Media> getMovies(String query) {
         ResultSet results = sendStatement(query);
-
-        String name;
-        String genre;
+        List<Media> mediaList = new ArrayList<>();
+        String name, genre;
         int release;
         double rating;
-        List<Media> mediaList = new ArrayList<>();
+
+
         if (results != null) {
             try {
                 while (results.next()) {
@@ -75,16 +79,14 @@ public class H2DataBase {
         }
         return mediaList;
     }
+
     public List<Media> getSeries(String query) {
         ResultSet results = sendStatement(query);
-        String name;
-        String genre;
-        String span;
-        String spanInternal;
+        List<Media> mediaList = new ArrayList<>();
+        String name, genre, span, seasons, spanInternal;
         int release;
         double rating;
-        String seasons;
-        List<Media> mediaList = new ArrayList<>();
+
         try {
             if (results != null) {
                 while (results.next()) {
@@ -93,8 +95,6 @@ public class H2DataBase {
                     span = results.getString("span");
                     rating = results.getDouble("rating");
                     seasons = results.getString("seasons");
-
-
 
                     /*Set year of release*/
                     spanInternal = span.replaceAll("\\s+", "");
@@ -115,22 +115,19 @@ public class H2DataBase {
                         String[] season = s.split("-");
                         series.addSeason(Integer.parseInt(season[0]), Integer.parseInt(season[1]));
                     }
-
-
                     mediaList.add(series);
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return mediaList;
     }
+
     public List<User> getUsers(String query) throws NoSuchUserException {
         ResultSet results = sendStatement(query);
-        String username;
-        String password;
-        String name;
-        String birthdate;
+        String username, password, name, birthdate;
+
         List<User> userList = new ArrayList<>();
         try {
             if (results != null) {
@@ -142,7 +139,7 @@ public class H2DataBase {
                     userList.add(new User(name, birthdate, username, password));
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             throw new NoSuchUserException();
         }

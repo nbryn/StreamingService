@@ -17,9 +17,8 @@ public class SQLMediaMapper implements MediaMapper {
 
     @Override
     public List<Media> getAll() {
-        List<Media> allMovies = null;
-        List<Media> allSeries = null;
         List<Media> allMedia = new ArrayList<>();
+        List<Media> allMovies, allSeries = null;
 
         allMovies = dataBase.getMovies("SELECT * FROM movies");
         allSeries = dataBase.getSeries("SELECT * FROM series");
@@ -62,22 +61,26 @@ public class SQLMediaMapper implements MediaMapper {
     }
 
     private List<Media> sendQuery(String movieQuery, String seriesQuery, String media) {
-        List<Media> allMovies = null;
-        List<Media> allSeries = null;
         List<Media> allMedia = new ArrayList<>();
+        List<Media> allMovies, allSeries = null;
+
         if (media.equalsIgnoreCase("movies")) {
             allMedia = dataBase.getMovies(movieQuery);
+
             if (allMedia != null) return allMedia;
+
         } else if (media.equalsIgnoreCase("series")) {
             allMedia = dataBase.getSeries(seriesQuery);
-            if (allMedia != null) return allMedia;
-        } else {
 
+            if (allMedia != null) return allMedia;
+
+        } else {
             allMovies = dataBase.getMovies(movieQuery);
             allSeries = dataBase.getSeries(seriesQuery);
 
             allMedia.addAll(allMovies);
             allMedia.addAll(allSeries);
+
             if (allMedia != null) return allMedia;
         }
         return null;
