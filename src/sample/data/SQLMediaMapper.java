@@ -53,9 +53,7 @@ public class SQLMediaMapper implements MediaMapper {
             allMedia = getMovies();
         }else allMedia = getAll();
         List<Media> mediaByRating = new ArrayList<>();
-        for (Media mediaInternal: allMedia){
-            if (mediaInternal.getRelease() >= rating) mediaByRating.add(mediaInternal);
-        }
+        for (Media mediaInternal: allMedia) if (mediaInternal.getRating() >= rating) mediaByRating.add(mediaInternal);
         return mediaByRating;
 
     }
