@@ -45,36 +45,37 @@ public class SQLMediaMapper implements MediaMapper {
 
     @Override
 
-    public List<Media> getByRating(double rating, String media){
+    public List<Media> getByRating(double rating, String media) {
         List<Media> allMedia = new ArrayList<>();
         if (media.equalsIgnoreCase("series")) {
             allMedia = getSeries();
-        }else if (media.equalsIgnoreCase("movies")){
+        } else if (media.equalsIgnoreCase("movies")) {
             allMedia = getMovies();
-        }else allMedia = getAll();
+        } else allMedia = getAll();
         List<Media> mediaByRating = new ArrayList<>();
+
         for (Media mediaInternal: allMedia) if (mediaInternal.getRating() >= rating) mediaByRating.add(mediaInternal);
+
         return mediaByRating;
 
     }
 
     @Override
     public List<Media> getAllFromGenre(String genre, String media) {
-
         return sendQuery("SELECT * FROM movies WHERE genre LIKE '%" + genre + "%'", "SELECT * FROM series WHERE genre LIKE '%" + genre + "%'", media);
 
     }
 
     @Override
-    public List<Media> getByRelease(int year, String media){
+    public List<Media> getByRelease(int year, String media) {
         List<Media> allMedia = new ArrayList<>();
         if (media.equalsIgnoreCase("series")) {
             allMedia = getSeries();
-        }else if (media.equalsIgnoreCase("movies")){
+        } else if (media.equalsIgnoreCase("movies")) {
             allMedia = getMovies();
-        }else allMedia = getAll();
+        } else allMedia = getAll();
         List<Media> mediaByRelease = new ArrayList<>();
-        for (Media mediaInternal: allMedia){
+        for (Media mediaInternal : allMedia) {
             if (mediaInternal.getRelease() >= year) mediaByRelease.add(mediaInternal);
         }
         return mediaByRelease;
