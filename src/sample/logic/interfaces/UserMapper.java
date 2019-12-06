@@ -11,7 +11,7 @@ public interface UserMapper {
 
     public List<User> getAll() throws SQLException, NoSuchUserException;
 
-    public User getUser(String username) throws NoSuchUserException, SQLException;
+    public User getUser(String username) throws NoSuchUserException;
 
     public void saveUser(User user) throws EmailAlreadyExistException;
 

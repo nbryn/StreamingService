@@ -12,11 +12,13 @@ import java.util.List;
 public class AppController {
     private UserMapper userMapper;
     private MediaMapper mediaMapper;
+
     public AppController(UserMapper userMapper, MediaMapper mediaMapper)
     {
         this.userMapper = userMapper;
         this.mediaMapper = mediaMapper;
     }
+
     public boolean registerUser(User user) {
         try {
             userMapper.saveUser(user);
@@ -25,6 +27,7 @@ public class AppController {
         }
         return true;
     }
+
     public boolean validateLogin(String username, String password) {
         boolean success = false;
         try {

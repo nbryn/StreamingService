@@ -19,7 +19,7 @@ public interface MediaMapper {
 
     public List<Media> getAllFromGenre(String genre, String media) throws SQLException;
 
-    public List<Media> getByRelease(int year, String media) throws SQLException;
+    public List<Media> getByRelease(int release, String media) throws SQLException;
 
 
 }

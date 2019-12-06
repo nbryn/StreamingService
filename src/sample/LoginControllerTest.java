@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sample.data.mock.MockMediaMapper;
 import sample.data.mock.MockUserMapper;
+import sample.logic.AppController;
 
 import java.io.IOException;
 

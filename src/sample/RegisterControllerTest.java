@@ -6,6 +6,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import sample.data.mock.MockMediaMapper;
 import sample.data.mock.MockUserMapper;
+import sample.logic.AppController;
 import sample.logic.entities.User;
 
 public class RegisterControllerTest {

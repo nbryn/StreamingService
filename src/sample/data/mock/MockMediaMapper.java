@@ -6,9 +6,7 @@ import sample.logic.entities.Series;
 import sample.logic.interfaces.MediaMapper;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 
@@ -131,15 +129,15 @@ public class MockMediaMapper implements MediaMapper {
     }
 
     @Override
-    public List<Media> getByRelease(int year, String media) {
+    public List<Media> getByRelease(int release, String media) {
         List<Media> result;
         if (media.equalsIgnoreCase("all")) {
             result = allMedia.stream()
-                    .filter(ms -> ms.getYear() == year)
+                    .filter(ms -> ms.getRelease() == release)
                     .collect(Collectors.toList());
         } else {
             result = allMedia.stream()
-                    .filter(ms -> ms.getRating() == year)
+                    .filter(ms -> ms.getRating() == release)
                     .filter(ms -> ms.getClass().getName().equalsIgnoreCase(media))
                     .collect(Collectors.toList());
         }
