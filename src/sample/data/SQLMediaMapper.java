@@ -40,7 +40,7 @@ public class SQLMediaMapper implements MediaMapper {
 
     @Override
     public List<Media> getByName(String name, String media) {
-        return sendQuery("SELECT * FROM movies WHERE name  = " + name, "SELECT * FROM series WHERE name = " + name, media);
+        return sendQuery("SELECT * FROM movies WHERE name  LIKE '%" + name + "%'", "SELECT * FROM series WHERE name LIKE '%" + name + "%'", media);
     }
 
     @Override
