@@ -1,4 +1,4 @@
-package sample.data.h2;
+package sample.data;
 
 import sample.logic.entities.User;
 import sample.logic.exceptions.NoSuchUserException;

@@ -1,8 +1,8 @@
-package sample.data.h2.setup;
+package sample.data.setup;
 
 
 
-import sample.data.h2.DatabaseConnector;
+import sample.data.DatabaseConnector;
 import sample.logic.entities.Media;
 import sample.logic.entities.Movie;
 import sample.logic.entities.Series;
