@@ -6,7 +6,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import sample.data.mock.MockMediaMapper;
 import sample.data.mock.MockUserMapper;
-import sample.logic.AppController;
 import sample.logic.entities.User;
 
 public class RegisterControllerTest {
@@ -48,13 +47,12 @@ public class RegisterControllerTest {
         } else {
             User user = new User(fullName, birthday, email, password);
 
-            boolean succes = appController.registerUser(user);
+            boolean success = appController.registerUser(user);
 
-            if(!succes) {
+            if(!success) {
                 setOutput("Email already exists in the system");
             }
         }
-
 
     }
 

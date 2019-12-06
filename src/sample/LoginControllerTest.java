@@ -11,7 +11,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sample.data.mock.MockMediaMapper;
 import sample.data.mock.MockUserMapper;
-import sample.logic.AppController;
 
 import java.io.IOException;
 
@@ -33,7 +32,7 @@ public class LoginControllerTest
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        boolean userFound = appController.validateUser(username, password);
+        boolean userFound = appController.validateLogin(username, password);
 
         if (userFound)
         {

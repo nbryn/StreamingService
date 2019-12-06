@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import sample.data.mock.MockMediaMapper;
 import sample.data.mock.MockUserMapper;
-import sample.logic.AppController;
 import sample.logic.entities.Media;
 import java.util.List;
 

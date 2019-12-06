@@ -27,7 +27,7 @@ public abstract class Media {
         return this.genres;
     }
 
-    public int getYear() {
+    public int getRelease() {
         return this.release;
     }
 
