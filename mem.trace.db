@@ -864,3 +864,12 @@ org.h2.jdbc.JdbcSQLException: Column "release" not found [42122-175]
 	at javafx/sample.JavaSeH2Memory.main(JavaSeH2Memory.java:50)
 12-06 11:52:13 jdbc[4]: exception
 org.h2.jdbc.JdbcSQLException: Data conversion error converting "1990-1991" [22018-175]
+12-06 13:48:56 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE MYMOVIELIST(    USER_ID INT,    FOREIGN KEY (USER_ID) REFERENCES USERS(USER_ID),    MOVIE_ID INT,    FOREIGN KEY (MOVIE_ID) REFERENCES MOVIES(MOVIE_ID);[*]CREATE TABLE MYSERIESLIST(    USER_ID INT,+    FOREIGN KEY (USER_ID) REFERENCES USERS(USER_ID),+    SERIES_ID INT, +    FOREIGN KEY (SERIES_ID) REFERENCES SERIES(SERIES_ID)    ); "; expected "INDEX, ON, NOT, DEFERRABLE, NOCHECK, CHECK, ,, )"; SQL statement:
+CREATE TABLE myMovieList(    user_id int,    foreign key (user_id) references users(user_id),    movie_id int,    foreign key (movie_id) references movies(movie_id);CREATE TABLE mySeriesList(    user_id int,+    foreign key (user_id) references users(user_id),+    series_id int, +    foreign key (series_id) references series(series_id)    ); [42001-175]
+12-06 13:50:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "CREATE TABLE MYSERIESLIST(    USER_ID INT,+[*]    FOREIGN KEY (USER_ID) REFERENCES USERS(USER_ID),+    SERIES_ID INT, +    FOREIGN KEY (SERIES_ID) REFERENCES SERIES(SERIES_ID)); "; expected "identifier"; SQL statement:
+CREATE TABLE mySeriesList(    user_id int,+    foreign key (user_id) references users(user_id),+    series_id int, +    foreign key (series_id) references series(series_id)); [42001-175]
+12-06 13:51:34 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MYMOVIELIST" already exists; SQL statement:
+CREATE TABLE myMovieList(    user_id int,    foreign key (user_id) references users(user_id),    movie_id int,    foreign key (movie_id) references movies(movie_id));CREATE TABLE mySeriesList(    user_id int,    foreign key (user_id) references users(user_id),    series_id int,    foreign key (series_id) references series(series_id)); [42101-175]

@@ -40,14 +40,17 @@ public class SQLUserMapper implements UserMapper {
     }
 
     @Override
-    public void addToUserList(int userID, int mediaID) {
-
+    public void addToUserList(int userID, String media, int mediaID) {
+        if (media.equalsIgnoreCase("movie")) {
+            dataBase.executeUpdate("INSERT INTO mymovielist (");
+        }
     }
 
     @Override
-    public void removeFromUserList(int userID, int mediaID) {
+    public void removeFromUserList(int userID, String media, int mediaID) {
 
     }
+
 
     @Override
     public void updateUserInfo(String username, String password) {

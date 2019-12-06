@@ -15,7 +15,7 @@ public class SQLDataScript {
                 "    rating VARCHAR(50) NOT NULL" +
                 ");" +
                 "CREATE TABLE series (" +
-                "    serie_id int PRIMARY KEY AUTO_INCREMENT," +
+                "    series_id int PRIMARY KEY AUTO_INCREMENT," +
                 "    name VARCHAR(70) NOT NULL," +
                 "    span VARCHAR(50) NOT NULL," +
                 "    genre VARCHAR(50) NOT NULL," +
@@ -30,11 +30,16 @@ public class SQLDataScript {
                 "    birthdate VARCHAR(50) NOT NULL" +
                 "" +
                 ");" +
-                "CREATE TABLE myList(" +
+                "CREATE TABLE myMovieList(" +
+                "    user_id int," +
+                "    foreign key (user_id) references users(user_id)," +
                 "    movie_id int," +
-                "    foreign key (movie_id) references movies(movie_id)," +
-                "    serie_id int," +
-                "    foreign key (serie_id) references series(serie_id)" +
+                "    foreign key (movie_id) references movies(movie_id));" +
+                "CREATE TABLE mySeriesList(" +
+                "    user_id int," +
+                "    foreign key (user_id) references users(user_id)," +
+                "    series_id int," +
+                "    foreign key (series_id) references series(series_id)" +
                 ");";
     }
     public static String buildMovies(){
