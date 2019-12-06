@@ -46,12 +46,7 @@ public class SQLMediaMapper implements MediaMapper {
     @Override
 
     public List<Media> getByRating(double rating, String media) {
-        List<Media> allMedia = new ArrayList<>();
-        if (media.equalsIgnoreCase("series")) {
-            allMedia = getSeries();
-        } else if (media.equalsIgnoreCase("movies")) {
-            allMedia = getMovies();
-        } else allMedia = getAll();
+        List<Media> allMedia = getAccordingToMedia(media);
         List<Media> mediaByRating = new ArrayList<>();
 
         for (Media mediaInternal: allMedia) if (mediaInternal.getRating() >= rating) mediaByRating.add(mediaInternal);
@@ -68,12 +63,7 @@ public class SQLMediaMapper implements MediaMapper {
 
     @Override
     public List<Media> getByRelease(int year, String media) {
-        List<Media> allMedia = new ArrayList<>();
-        if (media.equalsIgnoreCase("series")) {
-            allMedia = getSeries();
-        } else if (media.equalsIgnoreCase("movies")) {
-            allMedia = getMovies();
-        } else allMedia = getAll();
+        List<Media> allMedia = getAccordingToMedia(media);
         List<Media> mediaByRelease = new ArrayList<>();
         for (Media mediaInternal : allMedia) {
             if (mediaInternal.getRelease() >= year) mediaByRelease.add(mediaInternal);
@@ -107,4 +97,13 @@ public class SQLMediaMapper implements MediaMapper {
         }
         return null;
     }
+    private List<Media> getAccordingToMedia (String media){
+        if (media.equalsIgnoreCase("series")) {
+            return getSeries();
+        } else if (media.equalsIgnoreCase("movies")) {
+            return getMovies();
+        } else return getAll();
+    }
 }
+
+
