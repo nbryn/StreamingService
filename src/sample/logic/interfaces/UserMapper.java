@@ -4,13 +4,14 @@ import sample.logic.entities.User;
 import sample.logic.exceptions.NoSuchUserException;
 import sample.logic.exceptions.EmailAlreadyExistException;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface UserMapper {
 
-    public List<User> getAll();
+    public List<User> getAll() throws SQLException;
 
-    public User getUser(String username, String password) throws NoSuchUserException;
+    public User getUser(String username) throws NoSuchUserException, SQLException;
 
     public void saveUser(User user) throws EmailAlreadyExistException;
 

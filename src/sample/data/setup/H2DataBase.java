@@ -60,14 +60,15 @@ public class H2DataBase {
                 genre = results.getString("genre");
                 release = results.getInt("release");
                 rating = results.getDouble("rating");
-                List<String> genres = Arrays.asList(toString().split("[\\s,]+"));
-                mediaList.add(new Movie(name,release,genres,rating));
+                List<String> genres = Arrays.asList(genre.split("[\\s,]+"));
+                Movie movie = new Movie(name,release,rating);
+                for (String g:genres) movie.addGenre(g);
+                mediaList.add(movie);
             }
         }else {throw new SQLException("Query yielded no results");}
         return mediaList;
     }
     public List<Media> getSeries(String query) throws SQLException{
-        Map<Integer,Integer> series = new HashMap<>();
         ResultSet results = sendStatement(query);
         String name;
         String genre;
@@ -75,7 +76,7 @@ public class H2DataBase {
         String spanInternal;
         int release;
         double rating;
-        String season;
+        String seasons;
         List<Media> mediaList = new ArrayList<>();
         if (results != null){
             while(results.next()){
@@ -83,17 +84,32 @@ public class H2DataBase {
                 genre = results.getString("genre");
                 span = results.getString("span");
                 rating = results.getDouble("rating");
-                season = results.getString("seasons");
+                seasons = results.getString("seasons");
+
+
+
+                /*Set year of release*/
                 spanInternal = span.replaceAll("\\s+","");
                 release = Integer.parseInt(spanInternal.substring(0,4));
-                List<String> genres = Arrays.asList(genre.split("[\\s,]+"));
-                List<String> seasons = Arrays.asList(season.split("[\\s,]+"));
-                for (int i = 0; i > seasons.size();i++){
-                    List<String> seasonsInt = Arrays.asList(seasons.get(i).split("[\\s-]+"));
-                    series.put(Integer.parseInt(seasonsInt.get(0)),Integer.parseInt(seasonsInt.get(1)));
 
+                /*Initialize series*/
+                Series series  = new Series(name,release,span,rating);
+
+                /* Set genre */
+                genre = genre.replaceAll("\\s+","");
+                List<String> genres = Arrays.asList(genre.split("[\\s,]+"));
+                for (String g:genres) series.addGenre(g);
+
+                /* Set seasons*/
+                seasons = seasons.replaceAll("\\s+","");
+                List<String> seasonList = Arrays.asList(seasons.split("[\\s,]+"));
+                for (String s:seasonList){
+                    String [] season = s.split("-");
+                    series.addSeason(Integer.parseInt(season[0]),Integer.parseInt(season[1]));
                 }
-                mediaList.add(new Series(name,release,genres,rating,series));
+
+
+                mediaList.add(series);
             }
         }else {throw new SQLException("Query yielded no results");}
         return mediaList;

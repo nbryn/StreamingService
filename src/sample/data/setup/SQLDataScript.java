@@ -24,7 +24,7 @@ public class SQLDataScript {
                 ");" +
                 "CREATE TABLE users(" +
                 "    user_id int PRIMARY KEY AUTO_INCREMENT," +
-                "    username VARCHAR(50) NOT NULL," +
+                "    username VARCHAR(50) NOT NULL UNIQUE," +
                 "    password VARCHAR(50) NOT NULL," +
                 "    name VARCHAR(50) NOT NULL," +
                 "    birthdate VARCHAR(50) NOT NULL" +
