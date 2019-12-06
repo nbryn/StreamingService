@@ -39,11 +39,10 @@ public class H2DataBase {
         return resultSet;
     }
     public void  executeUpdate (String query){
-            ResultSet resultSet = null;
             PreparedStatement preparedStatement;
             try {
                 preparedStatement = SQL.preparedStatement(query);
-                resultSet = preparedStatement.executeQuery();
+                preparedStatement.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -72,6 +71,8 @@ public class H2DataBase {
         ResultSet results = sendStatement(query);
         String name;
         String genre;
+        String span;
+        String spanInternal;
         int release;
         double rating;
         String season;
@@ -80,9 +81,11 @@ public class H2DataBase {
             while(results.next()){
                 name = results.getString("name");
                 genre = results.getString("genre");
-                release = results.getInt("release");
+                span = results.getString("span");
                 rating = results.getDouble("rating");
                 season = results.getString("seasons");
+                spanInternal = span.replaceAll("\\s+","");
+                release = Integer.parseInt(spanInternal.substring(0,4));
                 List<String> genres = Arrays.asList(genre.split("[\\s,]+"));
                 List<String> seasons = Arrays.asList(season.split("[\\s,]+"));
                 for (int i = 0; i > seasons.size();i++){
