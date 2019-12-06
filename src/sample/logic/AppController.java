@@ -32,15 +32,15 @@ public class AppController {
         return true;
     }
 
-    public boolean validateUser(String username, String password) {
+    public boolean validateUser(String username) {
         try {
-            User user = userMapper.getUser(username, password);
+            User user = userMapper.getUser(username);
 
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                 return true;
             }
 
-        } catch (NoSuchUserException e)
+        } catch (NoSuchUserException | SQLException e)
         {
             return false;
         }

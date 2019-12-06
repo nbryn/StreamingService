@@ -28,7 +28,7 @@ public class SQLUserMapper implements UserMapper {
 
     @Override
     public void saveUser(User user) throws EmailAlreadyExistException {
-        
+        dataBase.executeUpdate("INSERT INTO users (username, password, name, birthdate)");
     }
 
     @Override
