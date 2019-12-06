@@ -30,6 +30,6 @@ public class Series extends Media {
     @Override
     public String toString() {
 
-        return "Series: Name: " + super.getName() + " Year: " + super.getYear() + " Genre: " + super.getGenre() + " Rating: " + super.getRating();
+        return "Series: Name: " + super.getName() + " Year: " + super.getRelease() + " Span: " + getSpan() + " Genre: " + super.getGenre() + " Rating: " + super.getRating();
     }
 }

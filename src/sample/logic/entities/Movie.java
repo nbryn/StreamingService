@@ -11,6 +11,6 @@ public class Movie extends Media {
     @Override
     public String toString() {
 
-        return "Movie: Name: " + super.getName() + " Year: " + super.getYear() + " Genre: " + super.getGenre() + " Rating: " + super.getRating();
+        return "Movie: Name: " + super.getName() + " Year: " + super.getRelease() + " Genre: " + super.getGenre() + " Rating: " + super.getRating();
     }
 }

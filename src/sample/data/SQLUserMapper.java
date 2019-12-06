@@ -11,9 +11,13 @@ import java.util.List;
 
 public class SQLUserMapper implements UserMapper {
     private H2DataBase dataBase;
+
+
     public SQLUserMapper(){
         dataBase = new H2DataBase("jdbc:h2:mem");
     }
+
+
     @Override
     public List<User> getAll() throws NoSuchUserException {
         return dataBase.getUsers("SELECT * FROM users");
