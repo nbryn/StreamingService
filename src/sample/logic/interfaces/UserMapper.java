@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface UserMapper {
 
-    public List<User> getAll() throws SQLException;
+    public List<User> getAll() throws SQLException, NoSuchUserException;
 
 <<<<<<< HEAD
     public User getUser(String username) throws NoSuchUserException;

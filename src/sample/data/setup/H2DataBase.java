@@ -7,6 +7,7 @@ import sample.logic.entities.Media;
 import sample.logic.entities.Movie;
 import sample.logic.entities.Series;
 import sample.logic.entities.User;
+import sample.logic.exceptions.NoSuchUserException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -47,28 +48,33 @@ public class H2DataBase {
                 e.printStackTrace();
             }
         }
-    public List<Media> getMovies(String query) throws SQLException{
+    public List<Media> getMovies(String query) {
         ResultSet results = sendStatement(query);
         String name;
         String genre;
         int release;
         double rating;
         List<Media> mediaList = new ArrayList<>();
-        if (results != null){
-            while(results.next()){
-                name = results.getString("name");
-                genre = results.getString("genre");
-                release = results.getInt("release");
-                rating = results.getDouble("rating");
-                List<String> genres = Arrays.asList(genre.split("[\\s,]+"));
-                Movie movie = new Movie(name,release,rating);
-                for (String g:genres) movie.addGenre(g);
-                mediaList.add(movie);
+        if (results != null) {
+            try {
+                while (results.next()) {
+                    name = results.getString("name");
+                    genre = results.getString("genre");
+                    release = results.getInt("release");
+                    rating = results.getDouble("rating");
+                    List<String> genres = Arrays.asList(genre.split("[\\s,]+"));
+                    Movie movie = new Movie(name, release, rating);
+                    for (String g : genres) movie.addGenre(g);
+                    mediaList.add(movie);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        }else {throw new SQLException("Query yielded no results");}
+
+        }
         return mediaList;
     }
-    public List<Media> getSeries(String query) throws SQLException{
+    public List<Media> getSeries(String query) {
         ResultSet results = sendStatement(query);
         String name;
         String genre;
@@ -78,58 +84,67 @@ public class H2DataBase {
         double rating;
         String seasons;
         List<Media> mediaList = new ArrayList<>();
-        if (results != null){
-            while(results.next()){
-                name = results.getString("name");
-                genre = results.getString("genre");
-                span = results.getString("span");
-                rating = results.getDouble("rating");
-                seasons = results.getString("seasons");
+        try {
+            if (results != null) {
+                while (results.next()) {
+                    name = results.getString("name");
+                    genre = results.getString("genre");
+                    span = results.getString("span");
+                    rating = results.getDouble("rating");
+                    seasons = results.getString("seasons");
 
 
 
-                /*Set year of release*/
-                spanInternal = span.replaceAll("\\s+","");
-                release = Integer.parseInt(spanInternal.substring(0,4));
+                    /*Set year of release*/
+                    spanInternal = span.replaceAll("\\s+", "");
+                    release = Integer.parseInt(spanInternal.substring(0, 4));
 
-                /*Initialize series*/
-                Series series  = new Series(name,release,span,rating);
+                    /*Initialize series*/
+                    Series series = new Series(name, release, span, rating);
 
-                /* Set genre */
-                genre = genre.replaceAll("\\s+","");
-                List<String> genres = Arrays.asList(genre.split("[\\s,]+"));
-                for (String g:genres) series.addGenre(g);
+                    /* Set genre */
+                    genre = genre.replaceAll("\\s+", "");
+                    List<String> genres = Arrays.asList(genre.split("[\\s,]+"));
+                    for (String g : genres) series.addGenre(g);
 
-                /* Set seasons*/
-                seasons = seasons.replaceAll("\\s+","");
-                List<String> seasonList = Arrays.asList(seasons.split("[\\s,]+"));
-                for (String s:seasonList){
-                    String [] season = s.split("-");
-                    series.addSeason(Integer.parseInt(season[0]),Integer.parseInt(season[1]));
+                    /* Set seasons*/
+                    seasons = seasons.replaceAll("\\s+", "");
+                    List<String> seasonList = Arrays.asList(seasons.split("[\\s,]+"));
+                    for (String s : seasonList) {
+                        String[] season = s.split("-");
+                        series.addSeason(Integer.parseInt(season[0]), Integer.parseInt(season[1]));
+                    }
+
+
+                    mediaList.add(series);
                 }
-
-
-                mediaList.add(series);
             }
-        }else {throw new SQLException("Query yielded no results");}
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return mediaList;
     }
-    public List<User> getUsers(String query) throws SQLException{
+    public List<User> getUsers(String query) throws NoSuchUserException {
         ResultSet results = sendStatement(query);
         String username;
         String password;
         String name;
         String birthdate;
         List<User> userList = new ArrayList<>();
-        if (results != null){
-            while(results.next()){
-            username = results.getString("username");
-            password = results.getString("password");
-            name = results.getString("name");
-            birthdate = results.getString("birthdate");
-            userList.add(new User(name,birthdate,username,password));
+        try {
+            if (results != null) {
+                while (results.next()) {
+                    username = results.getString("username");
+                    password = results.getString("password");
+                    name = results.getString("name");
+                    birthdate = results.getString("birthdate");
+                    userList.add(new User(name, birthdate, username, password));
+                }
             }
-        }else {throw new SQLException("Query yielded no results");}
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new NoSuchUserException();
+        }
         return userList;
     }
 

@@ -15,20 +15,24 @@ public class SQLUserMapper implements UserMapper {
         dataBase = new H2DataBase("jdbc:h2:mem");
     }
     @Override
-    public List<User> getAll() throws SQLException {
+    public List<User> getAll() throws NoSuchUserException {
         return dataBase.getUsers("SELECT * FROM users");
     }
 
     @Override
-    public User getUser(String username) throws NoSuchUserException, SQLException {
+    public User getUser(String username) throws NoSuchUserException{
         List<User> users = dataBase.getUsers("SELECT * FROM users WHERE 'username' = " + username);
         if (users != null) return users.get(0);
         else throw new NoSuchUserException();
     }
 
     @Override
-    public void saveUser(User user) throws EmailAlreadyExistException {
-        dataBase.executeUpdate("INSERT INTO users (username, password, name, birthdate)");
+    public void saveUser(User user) {
+        dataBase.executeUpdate("INSERT INTO users (username, password, name, birthdate) VALUES " +
+                "('" + user.getUsername() + "'," +
+                "'"+ user.getPassword() + "'," +
+                "'"+ user.getName() + "'," +
+                "'"+ user.getBirthday() + "');");
     }
 
     @Override

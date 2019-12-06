@@ -14,7 +14,7 @@ public class SQLMediaMapper implements MediaMapper {
         dataBase = new H2DataBase("jdbc:h2:mem");
     }
     @Override
-    public List<Media> getAll() throws SQLException {
+    public List<Media> getAll(){
         List<Media> allMovies = null;
         List<Media> allSeries = null;
         List<Media> allMedia = new ArrayList<>();
@@ -28,53 +28,51 @@ public class SQLMediaMapper implements MediaMapper {
     }
 
     @Override
-    public List<Media> getMovies() throws SQLException {
+    public List<Media> getMovies(){
         return dataBase.getMovies("SELECT * FROM movies");
     }
 
     @Override
-    public List<Media> getSeries() throws SQLException {
+    public List<Media> getSeries(){
         return dataBase.getSeries("SELECT * FROM series");
     }
 
     @Override
-    public List<Media> getByName(String name, String media) throws SQLException {
+    public List<Media> getByName(String name, String media){
         return sendQuery("SELECT * FROM movies WHERE 'name'  = " + name, "SELECT * FROM series WHERE 'name' = " +name,media);
     }
 
     @Override
-    public List<Media> getByRating(double rating, String media) throws SQLException {
+    public List<Media> getByRating(double rating, String media){
         return sendQuery("SELECT * FROM movies WHERE 'rating' >= " + rating,"SELECT * FROM series WHERE 'rating' >=" + rating, media);
     }
 
     @Override
-    public List<Media> getAllFromGenre(String genre, String media) throws SQLException {
+    public List<Media> getAllFromGenre(String genre, String media){
         return sendQuery("SELECT * FROM movies WHERE 'genre' LIKE " + genre,"SELECT * FROM series WHERE 'genre' LIKE " + genre, media);
     }
 
     @Override
-    public List<Media> getByRelease(int year, String media) throws SQLException {
+    public List<Media> getByRelease(int year, String media){
         return sendQuery("SELECT * FROM movies WHERE 'release >= " + year,"SELECT * FROM series WHERE 'release >= " + year, media);
     }
-    private List<Media> sendQuery(String movieQuery, String seriesQuery, String media) throws SQLException{
+    private List<Media> sendQuery(String movieQuery, String seriesQuery, String media){
         List<Media> allMovies = null;
         List<Media> allSeries = null;
         List<Media> allMedia = new ArrayList<>();
         if (media.equalsIgnoreCase("movies")){
             allMedia = dataBase.getMovies(movieQuery);
             if (allMedia != null) return allMedia;
-            else throw new SQLException("Query didn't yield any results");
         }else if (media.equalsIgnoreCase("series")){
             allMedia = dataBase.getSeries(seriesQuery);
             if (allMedia != null) return allMedia;
-            else throw new SQLException("Query didn't yield any results");
         }else {
             allMovies = dataBase.getMovies(movieQuery);
             allSeries = dataBase.getSeries(seriesQuery);
             allMedia.addAll(allMovies);
             allMedia.addAll(allSeries);
             if (allMedia != null) return allMedia;
-            else throw new SQLException("Query didn't yield any results");
         }
+        return null;
     }
 }
