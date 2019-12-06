@@ -10,11 +10,13 @@ import java.util.List;
 
 public class SQLMediaMapper implements MediaMapper {
     private H2DataBase dataBase;
-    public SQLMediaMapper(){
+
+    public SQLMediaMapper() {
         dataBase = new H2DataBase("jdbc:h2:mem");
     }
+
     @Override
-    public List<Media> getAll(){
+    public List<Media> getAll() {
         List<Media> allMovies = null;
         List<Media> allSeries = null;
         List<Media> allMedia = new ArrayList<>();
@@ -28,46 +30,48 @@ public class SQLMediaMapper implements MediaMapper {
     }
 
     @Override
-    public List<Media> getMovies(){
+    public List<Media> getMovies() {
         return dataBase.getMovies("SELECT * FROM movies");
     }
 
     @Override
-    public List<Media> getSeries(){
+    public List<Media> getSeries() {
         return dataBase.getSeries("SELECT * FROM series");
     }
 
     @Override
-    public List<Media> getByName(String name, String media){
-        return sendQuery("SELECT * FROM movies WHERE 'name'  = " + name, "SELECT * FROM series WHERE 'name' = " +name,media);
+    public List<Media> getByName(String name, String media) {
+        return sendQuery("SELECT * FROM movies WHERE name  = " + name, "SELECT * FROM series WHERE name = " + name, media);
     }
 
     @Override
-    public List<Media> getByRating(double rating, String media){
-        return sendQuery("SELECT * FROM movies WHERE 'rating' >= " + rating,"SELECT * FROM series WHERE 'rating' >=" + rating, media);
+    public List<Media> getByRating(double rating, String media) {
+        return sendQuery("SELECT * FROM movies WHERE rating >= " + rating, "SELECT * FROM series WHERE rating >=" + rating, media);
     }
 
     @Override
-    public List<Media> getAllFromGenre(String genre, String media){
+    public List<Media> getAllFromGenre(String genre, String media) {
 
-        return sendQuery("SELECT * FROM movies WHERE 'genre' LIKE '%" + genre +"%'","SELECT * FROM series WHERE genre LIKE '%" + genre +"%'", media);
+        return sendQuery("SELECT * FROM movies WHERE genre LIKE '%" + genre + "%'", "SELECT * FROM series WHERE genre LIKE '%" + genre + "%'", media);
+
     }
 
     @Override
-    public List<Media> getByRelease(int year, String media){
-        return sendQuery("SELECT * FROM movies WHERE 'release' >= " + year,"SELECT * FROM series WHERE 'release' >= " + year, media);
+    public List<Media> getByRelease(int year, String media) {
+        return sendQuery("SELECT * FROM movies WHERE release >= " + year, "SELECT * FROM series WHERE release >= " + year, media);
     }
-    private List<Media> sendQuery(String movieQuery, String seriesQuery, String media){
+
+    private List<Media> sendQuery(String movieQuery, String seriesQuery, String media) {
         List<Media> allMovies = null;
         List<Media> allSeries = null;
         List<Media> allMedia = new ArrayList<>();
-        if (media.equalsIgnoreCase("movies")){
+        if (media.equalsIgnoreCase("movies")) {
             allMedia = dataBase.getMovies(movieQuery);
             if (allMedia != null) return allMedia;
-        }else if (media.equalsIgnoreCase("series")){
+        } else if (media.equalsIgnoreCase("series")) {
             allMedia = dataBase.getSeries(seriesQuery);
             if (allMedia != null) return allMedia;
-        }else {
+        } else {
 
             allMovies = dataBase.getMovies(movieQuery);
             allSeries = dataBase.getSeries(seriesQuery);
