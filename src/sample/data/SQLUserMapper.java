@@ -25,14 +25,14 @@ public class SQLUserMapper implements UserMapper {
 
     @Override
     public User getUser(String username) throws NoSuchUserException{
-        List<User> users = dataBase.getUsers("SELECT * FROM USERS WHERE 'username' = " + username);
+        List<User> users = dataBase.getUsers("SELECT * FROM users WHERE 'username' = " + username);
         if (users != null) return users.get(0);
         else throw new NoSuchUserException();
     }
 
     @Override
     public void saveUser(User user) {
-        dataBase.executeUpdate("INSERT INTO USERS (username, password, name, birthdate) VALUES " +
+        dataBase.executeUpdate("INSERT INTO users (username, password, name, birthdate) VALUES " +
                 "('" + user.getUsername() + "'," +
                 "'"+ user.getPassword() + "'," +
                 "'"+ user.getName() + "'," +
