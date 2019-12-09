@@ -5,8 +5,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import sample.data.mock.MockMediaMapper;
-import sample.data.mock.MockUserMapper;
+import sample.data.SQLMediaMapper;
+import sample.data.SQLUserMapper;
 import sample.logic.AppController;
 import sample.logic.entities.Media;
 import java.util.List;
@@ -18,9 +18,12 @@ public class OverviewControllerTest {
     @FXML
     private ListView<Media> mediaListView;
 
+    @FXML
+    private TextField searchField;
+
 
     public OverviewControllerTest() {
-        appController = new AppController(new MockUserMapper(), new MockMediaMapper());
+        appController = new AppController(new SQLUserMapper(), new SQLMediaMapper());
     }
 
     @FXML
@@ -45,6 +48,15 @@ public class OverviewControllerTest {
     }
 
     @FXML
+    public void search(ActionEvent event) {
+        String searchString = searchField.getText().trim();
+
+        List<Media> result = appController.fetchByName(searchString, "all");
+
+        setListView(result);
+    }
+
+    @FXML
     public void loadRatingOver8(ActionEvent event) {
         List<Media> result = appController.fetchRatingOver(8.00, "all");
 
@@ -54,6 +66,20 @@ public class OverviewControllerTest {
     @FXML
     public void loadRatingOver5(ActionEvent event) {
         List<Media> result = appController.fetchRatingOver(5.00, "all");
+
+        setListView(result);
+    }
+
+    @FXML
+    public void releaseAfter2000(ActionEvent event) {
+        List<Media> result = appController.fetchReleaseAfter(2000, "all");
+
+        setListView(result);
+    }
+
+    @FXML
+    public void releaseAfter2015(ActionEvent event) {
+        List<Media> result = appController.fetchReleaseAfter(2015, "all");
 
         setListView(result);
     }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.RegisterControllerTest">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <TextArea layoutX="137.0" layoutY="55.0" prefHeight="91.0" prefWidth="252.0" />
+
+            <TextField fx:id="name" layoutX="184.0" layoutY="158.0" promptText="Full Name" />
+            <TextField fx:id="email" layoutX="184.0" layoutY="237.0" promptText="Email" />
+            <TextField fx:id="birthday" layoutX="184.0" layoutY="194.0" promptText="Birthday: dd.mm.yyyy" />
+            <TextField fx:id="password" layoutX="184.0" layoutY="281.0" promptText="Password" />
+            <TextField fx:id="passwordRepeat" layoutX="184.0" layoutY="317.0" promptText="Repeat Password" />
+            <Label layoutX="211.0" prefHeight="46.0" prefWidth="94.0" text="Register" />
+            <Button layoutX="211.0" layoutY="360.0" mnemonicParsing="false" onAction="#register" prefHeight="26.0" prefWidth="117.0" text="Register" />
+
+
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

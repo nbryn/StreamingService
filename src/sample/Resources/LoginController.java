@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import sample.data.mock.MockMediaMapper;
 import sample.data.mock.MockUserMapper;
 import sample.logic.AppController;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -34,7 +35,7 @@ public class LoginController
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        boolean userFound = appController.validateUser(username, password);
+        boolean userFound = appController.validateLogin(username, password);
 
         if (userFound)
         {

@@ -1,25 +1,35 @@
 package sample.logic.entities;
 
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Series extends Media {
 
     private Map<Integer, Integer> seasons;
+    private String span;
 
-    public Series(String name, int year, List<String> genre, double rating, Map seasons) {
-        super(name, year, genre, rating);
+    public Series(String name, int release, String span, double rating) {
+        super(name, release, rating);
+        this.span = span;
 
-        this.seasons = seasons;
+        seasons = new HashMap<>();
+    }
+
+    public String getSpan() {
+        return this.span;
     }
 
     public Map<Integer, Integer> getSeasons() {
         return this.seasons;
     }
 
+    public void addSeason(int season, int episodes) {
+        seasons.put(season, episodes);
+    }
+
     @Override
     public String toString() {
 
-        return "Series: Name: " + super.getName() + " Year: " + super.getYear() + " Genre: " + super.getGenre() + " Rating: " + super.getRating();
+        return "Series: Name: " + super.getName() + " Year: " + super.getRelease() + " Span: " + getSpan() + " Genre: " + super.getGenre() + " Rating: " + super.getRating();
     }
 }

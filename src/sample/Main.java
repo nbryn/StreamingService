@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import sample.data.h2.setup.H2Init;
+import sample.data.setup.H2Init;
 
 public class Main extends Application {
 
@@ -20,7 +20,7 @@ public class Main extends Application {
     }
     public void startSQL(){
         /* Initialisering af SQL database */
-        H2Init.initialize();
+        H2Init.initialize(true);
     }
 
     public static void main(String[] args) {
