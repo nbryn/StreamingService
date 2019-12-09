@@ -57,7 +57,7 @@ public class SQLMediaMapper implements MediaMapper {
 
     @Override
     public List<Media> getAllFromGenre(String genre, String media) {
-        return sendQuery("SELECT * FROM movies WHERE genre LIKE '%" + genre + "%'", "SELECT * FROM series WHERE genre LIKE '%" + genre + "%'", media);
+        return sendQuery("SELECT * FROM movies WHERE genre LIKE '%" + genre + "%'", "SELECT * FROM SERIES WHERE genre LIKE '%" + genre + "%'", media);
 
     }
 

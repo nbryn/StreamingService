@@ -5,6 +5,7 @@ import java.sql.*;
 public class H2Init {
     public static void initialize() {
         H2DataBase sql = new H2DataBase("jdbc:h2:mem");
+
         sql.executeUpdate("DROP TABLE IF EXISTS users;");
         sql.executeUpdate("DROP TABLE IF EXISTS movies;");
         sql.executeUpdate("DROP TABLE IF EXISTS series;");
@@ -19,7 +20,6 @@ public class H2Init {
         sql.executeUpdate(movieInitQuery);
         sql.executeUpdate(seriesInitQuery);
         sql.executeUpdate(usersInitQuery);
-
 
     }
 
