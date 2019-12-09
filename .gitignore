@@ -12,3 +12,7 @@ out/
 *.iml
 *.ipr
 *.iws
+
+mem.h2.db
+mem.lock.db
+mem.trace.db
