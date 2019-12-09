@@ -7,15 +7,19 @@ public class SQLDataScript {
     public static String buildTables(){
 
         return  "" +
+
                 "CREATE TABLE movies(" +
+
                 "    movie_id INTEGER PRIMARY KEY AUTO_INCREMENT," +
                 "    name VARCHAR(70) NOT NULL," +
                 "    release VARCHAR(50) NOT NULL," +
                 "    genre VARCHAR(50) NOT NULL," +
                 "    rating VARCHAR(50) NOT NULL" +
                 ");" +
+
                 "CREATE TABLE series(" +
                 "    series_id int PRIMARY KEY AUTO_INCREMENT," +
+
                 "    name VARCHAR(70) NOT NULL," +
                 "    span VARCHAR(50) NOT NULL," +
                 "    genre VARCHAR(50) NOT NULL," +
@@ -35,7 +39,7 @@ public class SQLDataScript {
                 "    foreign key (user_id) references users(user_id)," +
                 "    movie_id int," +
                 "    foreign key (movie_id) references movies(movie_id));" +
-                "CREATE TABLE mySeriesList(" +
+                "CREATE TABLE myseriesList(" +
                 "    user_id int," +
                 "    foreign key (user_id) references users(user_id)," +
                 "    series_id int," +

@@ -189,8 +189,8 @@ public class OverviewController {
         String moviePath = "/" + movieURL.toString().substring(2, movieURL.toString().length()-1);
         String seriesPath = "/" + seriesURL.toString().substring(4, seriesURL.toString().length()-1);
 
-        File[] seriesImg = new File("D:\\Streaming\\StreamingService\\src\\sample\\resources\\seriesimg").listFiles();
-        File[] moviesImg = new File("D:\\Streaming\\StreamingService\\src\\sample\\resources\\movieimg").listFiles();
+        File[] seriesImg = new File(seriesPath).listFiles();
+        File[] moviesImg = new File(moviePath).listFiles();
 
         System.out.println("Series" + seriesPath);
         System.out.println("Movies" + moviePath);
