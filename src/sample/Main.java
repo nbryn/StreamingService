@@ -18,12 +18,11 @@ public class Main extends Application {
         primaryStage.show();
 
         startSQL();
-
     }
 
     public void startSQL() {
         /* Initialisering af SQL database */
-        H2Init.initialize(true);
+        H2Init.initialize();
     }
 
     public static void main(String[] args) {

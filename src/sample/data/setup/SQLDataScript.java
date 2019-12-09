@@ -7,14 +7,14 @@ public class SQLDataScript {
     public static String buildTables(){
 
         return  "" +
-                "CREATE TABLE movies (" +
+                "CREATE TABLE movies(" +
                 "    movie_id INTEGER PRIMARY KEY AUTO_INCREMENT," +
                 "    name VARCHAR(70) NOT NULL," +
                 "    release VARCHAR(50) NOT NULL," +
                 "    genre VARCHAR(50) NOT NULL," +
                 "    rating VARCHAR(50) NOT NULL" +
                 ");" +
-                "CREATE TABLE series (" +
+                "CREATE TABLE series(" +
                 "    series_id int PRIMARY KEY AUTO_INCREMENT," +
                 "    name VARCHAR(70) NOT NULL," +
                 "    span VARCHAR(50) NOT NULL," +

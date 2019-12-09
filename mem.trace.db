@@ -28,3 +28,126 @@ SELECT * FROM movies WHERE genre LIKE '%Adventure%' [42102-175]
 12-09 12:54:00 jdbc[4]: exception
 org.h2.jdbc.JdbcSQLException: Table "SERIES" not found; SQL statement:
 SELECT * FROM series WHERE genre LIKE '%Adventure%' [42102-175]
+12-09 12:56:08 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "MOVIES" not found; SQL statement:
+SELECT * FROM movies WHERE genre LIKE '%Adventure%' [42102-175]
+12-09 12:56:08 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "SERIES" not found; SQL statement:
+SELECT * FROM series WHERE genre LIKE '%Adventure%' [42102-175]
+12-09 13:01:10 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "MOVIES" not found; SQL statement:
+SELECT * FROM movies WHERE genre LIKE '%Action%' [42102-175]
+12-09 13:01:10 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "SERIES" not found; SQL statement:
+SELECT * FROM series WHERE genre LIKE '%Action%' [42102-175]
+12-09 13:01:51 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "MOVIES" not found; SQL statement:
+SELECT * FROM movies WHERE genre LIKE '%Adventure%' [42102-175]
+12-09 13:01:51 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "SERIES" not found; SQL statement:
+SELECT * FROM series WHERE genre LIKE '%Adventure%' [42102-175]
+12-09 13:02:52 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "MOVIES" not found; SQL statement:
+SELECT * FROM movies WHERE genre LIKE '%Adventure%' [42102-175]
+12-09 13:02:52 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "SERIES" not found; SQL statement:
+SELECT * FROM series WHERE genre LIKE '%Adventure%' [42102-175]
+12-09 13:04:03 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "MOVIES" not found; SQL statement:
+SELECT * FROM movies WHERE genre LIKE '%Adventure%' [42102-175]
+12-09 13:04:03 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "SERIES" not found; SQL statement:
+SELECT * FROM series WHERE genre LIKE '%Adventure%' [42102-175]
+12-09 13:04:43 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "MOVIES" not found; SQL statement:
+SELECT * FROM movies WHERE genre LIKE '%Action%' [42102-175]
+12-09 13:04:43 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "SERIES" not found; SQL statement:
+SELECT * FROM series WHERE genre LIKE '%Action%' [42102-175]
+12-09 13:04:44 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "MOVIES" not found; SQL statement:
+SELECT * FROM movies WHERE genre LIKE '%Comedy%' [42102-175]
+12-09 13:04:44 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "SERIES" not found; SQL statement:
+SELECT * FROM series WHERE genre LIKE '%Comedy%' [42102-175]
+12-09 13:05:36 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "MOVIES" not found; SQL statement:
+SELECT * FROM movies WHERE genre LIKE '%Adventure%' [42102-175]
+12-09 13:05:36 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "SERIES" not found; SQL statement:
+SELECT * FROM series WHERE genre LIKE '%Adventure%' [42102-175]
+12-09 13:05:52 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "MOVIES" not found; SQL statement:
+SELECT * FROM movies WHERE genre LIKE '%Crime%' [42102-175]
+12-09 13:05:52 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "SERIES" not found; SQL statement:
+SELECT * FROM series WHERE genre LIKE '%Crime%' [42102-175]
+12-09 13:08:58 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "MOVIES" not found; SQL statement:
+SELECT * FROM movies WHERE genre LIKE '%Adventure%' [42102-175]
+12-09 13:08:58 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "SERIES" not found; SQL statement:
+SELECT * FROM series WHERE genre LIKE '%Adventure%' [42102-175]
+12-09 13:10:32 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "MOVIES" not found; SQL statement:
+SELECT * FROM MOVIES WHERE genre LIKE '%Adventure%' [42102-175]
+12-09 13:10:32 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "SERIES" not found; SQL statement:
+SELECT * FROM SERIES WHERE genre LIKE '%Adventure%' [42102-175]
+12-09 13:11:37 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "MOVIES" not found; SQL statement:
+SELECT * FROM MOVIES WHERE genre LIKE '%Action%' [42102-175]
+12-09 13:11:37 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "SERIES" not found; SQL statement:
+SELECT * FROM SERIES WHERE genre LIKE '%Action%' [42102-175]
+12-09 13:11:38 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "MOVIES" not found; SQL statement:
+SELECT * FROM MOVIES WHERE genre LIKE '%Adventure%' [42102-175]
+12-09 13:11:38 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "SERIES" not found; SQL statement:
+SELECT * FROM SERIES WHERE genre LIKE '%Adventure%' [42102-175]
+12-09 13:12:09 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "MOVIES" not found; SQL statement:
+SELECT * FROM MOVIES WHERE genre LIKE '%Adventure%' [42102-175]
+12-09 13:12:09 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "SERIES" not found; SQL statement:
+SELECT * FROM SERIES WHERE genre LIKE '%Adventure%' [42102-175]
+12-09 13:12:09 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "MOVIES" not found; SQL statement:
+SELECT * FROM MOVIES WHERE genre LIKE '%Comedy%' [42102-175]
+12-09 13:12:09 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "SERIES" not found; SQL statement:
+SELECT * FROM SERIES WHERE genre LIKE '%Comedy%' [42102-175]
+12-09 13:18:04 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "MOVIES" not found; SQL statement:
+SELECT * FROM movies WHERE genre LIKE '%Adventure%' [42102-175]
+12-09 13:18:04 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "SERIES" not found; SQL statement:
+SELECT * FROM series WHERE genre LIKE '%Adventure%' [42102-175]
+12-09 13:18:05 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "MOVIES" not found; SQL statement:
+SELECT * FROM movies WHERE genre LIKE '%Comedy%' [42102-175]
+12-09 13:18:05 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "SERIES" not found; SQL statement:
+SELECT * FROM series WHERE genre LIKE '%Comedy%' [42102-175]
+12-09 13:21:56 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS" already exists; SQL statement:
+CREATE TABLE users(user_id int PRIMARY KEY AUTO_INCREMENT,username varchar(50) NOT NULL ,password varchar(50) NOT NULL);insert into users (username, password) VALUES ('Kris','Suppe'); [42101-175]
+12-09 13:25:20 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "MOVIES" not found; SQL statement:
+SELECT * FROM movies WHERE genre LIKE '%Adventure%' [42102-175]
+12-09 13:25:20 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "SERIES" not found; SQL statement:
+SELECT * FROM series WHERE genre LIKE '%Adventure%' [42102-175]
+12-09 13:25:46 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "MOVIES" not found; SQL statement:
+SELECT * FROM movies WHERE genre LIKE '%Action%' [42102-175]
+12-09 13:25:46 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "SERIES" not found; SQL statement:
+SELECT * FROM series WHERE genre LIKE '%Action%' [42102-175]
+12-09 13:29:17 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "MOVIES" not found; SQL statement:
+SELECT * FROM movies WHERE genre LIKE '%Adventure%' [42102-175]
+12-09 13:29:17 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "SERIES" not found; SQL statement:
+SELECT * FROM series WHERE genre LIKE '%Adventure%' [42102-175]
