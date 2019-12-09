@@ -10,15 +10,18 @@ import sample.data.setup.H2Init;
 public class Main extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception
-    {
+    public void start(Stage primaryStage) throws Exception {
         Parent loginRoot = FXMLLoader.load(getClass().getResource("OverviewScene.fxml"));
         Scene login = new Scene(loginRoot);
         primaryStage.setTitle("NKG");
         primaryStage.setScene(login);
         primaryStage.show();
+
+        startSQL();
+
     }
-    public void startSQL(){
+
+    public void startSQL() {
         /* Initialisering af SQL database */
         H2Init.initialize(true);
     }

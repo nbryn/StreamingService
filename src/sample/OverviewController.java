@@ -193,6 +193,7 @@ public class OverviewController {
         Collections.addAll(images, moviesImg);
 
         System.out.println(images.size());
+        System.out.println(mediaList);
 
         for (File file : images) {
             for (Media media : mediaList) {
