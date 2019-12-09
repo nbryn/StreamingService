@@ -11,8 +11,6 @@ import sample.logic.AppController;
 import sample.logic.entities.Media;
 import java.util.List;
 
-
-
 public class OverviewControllerTest {
 
     private AppController appController;
@@ -120,4 +118,3 @@ public class OverviewControllerTest {
         mediaListView.setItems(mediaList);
     }
 }
-

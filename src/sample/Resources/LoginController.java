@@ -1,4 +1,4 @@
-package sample.Controllers;
+package sample.Resources;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +15,7 @@ import sample.logic.AppController;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import javafx.fxml.LoadException;
 
 public class LoginController
 {
@@ -37,19 +38,22 @@ public class LoginController
 
         if (userFound)
         {
-            //Parent overviewRoot = FXMLLoader.load(getClass().getResource("Resources/Login.fxml"));
-            URL url = new File("D:\\Streaming\\StreamingService\\src\\sample\\OverviewTest.fxml").toURI().toURL();
-            Parent overviewRoot = FXMLLoader.load(url);
-            Scene overviewScene = new Scene(overviewRoot);
-            Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-            window.setScene(overviewScene);
-            window.show();
-            System.out.println("JA");
+            changeToOverviewScene(event);
+            System.out.println("Correct");
         }
         else {
-            System.out.println("NEJ");
+            System.out.println("Wrong");
             System.out.println(usernameField.getText());
             System.out.println(passwordField.getText());
         }
+    }
+
+    public void changeToOverviewScene(ActionEvent event) throws IOException
+    {
+        Parent overviewRoot = FXMLLoader.load(getClass().getResource("OverviewScene.fxml"));
+        Scene overviewScene = new Scene(overviewRoot);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        window.setScene(overviewScene);
+        window.show();
     }
 }

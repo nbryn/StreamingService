@@ -9,7 +9,6 @@ public abstract class Media {
     private int year;
     private double rating;
 
-
     public Media(String name, int year, List<String> genre, double rating) {
         this.name = name;
         this.genre = genre;

@@ -9,8 +9,8 @@ public class Movie extends Media {
     }
 
     @Override
-    public String toString() {
-
+    public String toString()
+    {
         return "Movie: Name: " + super.getName() + " Year: " + super.getYear() + " Genre: " + super.getGenre() + " Rating: " + super.getRating();
     }
 }
