@@ -1,3 +1,7 @@
+mem.h2.db
+mem.lock.db
+mem.trace.db
+
 .mtj.tmp/
 *.class
 *.jar
@@ -12,3 +16,4 @@ out/
 *.iml
 *.ipr
 *.iws
+

@@ -33,8 +33,7 @@ public class OverviewController {
     @FXML
     private TextField searchField;
 
-    public OverviewController()
-    {
+    public OverviewController() {
         appController = new AppController(new SQLUserMapper(), new SQLMediaMapper());
     }
 
@@ -180,14 +179,16 @@ public class OverviewController {
     @FXML
     private GridPane gridPane;
 
-    public void Initialize(List <Media> mediaList)
-    {
+    public void Initialize(List<Media> mediaList) {
         fileList.clear();
+
+        String os = System.getProperty("os.name");
+
 
         URL movieURL = getClass().getResource("resources/movieimg");
         URL seriesURL = getClass().getResource("resources/seriesimg");
-        String moviePath = "/" + movieURL.toString().substring(2, movieURL.toString().length()-1);
-        String seriesPath = "/" + seriesURL.toString().substring(4, seriesURL.toString().length()-1);
+        String moviePath = "/" + movieURL.toString().substring(6, movieURL.toString().length() - 1);
+        String seriesPath = "/" + seriesURL.toString().substring(6, seriesURL.toString().length() - 1);
 
         File[] seriesImg = new File(seriesPath).listFiles();
         File[] moviesImg = new File(moviePath).listFiles();
@@ -210,12 +211,9 @@ public class OverviewController {
         int columns = 4;
         int index = 0;
 
-        for (int i = 0 ; i < rows; i++)
-        {
-            for (int j = 0; j < columns; j++)
-            {
-                if (index < fileList.size())
-                {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                if (index < fileList.size()) {
                     addImage(index, j, i);
                     index++;
                 }
@@ -223,8 +221,7 @@ public class OverviewController {
         }
     }
 
-    public void addImage(int index, int row, int column)
-    {
+    public void addImage(int index, int row, int column) {
         Image img = new Image(String.valueOf(fileList.get(index)));
 
         ImageView imgView = new ImageView(img);
@@ -242,25 +239,21 @@ public class OverviewController {
     @FXML
     private AnchorPane Settings;
 
-    public void showSelections(ActionEvent event)
-    {
+    public void showSelections(ActionEvent event) {
         closeAll();
         Selections.setVisible(true);
     }
 
-    public void showSettings(ActionEvent event)
-    {
+    public void showSettings(ActionEvent event) {
         closeAll();
         Settings.setVisible(true);
     }
 
-    public void showUsers(ActionEvent event)
-    {
+    public void showUsers(ActionEvent event) {
         closeAll();
     }
 
-    public void closeAll()
-    {
+    public void closeAll() {
         Selections.setVisible(false);
         Settings.setVisible(false);
     }
