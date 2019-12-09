@@ -1386,3 +1386,21 @@ SELECT * FROM series WHERE name = Stagecoach [42122-175]
 	at javafx.graphics/com.sun.glass.ui.gtk.GtkApplication._runLoop(Native Method)
 	at javafx.graphics/com.sun.glass.ui.gtk.GtkApplication.lambda$runLoop$11(GtkApplication.java:277)
 	at java.base/java.lang.Thread.run(Thread.java:834)
+12-09 13:18:30 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Table "MOVIES" not found; SQL statement:
+SELECT * FROM movies WHERE genre LIKE '%Action%' [42102-175]
+12-09 13:18:30 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Table "SERIES" not found; SQL statement:
+SELECT * FROM series WHERE genre LIKE '%Action%' [42102-175]
+12-09 13:25:42 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Table "MOVIES" not found; SQL statement:
+SELECT * FROM MOVIES WHERE genre LIKE '%Action%' [42102-175]
+12-09 13:25:42 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLException: Table "SERIES" not found; SQL statement:
+SELECT * FROM SERIES WHERE genre LIKE '%Action%' [42102-175]
+12-09 13:26:59 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "MOVIES" not found; SQL statement:
+SELECT * FROM MOVIES [42102-175]
+12-09 13:26:59 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLException: Table "SERIES" not found; SQL statement:
+SELECT * FROM SERIES [42102-175]

@@ -7,22 +7,22 @@ public class SQLDataScript {
     public static String buildTables(){
 
         return  "" +
-                "CREATE TABLE movies (" +
+                "CREATE TABLE MOVIES (" +
                 "    movie_id INTEGER PRIMARY KEY AUTO_INCREMENT," +
                 "    name VARCHAR(70) NOT NULL," +
                 "    release VARCHAR(50) NOT NULL," +
                 "    genre VARCHAR(50) NOT NULL," +
                 "    rating VARCHAR(50) NOT NULL" +
                 ");" +
-                "CREATE TABLE series (" +
-                "    series_id int PRIMARY KEY AUTO_INCREMENT," +
+                "CREATE TABLE SERIES (" +
+                "    SERIES_id int PRIMARY KEY AUTO_INCREMENT," +
                 "    name VARCHAR(70) NOT NULL," +
                 "    span VARCHAR(50) NOT NULL," +
                 "    genre VARCHAR(50) NOT NULL," +
                 "    rating VARCHAR(50) NOT NULL," +
                 "    seasons VARCHAR(200) NOT NULL" +
                 ");" +
-                "CREATE TABLE users(" +
+                "CREATE TABLE USERS(" +
                 "    user_id int PRIMARY KEY AUTO_INCREMENT," +
                 "    username VARCHAR(50) NOT NULL UNIQUE," +
                 "    password VARCHAR(50) NOT NULL," +
@@ -30,21 +30,21 @@ public class SQLDataScript {
                 "    birthdate VARCHAR(50) NOT NULL" +
                 "" +
                 ");" +
-                "CREATE TABLE myMovieList(" +
+                "CREATE TABLE MYMOVIELIST(" +
                 "    user_id int," +
-                "    foreign key (user_id) references users(user_id)," +
+                "    foreign key (user_id) references USERS(user_id)," +
                 "    movie_id int," +
-                "    foreign key (movie_id) references movies(movie_id));" +
-                "CREATE TABLE mySeriesList(" +
+                "    foreign key (movie_id) references MOVIES(movie_id));" +
+                "CREATE TABLE MYSERIESLIST(" +
                 "    user_id int," +
-                "    foreign key (user_id) references users(user_id)," +
-                "    series_id int," +
-                "    foreign key (series_id) references series(series_id)" +
+                "    foreign key (user_id) references USERS(user_id)," +
+                "    SERIES_id int," +
+                "    foreign key (SERIES_id) references SERIES(SERIES_id)" +
                 ");";
     }
-    public static String buildMovies(){
+    public static String buildMOVIES(){
         return
-                "INSERT INTO movies (name,release,genre,rating) VALUES " +
+                "INSERT INTO MOVIES (name,release,genre,rating) VALUES " +
                 "('The Godfather', '1972', 'Crime, Drama', '9.2'),"+
                 "('The Shawshank Redemption', '1994', 'Drama', '9.3'),"+
                 "('Schindler´s List', '1993', 'Biography, Drama, History', '8.9'),"+
@@ -147,8 +147,8 @@ public class SQLDataScript {
                 "('Yankee Doodle Dandy', '1942', 'Biography, Drama, Musical', '7.7');";
 
     }
-    public static String buildSeries(){
-        return "INSERT INTO series (name,span,genre,rating,seasons) VALUES"+
+    public static String buildSERIES(){
+        return "INSERT INTO SERIES (name,span,genre,rating,seasons) VALUES"+
                 "('Twin Peaks', '1990-1991', 'Crime, Drama, Mystery', '8.8', '1-8, 2-22'),"+
                 "('The Sopranos', '1999-2007', 'Crime, Drama', '9.2', '1-13, 2-13, 3-13, 4-13, 5-13, 6-21'),"+
                 "('Game Of Thrones', '2011-','Action, Adventure, Drama', '9.5', '1-10, 2-10, 3-10, 4-10, 5-10, 6-10, 7-7'),"+
@@ -250,20 +250,20 @@ public class SQLDataScript {
                 "('Three´s Company', '1976-1984', 'Comedy', '7.6', '1-6, 2-25, 3-22, 4-25, 5-22, 6-28, 7-22, 8-22'),"+
                 "('Dexter', '2006-2013', 'Crime, Drama, Mystery', '8.7', '1-12, 2-12, 3-12, 4-12, 5-12, 6-12, 7-12,8-1');";
     /** */}
-    public static String buildUsers(){
+    public static String buildUSERS(){
         return
-                "INSERT INTO users (username,password,name,birthdate) " +
+                "INSERT INTO USERS (username,password,name,birthdate) " +
                         "VALUES "+
                         "('Kris','Suppe','Kristian','110996');";
 
     }
     public static String testQueries(){
         return
-                "CREATE TABLE users(" +
+                "CREATE TABLE USERS(" +
                 "user_id int PRIMARY KEY AUTO_INCREMENT,"+
                 "username varchar(50) NOT NULL ," +
                 "password varchar(50) NOT NULL);" +
-                "insert into users (username, password) "+
+                "insert into USERS (username, password) "+
                 "VALUES ('Kris','Suppe');";
     }
 }

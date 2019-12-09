@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sample.data.SQLMediaMapper;
 import sample.data.setup.H2Init;
 
 public class Main extends Application {
@@ -18,12 +19,13 @@ public class Main extends Application {
         primaryStage.setScene(login);
         primaryStage.show();
     }
-    public void startSQL(){
+    public static void startSQL(){
         /* Initialisering af SQL database */
         H2Init.initialize(true);
     }
 
     public static void main(String[] args) {
-        launch(args);
+        startSQL();
     }
+
 }

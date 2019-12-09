@@ -20,8 +20,8 @@ public class SQLMediaMapper implements MediaMapper {
         List<Media> allMedia = new ArrayList<>();
         List<Media> allMovies, allSeries = null;
 
-        allMovies = dataBase.getMovies("SELECT * FROM movies");
-        allSeries = dataBase.getSeries("SELECT * FROM series");
+        allMovies = dataBase.getMovies("SELECT * FROM MOVIES");
+        allSeries = dataBase.getSeries("SELECT * FROM SERIES");
 
         allMedia.addAll(allMovies);
         allMedia.addAll(allSeries);
@@ -30,17 +30,17 @@ public class SQLMediaMapper implements MediaMapper {
 
     @Override
     public List<Media> getMovies() {
-        return dataBase.getMovies("SELECT * FROM movies");
+        return dataBase.getMovies("SELECT * FROM MOVIES");
     }
 
     @Override
     public List<Media> getSeries() {
-        return dataBase.getSeries("SELECT * FROM series");
+        return dataBase.getSeries("SELECT * FROM SERIES");
     }
 
     @Override
     public List<Media> getByName(String name, String media) {
-        return sendQuery("SELECT * FROM movies WHERE lower(movies.name)  LIKE lower('%" + name + "%')", "SELECT * FROM series WHERE lower(series.name) LIKE lower('%" + name + "%')", media);
+        return sendQuery("SELECT * FROM MOVIES WHERE lower(MOVIES.name)  LIKE lower('%" + name + "%')", "SELECT * FROM SERIES WHERE lower(SERIES.name) LIKE lower('%" + name + "%')", media);
     }
 
     @Override
@@ -57,7 +57,7 @@ public class SQLMediaMapper implements MediaMapper {
 
     @Override
     public List<Media> getAllFromGenre(String genre, String media) {
-        return sendQuery("SELECT * FROM movies WHERE genre LIKE '%" + genre + "%'", "SELECT * FROM series WHERE genre LIKE '%" + genre + "%'", media);
+        return sendQuery("SELECT * FROM MOVIES WHERE genre LIKE '%" + genre + "%'", "SELECT * FROM SERIES WHERE genre LIKE '%" + genre + "%'", media);
 
     }
 
