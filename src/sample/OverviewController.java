@@ -1,30 +1,21 @@
-package sample.Resources;
+package sample;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.HPos;
-import javafx.geometry.Insets;
-import javafx.geometry.VPos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
 import sample.data.mock.MockMediaMapper;
 import sample.data.mock.MockUserMapper;
 import sample.logic.AppController;
 import sample.logic.entities.Media;
-import sample.logic.entities.Movie;
-import javafx.scene.Node;
-import sample.logic.entities.User;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.URLDecoder;
+import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class OverviewController {
@@ -160,7 +151,12 @@ public class OverviewController {
 
     public void Initialize(String genre)
     {
-        File[] movies = new File("D:\\Streaming\\StreamingService\\src\\sample\\Resources\\MovieImages").listFiles();
+        URL url = getClass().getResource("MovieImages");
+        String path = "/" + url.toString().substring(6, url.toString().length()-1);
+
+        System.out.println(path);
+
+        File[] movies = new File(path).listFiles();
         fileList.clear();
 
         for (File f : movies)

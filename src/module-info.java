@@ -5,5 +5,5 @@ module javafx
     requires java.sql;
 
     opens sample;
-    opens sample.Resources;
+
 }
