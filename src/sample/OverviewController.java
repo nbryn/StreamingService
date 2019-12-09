@@ -183,18 +183,20 @@ public class OverviewController {
     public void Initialize(List <Media> mediaList)
     {
         fileList.clear();
+
         URL movieURL = getClass().getResource("resources/movieimg");
         URL seriesURL = getClass().getResource("resources/seriesimg");
-        String moviePath = "/" + movieURL.toString().substring(6, movieURL.toString().length()-1);
-        String seriesPath = "/" + seriesURL.toString().substring(6, seriesURL.toString().length()-1);
+        String moviePath = "/" + movieURL.toString().substring(2, movieURL.toString().length()-1);
+        String seriesPath = "/" + seriesURL.toString().substring(4, seriesURL.toString().length()-1);
 
-        File[] seriesImg = new File(seriesPath).listFiles();
-        File[] moviesImg = new File(moviePath).listFiles();
+        File[] seriesImg = new File("D:\\Streaming\\StreamingService\\src\\sample\\resources\\seriesimg").listFiles();
+        File[] moviesImg = new File("D:\\Streaming\\StreamingService\\src\\sample\\resources\\movieimg").listFiles();
+
+        System.out.println("Series" + seriesPath);
+        System.out.println("Movies" + moviePath);
 
         List<File> images = new ArrayList<>(Arrays.asList(seriesImg));
         Collections.addAll(images, moviesImg);
-
-        System.out.println(images.size());
 
         for (File file : images) {
             for (Media media : mediaList) {
@@ -205,7 +207,7 @@ public class OverviewController {
         }
 
         int rows = (fileList.size() / 4) + 1;
-        int columns = 1;
+        int columns = 4;
         int index = 0;
 
         for (int i = 0 ; i < rows; i++)
@@ -229,8 +231,8 @@ public class OverviewController {
         imgView.setFitWidth(175);
         imgView.setFitHeight(250);
 
-        /*gridPane.setHgap(5);
-        gridPane.setVgap(5);*/
+        gridPane.setHgap(5);
+        gridPane.setVgap(5);
         GridPane.setConstraints(imgView, column, row);
         gridPane.getChildren().add(imgView);
     }
