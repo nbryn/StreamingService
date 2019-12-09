@@ -12,7 +12,6 @@ import sample.logic.AppController;
 import sample.logic.entities.Media;
 import sample.logic.entities.Movie;
 import sample.logic.entities.Series;
-import sample.logic.interfaces.MediaMapper;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -46,6 +45,7 @@ public class OverviewController {
         appController = new AppController(new SQLUserMapper(), new SQLMediaMapper());
         fileList = new ArrayList<>();
         allMedia = appController.fetchAll("all");
+
     }
 
     public void updateView(List<Media> mediaList) {
@@ -104,7 +104,9 @@ public class OverviewController {
 
     @FXML
     public void showAll(ActionEvent event) {
-        updateView(allMedia);
+        List<Media> result = appController.fetchAll("all");
+
+        updateView(result);
 
     }
 
