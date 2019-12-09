@@ -20,6 +20,7 @@ public class Main extends Application {
         primaryStage.setScene(login);
         primaryStage.show();
     }
+
     public void startSQL(){
         /* Initialisering af SQL database */
         H2Init.initialize(true);

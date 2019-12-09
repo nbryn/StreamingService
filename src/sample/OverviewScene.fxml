@@ -105,14 +105,14 @@
                   </Hyperlink>
                </children>
             </VBox>
-            <HBox fx:id="Menu" alignment="CENTER_LEFT" prefHeight="64.0" prefWidth="463.0" spacing="10.0" style="-fx-background-color: #262425;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <HBox fx:id="Menu" alignment="CENTER_LEFT" prefHeight="64.0" spacing="10.0" style="-fx-background-color: #262425;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Button fx:id="settingButton" mnemonicParsing="false" onAction="#showSettings" text="Setting" HBox.hgrow="ALWAYS">
+                  <Button fx:id="settingButton" alignment="CENTER" mnemonicParsing="false" onAction="#showSettings" text="Setting" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button fx:id="userButton" mnemonicParsing="false" onAction="#showUsers" text="User" HBox.hgrow="ALWAYS">
+                  <Button fx:id="userButton" alignment="CENTER" mnemonicParsing="false" onAction="#showUsers" text="User" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="20.0" />
                      </font>

@@ -188,7 +188,6 @@ public class OverviewController {
         String moviePath = "/" + movieURL.toString().substring(6, movieURL.toString().length()-1);
         String seriesPath = "/" + seriesURL.toString().substring(6, seriesURL.toString().length()-1);
 
-
         File[] seriesImg = new File(seriesPath).listFiles();
         File[] moviesImg = new File(moviePath).listFiles();
 
