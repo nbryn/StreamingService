@@ -8,8 +8,6 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import sample.data.mock.MockMediaMapper;
-import sample.data.mock.MockUserMapper;
 import sample.data.SQLMediaMapper;
 import sample.data.SQLUserMapper;
 import sample.logic.AppController;
@@ -181,17 +179,17 @@ public class OverviewController {
 
     public void Initialize(List<Media> mediaList) {
         fileList.clear();
+        gridPane.getChildren().clear();
 
         String os = System.getProperty("os.name");
-
 
         URL movieURL = getClass().getResource("resources/movieimg");
         URL seriesURL = getClass().getResource("resources/seriesimg");
         String moviePath = "/" + movieURL.toString().substring(6, movieURL.toString().length() - 1);
         String seriesPath = "/" + seriesURL.toString().substring(6, seriesURL.toString().length() - 1);
 
-        File[] seriesImg = new File(seriesPath).listFiles();
-        File[] moviesImg = new File(moviePath).listFiles();
+        File[] seriesImg = new File("D:\\Streaming\\StreamingService\\src\\sample\\resources\\seriesimg").listFiles();
+        File[] moviesImg = new File("D:\\Streaming\\StreamingService\\src\\sample\\resources\\movieimg").listFiles();
 
         System.out.println("Series" + seriesPath);
         System.out.println("Movies" + moviePath);
@@ -228,8 +226,8 @@ public class OverviewController {
         imgView.setFitWidth(175);
         imgView.setFitHeight(250);
 
-        gridPane.setHgap(5);
-        gridPane.setVgap(5);
+        gridPane.setHgap(10);
+        gridPane.setVgap(10);
         GridPane.setConstraints(imgView, column, row);
         gridPane.getChildren().add(imgView);
     }

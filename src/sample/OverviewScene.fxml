@@ -37,73 +37,100 @@
    <left>
       <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="720.0" prefWidth="282.0" style="-fx-background-color: #131313;" BorderPane.alignment="CENTER">
          <children>
-            <VBox fx:id="Selections" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="467.0" style="-fx-background-color: #262425;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="64.0">
+            <VBox fx:id="Selections" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="656.0" prefWidth="282.0" style="-fx-background-color: #262425;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="64.0">
                <children>
-                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadAllMedia" text="All" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="ALWAYS">
+                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadAllMedia" text="All" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="NEVER">
                      <effect>
                         <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="1.0" />
                      </effect>
                      <font>
                         <Font size="20.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
                   </Hyperlink>
-                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadAction" text="Action" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="ALWAYS">
+                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadAction" text="Action" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="NEVER">
                      <effect>
                         <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="1.0" />
                      </effect>
                      <font>
                         <Font size="20.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
                   </Hyperlink>
-                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadAdventure" text="Adventure" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="ALWAYS">
+                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadAdventure" text="Adventure" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="NEVER">
                      <effect>
                         <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="1.0" />
                      </effect>
                      <font>
                         <Font size="20.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
                   </Hyperlink>
-                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadComedy" text="Comedy" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="ALWAYS">
+                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadComedy" text="Comedy" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="NEVER">
                      <effect>
                         <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="1.0" />
                      </effect>
                      <font>
                         <Font size="20.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
                   </Hyperlink>
-                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadCrime" text="Crime" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="ALWAYS">
+                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadCrime" text="Crime" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="NEVER">
                      <effect>
                         <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="1.0" />
                      </effect>
                      <font>
                         <Font size="20.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
                   </Hyperlink>
-                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadDocumentary" text="Documentary" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="ALWAYS">
+                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadDocumentary" text="Documentary" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="NEVER">
                      <effect>
                         <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="1.0" />
                      </effect>
                      <font>
                         <Font size="20.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
                   </Hyperlink>
-                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadDrama" text="Drama" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="ALWAYS">
+                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadDrama" text="Drama" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="NEVER">
                      <effect>
                         <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="1.0" />
                      </effect>
                      <font>
                         <Font size="20.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
                   </Hyperlink>
-                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadThriller" text="Thriller" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="ALWAYS">
+                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadThriller" text="Thriller" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="NEVER">
                      <effect>
                         <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="1.0" />
                      </effect>
                      <font>
                         <Font size="20.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
                   </Hyperlink>
                </children>
+               <padding>
+                  <Insets bottom="50.0" />
+               </padding>
             </VBox>
             <HBox fx:id="Menu" alignment="CENTER_LEFT" prefHeight="64.0" spacing="10.0" style="-fx-background-color: #262425;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
