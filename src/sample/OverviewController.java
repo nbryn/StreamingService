@@ -10,11 +10,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import sample.data.mock.MockMediaMapper;
 import sample.data.mock.MockUserMapper;
+import sample.data.SQLMediaMapper;
+import sample.data.SQLUserMapper;
 import sample.logic.AppController;
 import sample.logic.entities.Media;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class OverviewController {
@@ -24,9 +30,21 @@ public class OverviewController {
     @FXML
     private ListView<Media> mediaListView;
 
+    @FXML
+    private TextField searchField;
+
     public OverviewController()
     {
-        appController = new AppController(new MockUserMapper(), new MockMediaMapper());
+        appController = new AppController(new SQLUserMapper(), new SQLMediaMapper());
+    }
+
+    @FXML
+    public void search(ActionEvent event) {
+        String searchString = searchField.getText().trim();
+
+        List<Media> result = appController.fetchByName(searchString, "all");
+
+        setListView(result);
     }
 
     @FXML
@@ -65,12 +83,26 @@ public class OverviewController {
     }
 
     @FXML
+    public void releaseAfter2000(ActionEvent event) {
+        List<Media> result = appController.fetchReleaseAfter(2000, "all");
+
+        setListView(result);
+    }
+
+    @FXML
+    public void releaseAfter2015(ActionEvent event) {
+        List<Media> result = appController.fetchReleaseAfter(2015, "all");
+
+        setListView(result);
+    }
+
+    @FXML
     public void loadHorror(ActionEvent event) {
         List<Media> result = appController.fetchAllFromGenre("Horror", "all");
 
         setListView(result);
 
-        Initialize("Horror");
+        Initialize(result);
     }
 
     @FXML
@@ -79,7 +111,7 @@ public class OverviewController {
 
         setListView(result);
 
-        Initialize("Adventure");
+        Initialize(result);
     }
 
     @FXML
@@ -88,7 +120,7 @@ public class OverviewController {
 
         setListView(result);
 
-        Initialize("Thriller");
+        Initialize(result);
     }
 
     @FXML
@@ -97,7 +129,7 @@ public class OverviewController {
 
         setListView(result);
 
-        Initialize("Documentary");
+        Initialize(result);
     }
 
     @FXML
@@ -106,7 +138,7 @@ public class OverviewController {
 
         setListView(result);
 
-        Initialize("Comedy");
+        Initialize(result);
     }
 
     @FXML
@@ -115,7 +147,7 @@ public class OverviewController {
 
         setListView(result);
 
-        Initialize("Action");
+        Initialize(result);
     }
 
     @FXML
@@ -124,7 +156,7 @@ public class OverviewController {
 
         setListView(result);
 
-        Initialize("Crime");
+        Initialize(result);
     }
 
     @FXML
@@ -133,7 +165,7 @@ public class OverviewController {
 
         setListView(result);
 
-        Initialize("Drama");
+        Initialize(result);
     }
 
     private void setListView(List<Media> medias) {
@@ -148,21 +180,32 @@ public class OverviewController {
     @FXML
     private GridPane gridPane;
 
-    public void Initialize(String genre)
+    public void Initialize(List <Media> mediaList)
     {
-        File[] movies = new File("D:\\Streaming\\StreamingService\\src\\sample\\MovieImages").listFiles();
-
         fileList.clear();
+        URL movieURL = getClass().getResource("resources/movieimg");
+        URL seriesURL = getClass().getResource("resources/seriesimg");
+        String moviePath = "/" + movieURL.toString().substring(6, movieURL.toString().length()-1);
+        String seriesPath = "/" + seriesURL.toString().substring(6, seriesURL.toString().length()-1);
 
-        for (File f : movies)
-        {
-            if (f.getName().equals(genre + ".jpg") || f.getName().equals(genre + ".jpeg"))
-            {
-                fileList.add(new File(f.toURI().toString()));
+
+        File[] seriesImg = new File(seriesPath).listFiles();
+        File[] moviesImg = new File(moviePath).listFiles();
+
+        List<File> images = new ArrayList<>(Arrays.asList(seriesImg));
+        Collections.addAll(images, moviesImg);
+
+        System.out.println(images.size());
+
+        for (File file : images) {
+            for (Media media : mediaList) {
+                if (file.getName().equals(media.getName() + ".jpg")) {
+                    fileList.add(new File(file.toURI().toString()));
+                }
             }
         }
 
-        int rows = 5;;
+        int rows = (fileList.size() / 4) + 1;
         int columns = 1;
         int index = 0;
 

@@ -13,10 +13,7 @@ import sample.data.mock.MockMediaMapper;
 import sample.data.mock.MockUserMapper;
 import sample.logic.AppController;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import javafx.fxml.LoadException;
 
 public class LoginController
 {
