@@ -8,8 +8,6 @@ public class DatabaseConnector {
     private Statement statement;
     private ResultSet resultSet;
 
-
-
     public void setConnection(Connection connection){
         this.connection = connection;
     }
