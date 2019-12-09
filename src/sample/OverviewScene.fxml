@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
+
 <?import javafx.geometry.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -16,7 +13,7 @@
          <children>
             <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" style="-fx-background-color: #262425;" VBox.vgrow="ALWAYS">
                <children>
-                  <TextField fx:id="searchTextField" maxWidth="1.7976931348623157E308" prefWidth="350.0" promptText="Søg">
+                  <TextField fx:id="searchTextField" onAction="#search" maxWidth="1.7976931348623157E308" prefWidth="350.0" promptText="Søg">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -30,7 +27,7 @@
                </padding>
             </HBox>
             <GridPane fx:id="gridPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
-            <ListView fx:id="mediaListView" prefHeight="700.0" prefWidth="1442.0" visible="false" />
+
          </children>
       </VBox>
    </center>
