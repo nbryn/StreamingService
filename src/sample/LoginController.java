@@ -1,4 +1,4 @@
-package sample.Resources;
+package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
