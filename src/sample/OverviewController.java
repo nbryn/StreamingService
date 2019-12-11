@@ -216,7 +216,7 @@ public class OverviewController {
         updateView(result);
     }
 
-   
+
 
     @FXML
     public void loadHorror(ActionEvent event) {
