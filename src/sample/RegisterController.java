@@ -54,8 +54,6 @@ public class RegisterController
 
             boolean success = appController.registerUser(user);
 
-            SceneController.changeScene(event, "Login.fxml");
-
             if(!success) {
                 setOutput("Email already exists in the system");
             }
