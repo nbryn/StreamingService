@@ -22,12 +22,12 @@
             <Font size="25.0" />
          </font>
       </PasswordField>
-      <Button fx:id="loginButton" layoutX="830.0" layoutY="550.0" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="50.0" prefWidth="350.0" style="-fx-background-color: #00A3DA#d61a3c;" text="Log ind" textAlignment="CENTER" textFill="#e9effd">
+      <Button fx:id="loginButton" layoutX="830.0" layoutY="550.0" mnemonicParsing="false" onAction="#logInButtonClicked" prefHeight="50.0" prefWidth="350.0" style="-fx-background-color: #00A3DA#d61a3c;" text="Log ind" textAlignment="CENTER" textFill="#e9effd">
          <font>
             <Font size="25.0" />
          </font>
       </Button>
-      <Hyperlink layoutX="920.0" layoutY="615.0" text="Opret konto" textFill="#e9effd">
+      <Hyperlink layoutX="920.0" layoutY="615.0" onAction="#registerButtonClicked" text="Opret konto" textFill="#e9effd">
          <font>
             <Font size="30.0" />
          </font>
