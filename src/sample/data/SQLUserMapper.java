@@ -26,7 +26,7 @@ public class SQLUserMapper implements UserMapper {
 
     @Override
     public User getUser(String username) throws NoSuchUserException{
-        List<User> users = dataBase.getUsers("SELECT * FROM users WHERE 'username' = " + username);
+        List<User> users = dataBase.getUsers("SELECT * FROM users WHERE username = '" + username + "';");
         if (users != null) return users.get(0);
         else throw new NoSuchUserException();
     }
@@ -82,7 +82,7 @@ public class SQLUserMapper implements UserMapper {
 
     }
     private String getUserID(String username){
-        ResultSet results = dataBase.sendStatement("SELECT * FROM users WHERE username = " + username);
+        ResultSet results = dataBase.sendStatement("SELECT * FROM users WHERE username = '" + username +"';");
         if (results != null) {
             try {
                 return results.getString("username");
