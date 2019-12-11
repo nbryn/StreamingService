@@ -48,6 +48,9 @@ public class MediaViewControllerTest {
         rating.setText(String.valueOf(media.getRating()));
         List<String> genres = media.getGenre();
         genres.forEach(element -> sb.append(element + "\n"));
+        String s = sb.toString();
+        String current = s.substring(0, s.length() - 1);
+        System.out.println(current);
         genre.setText(sb.toString());
     }
 
