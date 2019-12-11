@@ -70,8 +70,8 @@ public class OverviewController {
         String moviePath = "/" + movieURL.toString().substring(6, movieURL.toString().length() - 1);
         String seriesPath = "/" + seriesURL.toString().substring(6, seriesURL.toString().length() - 1);
 
-        File[] seriesImg = new File("D:\\Streaming\\StreamingService\\src\\sample\\resources\\seriesimg").listFiles();
-        File[] moviesImg = new File("D:\\Streaming\\StreamingService\\src\\sample\\resources\\movieimg").listFiles();
+        File[] seriesImg = new File(seriesPath).listFiles();
+        File[] moviesImg = new File(moviePath).listFiles();
 
         List<File> images = new ArrayList<>(Arrays.asList(seriesImg));
         Collections.addAll(images, moviesImg);
