@@ -65,7 +65,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Hyperlink>
-                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadAction" text="Action" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="NEVER">
+                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#showAction" text="Action" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="NEVER">
                      <effect>
                         <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="1.0" />
                      </effect>
@@ -79,7 +79,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Hyperlink>
-                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadAdventure" text="Adventure" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="NEVER">
+                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#showAdventure" text="Adventure" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="NEVER">
                      <effect>
                         <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="1.0" />
                      </effect>
@@ -93,7 +93,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Hyperlink>
-                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadComedy" text="Comedy" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="NEVER">
+                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#showComedy" text="Comedy" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="NEVER">
                      <effect>
                         <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="1.0" />
                      </effect>
@@ -107,7 +107,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Hyperlink>
-                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadCrime" text="Crime" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="NEVER">
+                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#showCrime" text="Crime" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="NEVER">
                      <effect>
                         <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="1.0" />
                      </effect>
@@ -121,7 +121,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Hyperlink>
-                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadDocumentary" text="Documentary" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="NEVER">
+                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#showDocumentary" text="Documentary" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="NEVER">
                      <effect>
                         <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="1.0" />
                      </effect>
@@ -135,7 +135,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Hyperlink>
-                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadDrama" text="Drama" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="NEVER">
+                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#showDrama" text="Drama" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="NEVER">
                      <effect>
                         <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="1.0" />
                      </effect>
@@ -149,7 +149,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Hyperlink>
-                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadHistory" text="History" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="NEVER">
+                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#showHistory" text="History" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="NEVER">
                      <effect>
                         <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="1.0" />
                      </effect>
@@ -163,7 +163,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Hyperlink>
-                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadHorror" text="Horror" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="NEVER">
+                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#showHorror" text="Horror" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="NEVER">
                      <effect>
                         <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="1.0" />
                      </effect>
@@ -177,7 +177,7 @@
                         <Insets />
                      </opaqueInsets>
                   </Hyperlink>
-                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#loadThriller" text="Thriller" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="NEVER">
+                  <Hyperlink alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#showThriller" text="Thriller" textAlignment="CENTER" textFill="#b5b5b5" VBox.vgrow="NEVER">
                      <effect>
                         <ColorAdjust brightness="1.0" contrast="1.0" hue="1.0" saturation="1.0" />
                      </effect>

@@ -4,6 +4,9 @@ import sample.data.setup.H2DataBase;
 import sample.logic.entities.Media;
 import sample.logic.interfaces.MediaMapper;
 
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,7 +77,17 @@ public class SQLMediaMapper implements MediaMapper {
 
     @Override
     public List<Media> getUserList(String username) {
-        return null;
+        String userID = getUserID(username);
+        List<String> movieIDs, seriesIDs = null;
+        List<Media> userMedia = null;
+        ResultSet movieResults = dataBase.sendStatement("SELECT * FROM myMovieList WHERE user_id = '" + userID + "';");
+        ResultSet seriesResults = dataBase.sendStatement("SELECT * FROM mySeriesList WHERE user_id = '" + userID + "';");
+        movieIDs = getMediaIDs(seriesResults,"movie_id");
+        seriesIDs = getMediaIDs(movieResults,"series_id");
+        userMedia = getMediaByID(movieIDs, "movie");
+        userMedia.addAll(getMediaByID(movieIDs,"series"));
+        return userMedia;
+
     }
 
     private List<Media> sendQuery(String movieQuery, String seriesQuery, String media) {
@@ -108,5 +121,45 @@ public class SQLMediaMapper implements MediaMapper {
         } else if (media.equalsIgnoreCase("movies")) {
             return getMovies();
         } else return getAll();
+    }
+    private String getUserID(String username){
+        ResultSet results = dataBase.sendStatement("SELECT * FROM users WHERE username = " + username);
+        if (results != null) {
+            try {
+                return results.getString("username");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+    private List<String> getMediaIDs (ResultSet results, String mediaIDName){
+        List<String> mediaIDs = new ArrayList<>();
+        try {
+            while (results.next()) {
+                mediaIDs.add(results.getString(mediaIDName));
+            }
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
+        return mediaIDs;
+    }
+    private List<Media> getMediaByID (List<String> mediaIDs, String media){
+        List<Media> mediaList = null;
+        if (media.equalsIgnoreCase("movie")){
+            for (String mediaID: mediaIDs){
+                List<Media> mediaTemp = null;
+                mediaTemp = dataBase.getMovies("SELECT * FROM movies where movie_id = '" + mediaID + "';");
+                mediaList.add(mediaTemp.get(0));
+            }
+        }
+        if (media.equalsIgnoreCase("series")){
+            for (String mediaID: mediaIDs){
+                List<Media> mediaTemp = null;
+                mediaTemp = dataBase.getMovies("SELECT * FROM series where series_id = '" + mediaID + "';");
+                mediaList.add(mediaTemp.get(0));
+            }
+        }
+        return mediaList;
     }
 }

@@ -20,7 +20,5 @@ public class H2Init {
         sql.executeUpdate(movieInitQuery);
         sql.executeUpdate(seriesInitQuery);
         sql.executeUpdate(usersInitQuery);
-
     }
-
 }

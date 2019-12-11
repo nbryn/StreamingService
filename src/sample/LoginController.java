@@ -4,8 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import sample.data.mock.MockMediaMapper;
-import sample.data.mock.MockUserMapper;
+
+import sample.data.SQLMediaMapper;
+import sample.data.SQLUserMapper;
 import sample.logic.AppController;
 
 import java.io.IOException;
@@ -19,7 +20,7 @@ public class LoginController
 
     public LoginController()
     {
-        appController = new AppController(new MockUserMapper(), new MockMediaMapper());
+        appController = new AppController(new SQLUserMapper(), new SQLMediaMapper());
     }
 
     public void logInButtonClicked(ActionEvent event) throws IOException
