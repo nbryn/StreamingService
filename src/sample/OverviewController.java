@@ -16,13 +16,11 @@ import sample.logic.AppController;
 import sample.logic.entities.Media;
 import sample.logic.entities.Movie;
 import sample.logic.entities.Series;
+
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.*;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.stream.Collectors;
 
 
@@ -56,15 +54,14 @@ public class OverviewController {
         appController = new AppController(new SQLUserMapper(), new SQLMediaMapper());
         fileList = new ArrayList<>();
         allMedia = new ArrayList<>();
-
     }
 
+    public void initialize() {
+        allMedia = appController.fetchAll("all");
+        showAll(new ActionEvent());
 
-
-    public void initialize()
-    {
         comboBox.getItems().removeAll(comboBox.getItems());
-        comboBox.getItems().addAll("Movies", "Series","Release Date > 2000", "Rating > 5");
+        comboBox.getItems().addAll("Movies", "Series", "Release > 2000", "Rating > 8");
     }
 
     public void updateView(List<Media> mediaList) {
@@ -122,8 +119,6 @@ public class OverviewController {
     public void showAll(ActionEvent event) {
         List<Media> result = appController.fetchAll("all");
 
-        allMedia = result;
-
         updateView(result);
     }
 
@@ -147,64 +142,30 @@ public class OverviewController {
         updateView(movies);
     }
 
-    @FXML
-    public void sortByRating(ActionEvent event) {
-        allMedia.sort((m1, m2) -> {
-            if (m1.getRating() > m2.getRating()) {
-                return 1;
-            } else if (m1.getRating() < m2.getRating()) {
-                return -1;
-            } else {
-                return 0;
-            }
-        });
-    }
 
     @FXML
-    public void sortByRatingOverFive(ActionEvent event) {
-        List<Media> result = appController.fetchRatingOver(5.00, "all");
-
-        updateView(result);
-    }
-
-
-    @FXML
-    public void releaseAfter2000(ActionEvent event) {
-        List<Media> result = appController.fetchReleaseAfter(2000, "all");
-
-        updateView(result);
-    }
-
-    @FXML
-    public void releaseAfter2015(ActionEvent event) {
-        List<Media> result = appController.fetchReleaseAfter(2015, "all");
-
-        updateView(result);
-    }
-
-    @FXML
-    public void loadAction(ActionEvent event) {
+    public void showAction(ActionEvent event) {
         List<Media> result = appController.fetchAllFromGenre("Action", "all");
 
         updateView(result);
     }
 
     @FXML
-    public void loadAdventure(ActionEvent event) {
+    public void showAdventure(ActionEvent event) {
         List<Media> result = appController.fetchAllFromGenre("Adventure", "all");
 
         updateView(result);
     }
 
     @FXML
-    public void loadCrime(ActionEvent event) {
+    public void showCrime(ActionEvent event) {
         List<Media> result = appController.fetchAllFromGenre("Crime", "all");
 
         updateView(result);
     }
 
     @FXML
-    public void loadComedy(ActionEvent event) {
+    public void showComedy(ActionEvent event) {
         List<Media> result = appController.fetchAllFromGenre("Comedy", "all");
 
 
@@ -212,23 +173,22 @@ public class OverviewController {
     }
 
     @FXML
-    public void loadDocumentary(ActionEvent event) {
+    public void showDocumentary(ActionEvent event) {
         List<Media> result = appController.fetchAllFromGenre("Documentary", "all");
 
         updateView(result);
     }
 
     @FXML
-    public void loadDrama(ActionEvent event) {
+    public void showDrama(ActionEvent event) {
         List<Media> result = appController.fetchAllFromGenre("Drama", "all");
 
         updateView(result);
     }
 
 
-
     @FXML
-    public void loadHorror(ActionEvent event) {
+    public void showHorror(ActionEvent event) {
         List<Media> result = appController.fetchAllFromGenre("Horror", "all");
 
         updateView(result);
@@ -236,7 +196,7 @@ public class OverviewController {
 
 
     @FXML
-    public void loadHistory(ActionEvent event) {
+    public void showHistory(ActionEvent event) {
         List<Media> result = appController.fetchAllFromGenre("History", "all");
 
         updateView(result);
@@ -244,14 +204,37 @@ public class OverviewController {
 
 
     @FXML
-    public void loadThriller(ActionEvent event) {
+    public void showThriller(ActionEvent event) {
         List<Media> result = appController.fetchAllFromGenre("Thriller", "all");
 
         updateView(result);
     }
 
+    public void sort(ActionEvent event) {
+        String sortBy = comboBox.getValue().toString();
+        List<Media> result = null;
 
+        switch (sortBy) {
 
+            case "Release > 2000":
+                result = appController.fetchReleaseAfter(2000, "all");
+                updateView(result);
+                break;
+
+            case "Rating > 8":
+                result = appController.fetchRatingOver(8, "all");
+                updateView(result);
+                break;
+
+            case "Series":
+                showAllSeries(event);
+                break;
+
+            case "Movies":
+                showAllMovies(event);
+                break;
+        }
+    }
 
     private void addToFileList(List<File> images, List<Media> mediaList) {
         for (File file : images) {
@@ -265,21 +248,14 @@ public class OverviewController {
         }
     }
 
-    private void generateView()
-    {
-        System.out.println(gridPane.getWidth());
-        System.out.println(gridPane.getHeight());
-
+    private void generateView() {
         int rows = 7;
         int columns = (fileList.size() / 7) + 1;
         int index = 0;
 
-        for (int i = 0; i < columns; i++)
-        {
-            for (int j = 0; j < rows; j++)
-            {
-                if (index < fileList.size())
-                {
+        for (int i = 0; i < columns; i++) {
+            for (int j = 0; j < rows; j++) {
+                if (index < fileList.size()) {
                     addImage(index, j, i);
                     index++;
                 }
@@ -294,7 +270,7 @@ public class OverviewController {
         ImageView imgView = new ImageView(img);
         gridPane.setHgap(5);
         gridPane.setVgap(5);
-        gridPane.setPadding(new Insets(5,5,5,5));
+        gridPane.setPadding(new Insets(5, 5, 5, 5));
         imgView.setFitWidth(175);
         imgView.setFitHeight(250);
 
@@ -354,29 +330,4 @@ public class OverviewController {
     }
 
 
-
-    public void sort(ActionEvent event)
-    {
-        String sortBy = comboBox.getValue().toString();
-
-        if(sortBy.equals("Release Date > 2000"))
-        {
-            releaseAfter2000(event);
-        }
-
-        if(sortBy.equals("Rating > 5"))
-        {
-            sortByRatingOverFive(event);
-        }
-
-        if(sortBy.equals("Series"))
-        {
-            showAllSeries(event);
-        }
-
-        if(sortBy.equals("Movies"))
-        {
-            showAllMovies(event);
-        }
-    }
 }

@@ -262,13 +262,5 @@ public class SQLDataScript {
 
     }
 
-    public static String testQueries(){
-        return
-                "CREATE TABLE users(" +
-                "user_id int PRIMARY KEY AUTO_INCREMENT,"+
-                "username varchar(50) NOT NULL ," +
-                "password varchar(50) NOT NULL);" +
-                "insert into users (username, password) "+
-                "VALUES ('Kris','Suppe');";
-    }
+  
 }

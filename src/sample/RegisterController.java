@@ -4,14 +4,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import sample.data.mock.MockMediaMapper;
-import sample.data.mock.MockUserMapper;
+import sample.data.SQLMediaMapper;
+import sample.data.SQLUserMapper;
 import sample.logic.AppController;
 import sample.logic.entities.User;
 
 import java.io.IOException;
 
-import static sample.SceneController.changeScene;
 
 public class RegisterController
 {
@@ -36,7 +35,7 @@ public class RegisterController
     private TextField repeatPasswordField;
 
     public RegisterController() {
-        appController = new AppController(new MockUserMapper(), new MockMediaMapper());
+        appController = new AppController(new SQLUserMapper(), new SQLMediaMapper());
     }
 
     public void register(ActionEvent event) throws IOException {
