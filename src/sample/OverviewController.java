@@ -44,7 +44,7 @@ public class OverviewController {
     public OverviewController() {
         appController = new AppController(new SQLUserMapper(), new SQLMediaMapper());
         fileList = new ArrayList<>();
-        allMedia = appController.fetchAll("all");
+        allMedia = new ArrayList<>();
 
     }
 
@@ -105,6 +105,8 @@ public class OverviewController {
     @FXML
     public void showAll(ActionEvent event) {
         List<Media> result = appController.fetchAll("all");
+
+        allMedia = result;
 
         updateView(result);
 
