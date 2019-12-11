@@ -8,8 +8,8 @@ public class Series extends Media {
     private Map<Integer, Integer> seasons;
     private String span;
 
-    public Series(String name, int release, String span, double rating) {
-        super(name, release, rating);
+    public Series(String title, int release, String span, double rating) {
+        super(title, release, rating);
         this.span = span;
 
         seasons = new HashMap<>();
@@ -30,6 +30,6 @@ public class Series extends Media {
     @Override
     public String toString() {
 
-        return "Series: Name: " + super.getName() + " Year: " + super.getRelease() + " Span: " + getSpan() + " Genre: " + super.getGenre() + " Rating: " + super.getRating();
+        return "Series: Name: " + super.getTitle() + " Year: " + super.getRelease() + " Span: " + getSpan() + " Genre: " + super.getGenre() + " Rating: " + super.getRating();
     }
 }

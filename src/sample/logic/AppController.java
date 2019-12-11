@@ -9,6 +9,7 @@ import sample.logic.interfaces.UserMapper;
 import java.util.List;
 
 public class AppController {
+
     private UserMapper userMapper;
     private MediaMapper mediaMapper;
 
@@ -86,4 +87,6 @@ public class AppController {
 
     return result;
     }
+
+
 }

@@ -25,6 +25,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 public class OverviewController {
 
     private AppController appController;
@@ -65,8 +66,11 @@ public class OverviewController {
         URL movieURL = getClass().getResource("resources/movieimg");
         URL seriesURL = getClass().getResource("resources/seriesimg");
 
+
         String moviePath = "/" + movieURL.toString().substring(6, movieURL.toString().length() - 1);
         String seriesPath = "/" + seriesURL.toString().substring(6, seriesURL.toString().length() - 1);
+
+        System.out.println(moviePath);
 
         File[] seriesImg = new File(seriesPath).listFiles();
         File[] moviesImg = new File(moviePath).listFiles();
@@ -229,7 +233,7 @@ public class OverviewController {
     private void addToFileList(List<File> images, List<Media> mediaList) {
         for (File file : images) {
             for (Media media : mediaList) {
-                if (file.getName().equals(media.getName() + ".jpg")) {
+                if (file.getName().equals(media.getTitle() + ".jpg")) {
                     fileList.add(new File(file.toURI().toString()));
                     mediaList.remove(media);
                     break;
@@ -259,7 +263,6 @@ public class OverviewController {
             }
         }
     }
-
 
     private void addImage(int index, int column, int row) {
         Image img = new Image(String.valueOf(fileList.get(index)));
@@ -292,7 +295,13 @@ public class OverviewController {
 
             String mediaTitle = shortUrl.replaceAll("%", " ").replaceAll("20", "");
 
-            System.out.println(mediaTitle);
+            try {
+                MediaViewHelper.setMediaToShow(mediaTitle);
+                SceneController.changeScene("MediaViewTest.fxml");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         });
     }

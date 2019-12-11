@@ -21,5 +21,7 @@ public interface MediaMapper {
 
     public List<Media> getByRelease(int release, String media);
 
+    public List<Media> getUserList(String username);
+
 
 }

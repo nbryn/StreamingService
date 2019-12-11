@@ -55,7 +55,7 @@ public class H2DataBase {
     public List<Media> getMovies(String query) {
         ResultSet results = sendStatement(query);
         List<Media> mediaList = new ArrayList<>();
-        String name, genre;
+        String title, genre;
         int release;
         double rating;
 
@@ -63,12 +63,12 @@ public class H2DataBase {
         if (results != null) {
             try {
                 while (results.next()) {
-                    name = results.getString("name");
+                    title = results.getString("name");
                     genre = results.getString("genre");
                     release = results.getInt("release");
                     rating = results.getDouble("rating");
                     List<String> genres = Arrays.asList(genre.split("[\\s,]+"));
-                    Movie movie = new Movie(name, release, rating);
+                    Movie movie = new Movie(title, release, rating);
                     for (String g : genres) movie.addGenre(g);
                     mediaList.add(movie);
                 }
