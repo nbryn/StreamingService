@@ -9,22 +9,21 @@ public class SQLDataScript {
         return  "" +
 
                 "CREATE TABLE movies(" +
-
                 "    movie_id INTEGER PRIMARY KEY AUTO_INCREMENT," +
                 "    name VARCHAR(70) NOT NULL," +
                 "    release VARCHAR(50) NOT NULL," +
                 "    genre VARCHAR(50) NOT NULL," +
                 "    rating VARCHAR(50) NOT NULL" +
+                "" +
                 ");" +
-
                 "CREATE TABLE series(" +
                 "    series_id int PRIMARY KEY AUTO_INCREMENT," +
-
                 "    name VARCHAR(70) NOT NULL," +
                 "    span VARCHAR(50) NOT NULL," +
                 "    genre VARCHAR(50) NOT NULL," +
                 "    rating VARCHAR(50) NOT NULL," +
                 "    seasons VARCHAR(200) NOT NULL" +
+                "" +
                 ");" +
                 "CREATE TABLE users(" +
                 "    user_id int PRIMARY KEY AUTO_INCREMENT," +
@@ -38,7 +37,9 @@ public class SQLDataScript {
                 "    user_id int," +
                 "    foreign key (user_id) references users(user_id)," +
                 "    movie_id int," +
-                "    foreign key (movie_id) references movies(movie_id));" +
+                "    foreign key (movie_id) references movies(movie_id)" +
+                "" +
+                ");" +
                 "CREATE TABLE mySeriesList(" +
                 "    user_id int," +
                 "    foreign key (user_id) references users(user_id)," +
