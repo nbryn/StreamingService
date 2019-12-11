@@ -74,12 +74,11 @@ public class OverviewController {
         URL movieURL = getClass().getResource("resources/movieimg");
         URL seriesURL = getClass().getResource("resources/seriesimg");
 
-
         String moviePath = "/" + movieURL.toString().substring(6, movieURL.toString().length() - 1);
         String seriesPath = "/" + seriesURL.toString().substring(6, seriesURL.toString().length() - 1);
 
-        File[] seriesImg = new File(seriesPath).listFiles();
-        File[] moviesImg = new File(moviePath).listFiles();
+        File[] seriesImg = new File("D:\\Streaming\\StreamingService\\src\\sample\\resources\\seriesimg").listFiles();
+        File[] moviesImg = new File("D:\\Streaming\\StreamingService\\src\\sample\\resources\\movieimg").listFiles();
 
         List<File> images = new ArrayList<>(Arrays.asList(seriesImg));
         Collections.addAll(images, moviesImg);
@@ -296,7 +295,7 @@ public class OverviewController {
 
             try {
                 StateController.setCurrentMedia(mediaTitle);
-                SceneController.changeScene("MediaViewTest.fxml");
+                SceneController.changeScene("MediaViewScene.fxml");
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -328,6 +327,4 @@ public class OverviewController {
     public void logOut(ActionEvent event) throws IOException {
         SceneController.changeScene("LoginScene.fxml");
     }
-
-
 }
