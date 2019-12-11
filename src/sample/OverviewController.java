@@ -68,8 +68,8 @@ public class OverviewController {
         String moviePath = "/" + movieURL.toString().substring(6, movieURL.toString().length() - 1);
         String seriesPath = "/" + seriesURL.toString().substring(6, seriesURL.toString().length() - 1);
 
-        File[] seriesImg = new File(seriesPath).listFiles();
-        File[] moviesImg = new File(moviePath).listFiles();
+        File[] seriesImg = new File("D:\\Streaming\\StreamingService\\src\\sample\\resources\\seriesimg").listFiles();
+        File[] moviesImg = new File("D:\\Streaming\\StreamingService\\src\\sample\\resources\\movieimg").listFiles();
 
         List<File> images = new ArrayList<>(Arrays.asList(seriesImg));
         Collections.addAll(images, moviesImg);
@@ -106,14 +106,12 @@ public class OverviewController {
         updateView(result);
     }
 
-
     public void showAll(ActionEvent event) {
         List<Media> result = appController.fetchAll("all");
 
         allMedia = result;
 
         updateView(result);
-
     }
 
     @FXML
@@ -147,13 +145,13 @@ public class OverviewController {
                 return 0;
             }
         });
-
     }
 
     @FXML
-    public void sortByRelease(ActionEvent event) {
-        List<Media> result = appController.fetchRatingOver(7.00, "all");
+    public void sortByRatingOverFive(ActionEvent event) {
+        List<Media> result = appController.fetchRatingOver(5.00, "all");
 
+        updateView(result);
     }
 
 
@@ -161,12 +159,14 @@ public class OverviewController {
     public void releaseAfter2000(ActionEvent event) {
         List<Media> result = appController.fetchReleaseAfter(2000, "all");
 
+        updateView(result);
     }
 
     @FXML
     public void releaseAfter2015(ActionEvent event) {
         List<Media> result = appController.fetchReleaseAfter(2015, "all");
 
+        updateView(result);
     }
 
     @FXML
@@ -305,7 +305,6 @@ public class OverviewController {
                 imgView.setEffect(colorAdjust);
             }
         });
-
     }
 
     private void onImageExit(ImageView imgView, ColorAdjust colorAdjust) {
@@ -319,6 +318,40 @@ public class OverviewController {
     }
 
     public void logOut(ActionEvent event) throws IOException {
-        SceneController.changeScene("Login.fxml");
+        SceneController.changeScene("LoginScene.fxml");
+    }
+
+    @FXML
+    private ComboBox comboBox;
+
+    public void initialize()
+    {
+        comboBox.getItems().removeAll(comboBox.getItems());
+        comboBox.getItems().addAll("Movies", "Series","Release Date > 2000", "Rating > 5");
+    }
+
+    public void sort(ActionEvent event)
+    {
+        String sortBy = comboBox.getValue().toString();
+
+        if(sortBy.equals("Release Date > 2000"))
+        {
+            releaseAfter2000(event);
+        }
+
+        if(sortBy.equals("Rating > 5"))
+        {
+            sortByRatingOverFive(event);
+        }
+
+        if(sortBy.equals("Series"))
+        {
+            showAllSeries(event);
+        }
+
+        if(sortBy.equals("Movies"))
+        {
+            showAllMovies(event);
+        }
     }
 }

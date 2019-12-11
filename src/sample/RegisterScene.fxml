@@ -33,7 +33,7 @@
                   <Insets bottom="15.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="password" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="350.0" promptText="Password" VBox.vgrow="NEVER">
+            <TextField fx:id="birthday" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="350.0" promptText="Birthday: dd.mm.yyyy" VBox.vgrow="NEVER">
                <font>
                   <Font size="25.0" />
                </font>
@@ -41,7 +41,7 @@
                   <Insets bottom="15.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="birthday" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="350.0" promptText="Birthday: dd.mm.yyyy" VBox.vgrow="NEVER">
+            <TextField fx:id="password" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="350.0" promptText="Password" VBox.vgrow="NEVER">
                <font>
                   <Font size="25.0" />
                </font>

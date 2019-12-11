@@ -10,5 +10,4 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="sample.MediaViewControllerTest"
             prefHeight="400.0" prefWidth="600.0">
-
 </AnchorPane>
