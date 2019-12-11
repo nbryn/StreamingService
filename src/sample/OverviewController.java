@@ -3,6 +3,9 @@ package sample;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
+import javafx.geometry.VPos;
 import javafx.scene.control.*;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
@@ -16,7 +19,6 @@ import sample.logic.AppController;
 import sample.logic.entities.Media;
 import sample.logic.entities.Movie;
 import sample.logic.entities.Series;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.net.URL;
@@ -61,21 +63,19 @@ public class OverviewController {
 
         URL movieURL = getClass().getResource("resources/movieimg");
         URL seriesURL = getClass().getResource("resources/seriesimg");
+
         String moviePath = "/" + movieURL.toString().substring(6, movieURL.toString().length() - 1);
         String seriesPath = "/" + seriesURL.toString().substring(6, seriesURL.toString().length() - 1);
 
-        File[] seriesImg = new File(seriesPath).listFiles();
-        File[] moviesImg = new File(moviePath).listFiles();
+        File[] seriesImg = new File("D:\\Streaming\\StreamingService\\src\\sample\\resources\\seriesimg").listFiles();
+        File[] moviesImg = new File("D:\\Streaming\\StreamingService\\src\\sample\\resources\\movieimg").listFiles();
 
         List<File> images = new ArrayList<>(Arrays.asList(seriesImg));
         Collections.addAll(images, moviesImg);
 
         addToFileList(images, mediaList);
-
         generateView();
-
     }
-
 
     public void showSelections(ActionEvent event) {
         closeAll();
@@ -103,10 +103,9 @@ public class OverviewController {
         List<Media> result = appController.fetchByName(searchString, "all");
 
         updateView(result);
-
     }
 
-    @FXML
+
     public void showAll(ActionEvent event) {
         List<Media> result = appController.fetchAll("all");
 
@@ -124,7 +123,6 @@ public class OverviewController {
                 .collect(Collectors.toList());
 
         updateView(series);
-
     }
 
     @FXML
@@ -239,14 +237,22 @@ public class OverviewController {
         }
     }
 
-    private void generateView() {
-        int rows = (fileList.size() / 4) + 1;
-        int columns = 4;
+    private void generateView()
+    {
+        System.out.println(gridPane.getWidth());
+        System.out.println(gridPane.getHeight());
+
+
+        int rows = 7;
+        int columns = (fileList.size() / 7) + 1;
         int index = 0;
 
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                if (index < fileList.size()) {
+        for (int i = 0; i < columns; i++)
+        {
+            for (int j = 0; j < rows; j++)
+            {
+                if (index < fileList.size())
+                {
                     addImage(index, j, i);
                     index++;
                 }
@@ -254,16 +260,21 @@ public class OverviewController {
         }
     }
 
-    private void addImage(int index, int row, int column) {
+    @FXML
+    ScrollPane scrollPane;
+
+    private void addImage(int index, int column, int row) {
         Image img = new Image(String.valueOf(fileList.get(index)));
         ColorAdjust colorAdjust = new ColorAdjust();
 
         ImageView imgView = new ImageView(img);
+        gridPane.setHgap(5);
+        gridPane.setVgap(5);
+        gridPane.setPadding(new Insets(5,5,5,5));
         imgView.setFitWidth(175);
         imgView.setFitHeight(250);
 
-        gridPane.setHgap(5);
-        gridPane.setVgap(5);
+
         GridPane.setConstraints(imgView, column, row);
         gridPane.getChildren().add(imgView);
 

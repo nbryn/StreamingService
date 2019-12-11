@@ -15,6 +15,8 @@ import sample.logic.AppController;
 
 import java.io.IOException;
 
+import static sample.SceneController.changeScene;
+
 public class LoginController
 {
     private AppController appController;
@@ -27,7 +29,7 @@ public class LoginController
         appController = new AppController(new MockUserMapper(), new MockMediaMapper());
     }
 
-    public void buttonClicked(ActionEvent event) throws IOException
+    public void logInButtonClicked(ActionEvent event) throws IOException
     {
         String username = usernameField.getText();
         String password = passwordField.getText();
@@ -36,7 +38,7 @@ public class LoginController
 
         if (userFound)
         {
-            changeToOverviewScene(event);
+            changeScene(event, "OverviewScene.fxml");
             System.out.println("Correct");
         }
         else {
@@ -46,12 +48,7 @@ public class LoginController
         }
     }
 
-    public void changeToOverviewScene(ActionEvent event) throws IOException
-    {
-        Parent overviewRoot = FXMLLoader.load(getClass().getResource("OverviewScene.fxml"));
-        Scene overviewScene = new Scene(overviewRoot);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(overviewScene);
-        window.show();
+    public void registerButtonClicked(ActionEvent event) throws IOException {
+        changeScene(event, "RegisterScene.fxml");
     }
 }
