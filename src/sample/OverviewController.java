@@ -1,11 +1,15 @@
 package sample;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import sample.data.SQLMediaMapper;
 import sample.data.SQLUserMapper;
 import sample.logic.AppController;
@@ -252,6 +256,7 @@ public class OverviewController {
 
     private void addImage(int index, int row, int column) {
         Image img = new Image(String.valueOf(fileList.get(index)));
+        ColorAdjust colorAdjust = new ColorAdjust();
 
         ImageView imgView = new ImageView(img);
         imgView.setFitWidth(175);
@@ -261,5 +266,46 @@ public class OverviewController {
         gridPane.setVgap(5);
         GridPane.setConstraints(imgView, column, row);
         gridPane.getChildren().add(imgView);
+
+        onImageHover(imgView, colorAdjust);
+
+        onImageExit(imgView, colorAdjust);
+
+        onImageClick(imgView);
+
+    }
+
+    private void onImageClick(ImageView imgView) {
+        imgView.setOnMouseClicked(picture -> {
+            Image image = imgView.getImage();
+            String url = image.getUrl();
+            String shortUrl = image.getUrl().substring(url.lastIndexOf("/") + 1, url.length() - 4);
+
+            String mediaTitle = shortUrl.replaceAll("%", " ").replaceAll("20", "");
+
+            System.out.println(mediaTitle);
+
+        });
+    }
+
+    private void onImageHover(ImageView imgView, ColorAdjust colorAdjust) {
+        imgView.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                colorAdjust.setBrightness(-0.5);
+                imgView.setEffect(colorAdjust);
+            }
+        });
+
+    }
+
+    private void onImageExit(ImageView imgView, ColorAdjust colorAdjust) {
+        imgView.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                colorAdjust.setBrightness(0.0);
+                imgView.setEffect(colorAdjust);
+            }
+        });
     }
 }

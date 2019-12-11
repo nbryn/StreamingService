@@ -1,6 +1,6 @@
-/src/mem.h2.db
-/src/mem.lock.db
-/src/mem.trace.db
+mem.h2.db
+mem.lock.db
+mem.trace.db
 
 .mtj.tmp/
 *.class
