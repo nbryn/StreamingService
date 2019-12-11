@@ -8,7 +8,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #131313;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.RegisterController">
    <center>
       <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="545.0" prefWidth="1080.0" BorderPane.alignment="TOP_CENTER">
@@ -66,7 +65,7 @@
                   <Insets bottom="15.0" />
                </VBox.margin>
             </Button>
-            <Hyperlink alignment="CENTER" text="Back to login" textAlignment="CENTER" textFill="#e9effd" VBox.vgrow="ALWAYS">
+            <Hyperlink alignment="CENTER" onAction="#back" text="Back to login" textAlignment="CENTER" textFill="#e9effd" VBox.vgrow="ALWAYS">
                <font>
                   <Font size="30.0" />
                </font>
