@@ -3,16 +3,13 @@ package sample;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.geometry.VPos;
 import javafx.scene.control.*;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import sample.data.SQLMediaMapper;
 import sample.data.SQLUserMapper;
 import sample.logic.AppController;
@@ -37,6 +34,9 @@ public class OverviewController {
 
     @FXML
     private GridPane gridPane;
+
+    @FXML
+    ScrollPane scrollPane;
 
     @FXML
     private TextField searchTextField;
@@ -67,8 +67,8 @@ public class OverviewController {
         String moviePath = "/" + movieURL.toString().substring(6, movieURL.toString().length() - 1);
         String seriesPath = "/" + seriesURL.toString().substring(6, seriesURL.toString().length() - 1);
 
-        File[] seriesImg = new File("D:\\Streaming\\StreamingService\\src\\sample\\resources\\seriesimg").listFiles();
-        File[] moviesImg = new File("D:\\Streaming\\StreamingService\\src\\sample\\resources\\movieimg").listFiles();
+        File[] seriesImg = new File(seriesPath).listFiles();
+        File[] moviesImg = new File(moviePath).listFiles();
 
         List<File> images = new ArrayList<>(Arrays.asList(seriesImg));
         Collections.addAll(images, moviesImg);
@@ -260,8 +260,6 @@ public class OverviewController {
         }
     }
 
-    @FXML
-    ScrollPane scrollPane;
 
     private void addImage(int index, int column, int row) {
         Image img = new Image(String.valueOf(fileList.get(index)));
