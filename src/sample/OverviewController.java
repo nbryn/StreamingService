@@ -38,6 +38,9 @@ public class OverviewController {
     private GridPane gridPane;
 
     @FXML
+    private ComboBox comboBox;
+
+    @FXML
     ScrollPane scrollPane;
 
     @FXML
@@ -54,6 +57,14 @@ public class OverviewController {
         fileList = new ArrayList<>();
         allMedia = new ArrayList<>();
 
+    }
+
+
+
+    public void initialize()
+    {
+        comboBox.getItems().removeAll(comboBox.getItems());
+        comboBox.getItems().addAll("Movies", "Series","Release Date > 2000", "Rating > 5");
     }
 
     public void updateView(List<Media> mediaList) {
@@ -342,14 +353,7 @@ public class OverviewController {
         SceneController.changeScene("LoginScene.fxml");
     }
 
-    @FXML
-    private ComboBox comboBox;
 
-    public void initialize()
-    {
-        comboBox.getItems().removeAll(comboBox.getItems());
-        comboBox.getItems().addAll("Movies", "Series","Release Date > 2000", "Rating > 5");
-    }
 
     public void sort(ActionEvent event)
     {
