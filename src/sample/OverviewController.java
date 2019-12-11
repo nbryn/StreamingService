@@ -25,6 +25,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 public class OverviewController {
 
     private AppController appController;
@@ -64,6 +65,7 @@ public class OverviewController {
 
         URL movieURL = getClass().getResource("resources/movieimg");
         URL seriesURL = getClass().getResource("resources/seriesimg");
+
 
         String moviePath = "/" + movieURL.toString().substring(6, movieURL.toString().length() - 1);
         String seriesPath = "/" + seriesURL.toString().substring(6, seriesURL.toString().length() - 1);
@@ -170,8 +172,8 @@ public class OverviewController {
     }
 
     @FXML
-    public void loadHorror(ActionEvent event) {
-        List<Media> result = appController.fetchAllFromGenre("Horror", "all");
+    public void loadAction(ActionEvent event) {
+        List<Media> result = appController.fetchAllFromGenre("Action", "all");
 
         updateView(result);
     }
@@ -184,15 +186,8 @@ public class OverviewController {
     }
 
     @FXML
-    public void loadThriller(ActionEvent event) {
-        List<Media> result = appController.fetchAllFromGenre("Thriller", "all");
-
-        updateView(result);
-    }
-
-    @FXML
-    public void loadDocumentary(ActionEvent event) {
-        List<Media> result = appController.fetchAllFromGenre("Documentary", "all");
+    public void loadCrime(ActionEvent event) {
+        List<Media> result = appController.fetchAllFromGenre("Crime", "all");
 
         updateView(result);
     }
@@ -206,15 +201,8 @@ public class OverviewController {
     }
 
     @FXML
-    public void loadAction(ActionEvent event) {
-        List<Media> result = appController.fetchAllFromGenre("Action", "all");
-
-        updateView(result);
-    }
-
-    @FXML
-    public void loadCrime(ActionEvent event) {
-        List<Media> result = appController.fetchAllFromGenre("Crime", "all");
+    public void loadDocumentary(ActionEvent event) {
+        List<Media> result = appController.fetchAllFromGenre("Documentary", "all");
 
         updateView(result);
     }
@@ -226,10 +214,38 @@ public class OverviewController {
         updateView(result);
     }
 
+   
+
+    @FXML
+    public void loadHorror(ActionEvent event) {
+        List<Media> result = appController.fetchAllFromGenre("Horror", "all");
+
+        updateView(result);
+    }
+
+
+    @FXML
+    public void loadHistory(ActionEvent event) {
+        List<Media> result = appController.fetchAllFromGenre("History", "all");
+
+        updateView(result);
+    }
+
+
+    @FXML
+    public void loadThriller(ActionEvent event) {
+        List<Media> result = appController.fetchAllFromGenre("Thriller", "all");
+
+        updateView(result);
+    }
+
+
+
+
     private void addToFileList(List<File> images, List<Media> mediaList) {
         for (File file : images) {
             for (Media media : mediaList) {
-                if (file.getName().equals(media.getName() + ".jpg")) {
+                if (file.getName().equals(media.getTitle() + ".jpg")) {
                     fileList.add(new File(file.toURI().toString()));
                     mediaList.remove(media);
                     break;
@@ -259,7 +275,6 @@ public class OverviewController {
             }
         }
     }
-
 
     private void addImage(int index, int column, int row) {
         Image img = new Image(String.valueOf(fileList.get(index)));
@@ -292,7 +307,13 @@ public class OverviewController {
 
             String mediaTitle = shortUrl.replaceAll("%", " ").replaceAll("20", "");
 
-            System.out.println(mediaTitle);
+            try {
+                StateController.setCurrentMedia(mediaTitle);
+                SceneController.changeScene("MediaViewTest.fxml");
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         });
     }

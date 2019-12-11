@@ -3,6 +3,7 @@ package sample.data.mock;
 import sample.logic.entities.User;
 import sample.logic.exceptions.EmailAlreadyExistException;
 import sample.logic.exceptions.NoSuchUserException;
+import sample.logic.exceptions.UserListException;
 import sample.logic.interfaces.UserMapper;
 
 import java.util.ArrayList;
@@ -51,13 +52,13 @@ public class MockUserMapper implements UserMapper {
 
     @Override
 
-    public void addToUserList(String username, String media, int mediaID) {
+    public void addToUserList(String username, String media, String mediaTitle) throws UserListException {
 
 
     }
 
     @Override
-    public void removeFromUserList(String username, String media, int mediaID) {
+    public void removeFromUserList(String username, String media, String mediaTitle) {
 
 
     }

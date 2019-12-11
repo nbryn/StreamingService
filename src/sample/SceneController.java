@@ -6,7 +6,9 @@ import javafx.scene.Scene;
 import java.io.IOException;
 
 public class SceneController
+
 {
+
     public static void changeScene(String sceneToGo) throws IOException
     {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource(sceneToGo));
@@ -15,4 +17,5 @@ public class SceneController
         Main.getStage().setScene(scene);
         Main.getStage().show();
     }
+
 }

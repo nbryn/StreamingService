@@ -4,11 +4,14 @@ import sample.logic.entities.Media;
 import sample.logic.entities.User;
 import sample.logic.exceptions.EmailAlreadyExistException;
 import sample.logic.exceptions.NoSuchUserException;
+import sample.logic.exceptions.UserListException;
 import sample.logic.interfaces.MediaMapper;
 import sample.logic.interfaces.UserMapper;
+
 import java.util.List;
 
 public class AppController {
+
     private UserMapper userMapper;
     private MediaMapper mediaMapper;
 
@@ -80,10 +83,24 @@ public class AppController {
     }
 
     public List<Media> fetchReleaseAfter(int release, String media) {
-    List<Media> result = null;
+        List<Media> result = null;
 
-    result = mediaMapper.getByRelease(release, media);
+        result = mediaMapper.getByRelease(release, media);
 
-    return result;
+        return result;
+    }
+
+    public void addToUserList(String username, String media, String mediaTitle) {
+        try {
+            userMapper.addToUserList(username, media, mediaTitle);
+
+        } catch (UserListException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void removeFromUserList(String username, String media, String mediaTitle) {
+        userMapper.removeFromUserList(username, media, mediaTitle);
+
     }
 }

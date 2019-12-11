@@ -4,13 +4,13 @@ import java.util.List;
 
 public class Movie extends Media {
 
-    public Movie(String name, int release, double rating) {
-        super(name, release, rating);
+    public Movie(String title, int release, double rating) {
+        super(title, release, rating);
     }
 
     @Override
     public String toString() {
 
-        return "Movie: Name: " + super.getName() + " Year: " + super.getRelease() + " Genre: " + super.getGenre() + " Rating: " + super.getRating();
+        return "Movie: Name: " + super.getTitle() + " Year: " + super.getRelease() + " Genre: " + super.getGenre() + " Rating: " + super.getRating();
     }
 }

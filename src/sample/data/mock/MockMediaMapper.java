@@ -78,11 +78,11 @@ public class MockMediaMapper implements MediaMapper {
         List<Media> result;
         if (media.equalsIgnoreCase("all")) {
             result = allMedia.stream()
-                    .filter(ms -> name.equalsIgnoreCase(ms.getName()))
+                    .filter(ms -> name.equalsIgnoreCase(ms.getTitle()))
                     .collect(Collectors.toList());
         } else {
             result = allMedia.stream()
-                    .filter(ms -> media.equalsIgnoreCase(ms.getName()))
+                    .filter(ms -> media.equalsIgnoreCase(ms.getTitle()))
                     .filter(ms -> ms.getClass().getName().equalsIgnoreCase(media))
                     .collect(Collectors.toList());
         }
@@ -142,6 +142,11 @@ public class MockMediaMapper implements MediaMapper {
                     .collect(Collectors.toList());
         }
         return result;
+    }
+
+    @Override
+    public List<Media> getUserList(String username) {
+        return null;
     }
 
 }
