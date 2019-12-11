@@ -50,12 +50,12 @@ public class MockUserMapper implements UserMapper {
     }
 
     @Override
-    public void addToUserList(int userID, String media, int mediaID) {
+    public void addToUserList(String username, String media, int mediaID) {
 
     }
 
     @Override
-    public void removeFromUserList(int userID, String media, int mediaID) {
+    public void removeFromUserList(String username, String media, int mediaID) {
 
     }
 
