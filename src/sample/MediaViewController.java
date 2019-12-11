@@ -9,10 +9,12 @@ import sample.logic.AppController;
 import sample.logic.entities.Media;
 import sample.logic.entities.Movie;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
-public class MediaViewControllerTest {
-
+public class MediaViewController
+{
     private AppController appController;
 
     private String currentUser;
@@ -28,9 +30,9 @@ public class MediaViewControllerTest {
     private Label rating;
 
     @FXML
-    private TextArea genre;
+    private Label genre;
 
-    public MediaViewControllerTest() {
+    public MediaViewController() {
         appController = new AppController(new SQLUserMapper(), new SQLMediaMapper());
         currentUser = StateController.currentUser;
         mediaTitle = StateController.currentMedia;
@@ -46,8 +48,9 @@ public class MediaViewControllerTest {
         title.setText(media.getTitle());
         rating.setText("Rating: " + String.valueOf(media.getRating()));
         List<String> genres = media.getGenre();
-        genres.forEach(element -> sb.append(element + "\n"));
-        genre.setText(sb.toString());
+        genres.forEach(element -> sb.append(element + ", "));
+        sb.deleteCharAt(sb.length() - 2);
+        genre.setText("Genre: " + sb.toString());
     }
 
     public void addToList() {
@@ -56,5 +59,9 @@ public class MediaViewControllerTest {
 
     public void removeFromList() {
         appController.removeFromUserList(currentUser, mediaType, mediaTitle);
+    }
+
+    public void loadOverview() throws IOException {
+        SceneController.changeScene("OverviewScene.fxml");
     }
 }
