@@ -273,7 +273,6 @@ public class OverviewController {
         imgView.setFitWidth(175);
         imgView.setFitHeight(250);
 
-
         GridPane.setConstraints(imgView, column, row);
         gridPane.getChildren().add(imgView);
 
@@ -282,7 +281,6 @@ public class OverviewController {
         onImageExit(imgView, colorAdjust);
 
         onImageClick(imgView);
-
     }
 
     private void onImageClick(ImageView imgView) {
