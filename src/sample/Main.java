@@ -6,22 +6,41 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import sample.data.setup.H2Init;
 
-import java.io.File;
-
 public class Main extends Application {
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent loginRoot = FXMLLoader.load(getClass().getResource("OverviewScene.fxml"));
-        Scene login = new Scene(loginRoot);
-        primaryStage.setTitle("NKG");
-        primaryStage.setScene(login);
+        root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        Main.primaryStage = primaryStage;
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
         primaryStage.show();
         startSQL();
     }
+
     public static void startSQL() {
         /* Initialisering af SQL database */
         H2Init.initialize();
     }
+
+    static Parent root;
+    static Stage primaryStage;
+
+    static void setRoot(Parent root) {
+
+        Main.root = root;
+    }
+
+    static Stage getStage() {
+
+        return primaryStage;
+    }
+
+    static Parent getRoot() {
+
+        return root;
+    }
+
     public static void main(String[] args) {
         launch(args);
         startSQL();

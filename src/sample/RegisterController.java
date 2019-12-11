@@ -54,15 +54,19 @@ public class RegisterController
 
             boolean success = appController.registerUser(user);
 
+            SceneController.changeScene("Login.fxml");
+
             if(!success) {
                 setOutput("Email already exists in the system");
             }
         }
+    }
 
+    public void back(ActionEvent event) throws IOException {
+        SceneController.changeScene("Login.fxml");
     }
 
     private void setOutput(String text) {
         output.setText(text);
     }
-
 }

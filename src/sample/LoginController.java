@@ -15,8 +15,6 @@ import sample.logic.AppController;
 
 import java.io.IOException;
 
-import static sample.SceneController.changeScene;
-
 public class LoginController
 {
     private AppController appController;
@@ -38,7 +36,7 @@ public class LoginController
 
         if (userFound)
         {
-            changeScene(event, "OverviewScene.fxml");
+            SceneController.changeScene("OverviewScene.fxml");
             System.out.println("Correct");
         }
         else {
@@ -49,6 +47,6 @@ public class LoginController
     }
 
     public void registerButtonClicked(ActionEvent event) throws IOException {
-        changeScene(event, "RegisterScene.fxml");
+        SceneController.changeScene("RegisterScene.fxml");
     }
 }

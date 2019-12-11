@@ -16,6 +16,7 @@ import sample.logic.entities.Media;
 import sample.logic.entities.Movie;
 import sample.logic.entities.Series;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.net.URL;
 import java.util.Arrays;
@@ -238,7 +239,6 @@ public class OverviewController {
         System.out.println(gridPane.getWidth());
         System.out.println(gridPane.getHeight());
 
-
         int rows = 7;
         int columns = (fileList.size() / 7) + 1;
         int index = 0;
@@ -272,5 +272,9 @@ public class OverviewController {
 
         GridPane.setConstraints(imgView, column, row);
         gridPane.getChildren().add(imgView);
+    }
+
+    public void logOut(ActionEvent event) throws IOException {
+        SceneController.changeScene("Login.fxml");
     }
 }
