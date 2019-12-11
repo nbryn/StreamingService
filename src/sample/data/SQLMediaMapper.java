@@ -4,6 +4,7 @@ import sample.data.setup.H2DataBase;
 import sample.logic.entities.Media;
 import sample.logic.interfaces.MediaMapper;
 
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -86,6 +87,7 @@ public class SQLMediaMapper implements MediaMapper {
         userMedia = getMediaByID(movieIDs, "movie");
         userMedia.addAll(getMediaByID(movieIDs,"series"));
         return userMedia;
+
     }
 
     private List<Media> sendQuery(String movieQuery, String seriesQuery, String media) {

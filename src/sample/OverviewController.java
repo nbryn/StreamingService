@@ -38,6 +38,9 @@ public class OverviewController {
     private GridPane gridPane;
 
     @FXML
+    private ComboBox comboBox;
+
+    @FXML
     ScrollPane scrollPane;
 
     @FXML
@@ -56,6 +59,14 @@ public class OverviewController {
 
     }
 
+
+
+    public void initialize()
+    {
+        comboBox.getItems().removeAll(comboBox.getItems());
+        comboBox.getItems().addAll("Movies", "Series","Release Date > 2000", "Rating > 5");
+    }
+
     public void updateView(List<Media> mediaList) {
         fileList.clear();
 
@@ -69,8 +80,6 @@ public class OverviewController {
 
         String moviePath = "/" + movieURL.toString().substring(6, movieURL.toString().length() - 1);
         String seriesPath = "/" + seriesURL.toString().substring(6, seriesURL.toString().length() - 1);
-
-        System.out.println(moviePath);
 
         File[] seriesImg = new File(seriesPath).listFiles();
         File[] moviesImg = new File(moviePath).listFiles();
@@ -110,14 +119,12 @@ public class OverviewController {
         updateView(result);
     }
 
-
     public void showAll(ActionEvent event) {
         List<Media> result = appController.fetchAll("all");
 
         allMedia = result;
 
         updateView(result);
-
     }
 
     @FXML
@@ -151,13 +158,13 @@ public class OverviewController {
                 return 0;
             }
         });
-
     }
 
     @FXML
-    public void sortByRelease(ActionEvent event) {
-        List<Media> result = appController.fetchRatingOver(7.00, "all");
+    public void sortByRatingOverFive(ActionEvent event) {
+        List<Media> result = appController.fetchRatingOver(5.00, "all");
 
+        updateView(result);
     }
 
 
@@ -165,17 +172,19 @@ public class OverviewController {
     public void releaseAfter2000(ActionEvent event) {
         List<Media> result = appController.fetchReleaseAfter(2000, "all");
 
+        updateView(result);
     }
 
     @FXML
     public void releaseAfter2015(ActionEvent event) {
         List<Media> result = appController.fetchReleaseAfter(2015, "all");
 
+        updateView(result);
     }
 
     @FXML
-    public void loadHorror(ActionEvent event) {
-        List<Media> result = appController.fetchAllFromGenre("Horror", "all");
+    public void loadAction(ActionEvent event) {
+        List<Media> result = appController.fetchAllFromGenre("Action", "all");
 
         updateView(result);
     }
@@ -188,15 +197,8 @@ public class OverviewController {
     }
 
     @FXML
-    public void loadThriller(ActionEvent event) {
-        List<Media> result = appController.fetchAllFromGenre("Thriller", "all");
-
-        updateView(result);
-    }
-
-    @FXML
-    public void loadDocumentary(ActionEvent event) {
-        List<Media> result = appController.fetchAllFromGenre("Documentary", "all");
+    public void loadCrime(ActionEvent event) {
+        List<Media> result = appController.fetchAllFromGenre("Crime", "all");
 
         updateView(result);
     }
@@ -210,15 +212,8 @@ public class OverviewController {
     }
 
     @FXML
-    public void loadAction(ActionEvent event) {
-        List<Media> result = appController.fetchAllFromGenre("Action", "all");
-
-        updateView(result);
-    }
-
-    @FXML
-    public void loadCrime(ActionEvent event) {
-        List<Media> result = appController.fetchAllFromGenre("Crime", "all");
+    public void loadDocumentary(ActionEvent event) {
+        List<Media> result = appController.fetchAllFromGenre("Documentary", "all");
 
         updateView(result);
     }
@@ -229,6 +224,34 @@ public class OverviewController {
 
         updateView(result);
     }
+
+
+
+    @FXML
+    public void loadHorror(ActionEvent event) {
+        List<Media> result = appController.fetchAllFromGenre("Horror", "all");
+
+        updateView(result);
+    }
+
+
+    @FXML
+    public void loadHistory(ActionEvent event) {
+        List<Media> result = appController.fetchAllFromGenre("History", "all");
+
+        updateView(result);
+    }
+
+
+    @FXML
+    public void loadThriller(ActionEvent event) {
+        List<Media> result = appController.fetchAllFromGenre("Thriller", "all");
+
+        updateView(result);
+    }
+
+
+
 
     private void addToFileList(List<File> images, List<Media> mediaList) {
         for (File file : images) {
@@ -296,7 +319,7 @@ public class OverviewController {
             String mediaTitle = shortUrl.replaceAll("%", " ").replaceAll("20", "");
 
             try {
-                MediaViewHelper.setMediaToShow(mediaTitle);
+                StateController.setCurrentMedia(mediaTitle);
                 SceneController.changeScene("MediaViewTest.fxml");
 
             } catch (IOException e) {
@@ -314,7 +337,6 @@ public class OverviewController {
                 imgView.setEffect(colorAdjust);
             }
         });
-
     }
 
     private void onImageExit(ImageView imgView, ColorAdjust colorAdjust) {
@@ -328,6 +350,33 @@ public class OverviewController {
     }
 
     public void logOut(ActionEvent event) throws IOException {
-        SceneController.changeScene("Login.fxml");
+        SceneController.changeScene("LoginScene.fxml");
+    }
+
+
+
+    public void sort(ActionEvent event)
+    {
+        String sortBy = comboBox.getValue().toString();
+
+        if(sortBy.equals("Release Date > 2000"))
+        {
+            releaseAfter2000(event);
+        }
+
+        if(sortBy.equals("Rating > 5"))
+        {
+            sortByRatingOverFive(event);
+        }
+
+        if(sortBy.equals("Series"))
+        {
+            showAllSeries(event);
+        }
+
+        if(sortBy.equals("Movies"))
+        {
+            showAllMovies(event);
+        }
     }
 }
