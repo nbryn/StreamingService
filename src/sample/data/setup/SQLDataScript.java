@@ -39,7 +39,7 @@ public class SQLDataScript {
                 "    foreign key (user_id) references users(user_id)," +
                 "    movie_id int," +
                 "    foreign key (movie_id) references movies(movie_id));" +
-                "CREATE TABLE myseriesList(" +
+                "CREATE TABLE mySeriesList(" +
                 "    user_id int," +
                 "    foreign key (user_id) references users(user_id)," +
                 "    series_id int," +
@@ -261,6 +261,7 @@ public class SQLDataScript {
                         "('Kris','Suppe','Kristian','110996');";
 
     }
+
     public static String testQueries(){
         return
                 "CREATE TABLE users(" +

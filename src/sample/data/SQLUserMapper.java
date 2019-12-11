@@ -6,6 +6,7 @@ import sample.logic.exceptions.EmailAlreadyExistException;
 import sample.logic.exceptions.NoSuchUserException;
 import sample.logic.interfaces.UserMapper;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -40,23 +41,55 @@ public class SQLUserMapper implements UserMapper {
     }
 
     @Override
-    public void addToUserList(int userID, String media, int mediaID) {
+    public void addToUserList(String username, String media, int mediaID) {
+            String userID = getUserID(username);
 
+            if (media.equalsIgnoreCase("movie")){
+                dataBase.executeUpdate("INSERT INTO myMovieList VALUES (user_id, movie_id) ('" + userID + "', '" + mediaID + "');");
+            }
+            if (media.equalsIgnoreCase("series")){
+                dataBase.executeUpdate("INSERT INTO mySeriesList VALUES (user_id, series_id) ('" + userID + "', '" + mediaID +"');");
+            }
     }
 
     @Override
-    public void removeFromUserList(int userID, String media, int mediaID) {
+    public void removeFromUserList(String username, String media, int mediaID) {
+        String userID = getUserID(username);
+
+        if (media.equalsIgnoreCase("movie")){
+            dataBase.executeUpdate("DELETE FROM myMovieList WHERE user_id = '" + userID + "' AND WHERE movie_id = '" + mediaID +"';");
+        }
+        if (media.equalsIgnoreCase("series")){
+            dataBase.executeUpdate("DELETE FROM mySeriesList WHERE user_id = '" + userID + "' AND WHERE series_id = '" + mediaID +"';");
+        }
 
     }
 
 
     @Override
     public void updateUserInfo(String username, String password) {
+        String userID = getUserID(username);
+        if (username != "" && password != "") dataBase.executeUpdate("UPDATE users SET username = '" + username +"', password = '" + password +"' WHERE user_id = '" + userID+"';");
+        if (username != "" && password == "") dataBase.executeUpdate("UPDATE users SET username = '" + username + "', WHERE user_id = '" + userID + "';");
+        if (username == "" && password != "") dataBase.executeUpdate("UPDATE users SET password = '" + password + "', WHERE user_id = '" + userID + "';");
 
     }
 
     @Override
     public void deleteUser(String username, String password) {
+        String userID = getUserID(username);
+        dataBase.executeUpdate("DELETE FROM users WHERE user_ID = '" + userID +"';");
 
+    }
+    private String getUserID(String username){
+        ResultSet results = dataBase.sendStatement("SELECT * FROM users WHERE username = " + username);
+        if (results != null) {
+            try {
+                return results.getString("username");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
     }
 }
