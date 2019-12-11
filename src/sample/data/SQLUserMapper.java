@@ -41,26 +41,26 @@ public class SQLUserMapper implements UserMapper {
     }
 
     @Override
-    public void addToUserList(String username, String media, int mediaID) {
+    public void addToUserList(String username, String media, String mediaTitle) {
             String userID = getUserID(username);
 
             if (media.equalsIgnoreCase("movie")){
-                dataBase.executeUpdate("INSERT INTO myMovieList VALUES (user_id, movie_id) ('" + userID + "', '" + mediaID + "');");
+                dataBase.executeUpdate("INSERT INTO myMovieList VALUES (user_id, movie_id) ('" + userID + "', '" + mediaTitle + "');");
             }
             if (media.equalsIgnoreCase("series")){
-                dataBase.executeUpdate("INSERT INTO mySeriesList VALUES (user_id, series_id) ('" + userID + "', '" + mediaID +"');");
+                dataBase.executeUpdate("INSERT INTO mySeriesList VALUES (user_id, series_id) ('" + userID + "', '" + mediaTitle +"');");
             }
     }
 
     @Override
-    public void removeFromUserList(String username, String media, int mediaID) {
+    public void removeFromUserList(String username, String media, String mediaTitle) {
         String userID = getUserID(username);
 
         if (media.equalsIgnoreCase("movie")){
-            dataBase.executeUpdate("DELETE FROM myMovieList WHERE user_id = '" + userID + "' AND WHERE movie_id = '" + mediaID +"';");
+            dataBase.executeUpdate("DELETE FROM myMovieList WHERE user_id = '" + userID + "' AND WHERE movie_id = '" + mediaTitle +"';");
         }
         if (media.equalsIgnoreCase("series")){
-            dataBase.executeUpdate("DELETE FROM mySeriesList WHERE user_id = '" + userID + "' AND WHERE series_id = '" + mediaID +"';");
+            dataBase.executeUpdate("DELETE FROM mySeriesList WHERE user_id = '" + userID + "' AND WHERE series_id = '" + mediaTitle +"';");
         }
 
     }

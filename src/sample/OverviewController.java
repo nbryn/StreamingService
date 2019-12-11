@@ -174,8 +174,8 @@ public class OverviewController {
     }
 
     @FXML
-    public void loadHorror(ActionEvent event) {
-        List<Media> result = appController.fetchAllFromGenre("Horror", "all");
+    public void loadAction(ActionEvent event) {
+        List<Media> result = appController.fetchAllFromGenre("Action", "all");
 
         updateView(result);
     }
@@ -188,15 +188,8 @@ public class OverviewController {
     }
 
     @FXML
-    public void loadThriller(ActionEvent event) {
-        List<Media> result = appController.fetchAllFromGenre("Thriller", "all");
-
-        updateView(result);
-    }
-
-    @FXML
-    public void loadDocumentary(ActionEvent event) {
-        List<Media> result = appController.fetchAllFromGenre("Documentary", "all");
+    public void loadCrime(ActionEvent event) {
+        List<Media> result = appController.fetchAllFromGenre("Crime", "all");
 
         updateView(result);
     }
@@ -210,15 +203,8 @@ public class OverviewController {
     }
 
     @FXML
-    public void loadAction(ActionEvent event) {
-        List<Media> result = appController.fetchAllFromGenre("Action", "all");
-
-        updateView(result);
-    }
-
-    @FXML
-    public void loadCrime(ActionEvent event) {
-        List<Media> result = appController.fetchAllFromGenre("Crime", "all");
+    public void loadDocumentary(ActionEvent event) {
+        List<Media> result = appController.fetchAllFromGenre("Documentary", "all");
 
         updateView(result);
     }
@@ -229,6 +215,34 @@ public class OverviewController {
 
         updateView(result);
     }
+
+   
+
+    @FXML
+    public void loadHorror(ActionEvent event) {
+        List<Media> result = appController.fetchAllFromGenre("Horror", "all");
+
+        updateView(result);
+    }
+
+
+    @FXML
+    public void loadHistory(ActionEvent event) {
+        List<Media> result = appController.fetchAllFromGenre("History", "all");
+
+        updateView(result);
+    }
+
+
+    @FXML
+    public void loadThriller(ActionEvent event) {
+        List<Media> result = appController.fetchAllFromGenre("Thriller", "all");
+
+        updateView(result);
+    }
+
+
+
 
     private void addToFileList(List<File> images, List<Media> mediaList) {
         for (File file : images) {
@@ -296,7 +310,7 @@ public class OverviewController {
             String mediaTitle = shortUrl.replaceAll("%", " ").replaceAll("20", "");
 
             try {
-                MediaViewHelper.setMediaToShow(mediaTitle);
+                StateController.setCurrentMedia(mediaTitle);
                 SceneController.changeScene("MediaViewTest.fxml");
 
             } catch (IOException e) {
