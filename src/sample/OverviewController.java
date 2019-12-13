@@ -48,7 +48,7 @@ public class OverviewController {
     private VBox Selections;
 
     @FXML
-    private AnchorPane Settings;
+    private VBox Users;
 
     public OverviewController() {
         appController = new AppController(new SQLUserMapper(), new SQLMediaMapper());
@@ -92,18 +92,14 @@ public class OverviewController {
         Selections.setVisible(true);
     }
 
-    public void showSettings(ActionEvent event) {
-        closeAll();
-        Settings.setVisible(true);
-    }
-
     public void showUsers(ActionEvent event) {
         closeAll();
+        Users.setVisible(true);
     }
 
     public void closeAll() {
         Selections.setVisible(false);
-        Settings.setVisible(false);
+        Users.setVisible(false);
     }
 
     @FXML
@@ -281,12 +277,13 @@ public class OverviewController {
         ColorAdjust colorAdjust = new ColorAdjust();
 
         ImageView imgView = new ImageView(img);
+
         gridPane.setHgap(5);
         gridPane.setVgap(5);
         gridPane.setPadding(new Insets(5, 5, 5, 5));
+
         imgView.setFitWidth(175);
         imgView.setFitHeight(250);
-
 
         GridPane.setConstraints(imgView, column, row);
         gridPane.getChildren().add(imgView);
@@ -296,7 +293,6 @@ public class OverviewController {
         onImageExit(imgView, colorAdjust);
 
         onImageClick(imgView);
-
     }
 
     private void onImageClick(ImageView imgView) {

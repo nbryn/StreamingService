@@ -1,10 +1,12 @@
 package sample;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import javafx.scene.text.Font;
 import sample.data.SQLMediaMapper;
 import sample.data.SQLUserMapper;
 import sample.logic.AppController;
@@ -17,6 +19,9 @@ public class LoginController
     public Button loginButton;
     public TextField usernameField;
     public PasswordField passwordField;
+
+    @FXML
+    private Button errorButton;
 
     public LoginController()
     {
@@ -36,12 +41,17 @@ public class LoginController
             SceneController.changeScene("OverviewScene.fxml");
         }
         else {
-            System.out.println(usernameField.getText());
-            System.out.println(passwordField.getText());
+            wrongUser();
         }
     }
 
     public void register(ActionEvent event) throws IOException {
         SceneController.changeScene("RegisterScene.fxml");
+    }
+
+    public void wrongUser()
+    {
+        errorButton.setFont(Font.font(25));
+        errorButton.setVisible(true);
     }
 }

@@ -21,6 +21,10 @@ public class StateController {
         userList.add(mediaTitle);
     }
 
+    public static void removeFromList(String mediaTitle) {
+        userList.remove(mediaTitle);
+    }
+
     public static List<String> getUserList() {
         return userList;
     }

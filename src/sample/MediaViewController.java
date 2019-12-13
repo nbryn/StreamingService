@@ -1,6 +1,8 @@
 package sample;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import sample.data.SQLMediaMapper;
@@ -11,6 +13,10 @@ import sample.logic.entities.Movie;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class MediaViewController {
@@ -31,6 +37,12 @@ public class MediaViewController {
     @FXML
     private Label genre;
 
+    @FXML
+    private Button addToListButton;
+
+    @FXML
+    private Button removeFromListButton;
+
     public MediaViewController() {
         appController = new AppController(new SQLUserMapper(), new SQLMediaMapper());
         currentUser = StateController.currentUser;
@@ -50,23 +62,32 @@ public class MediaViewController {
         genres.forEach(element -> sb.append(element + ", "));
         sb.deleteCharAt(sb.length() - 2);
         genre.setText("Genre: " + sb.toString());
+
+        for (String title : StateController.getUserList()) {
+            if (mediaTitle.equalsIgnoreCase(title)) {
+                System.out.println(title);
+                addToListButton.setVisible(false);
+                addToListButton.setVisible(true);
+            }
+        }
     }
 
-    public void addToList() {
-        boolean success;
 
-       // success = appController.addToUserList(currentUser, mediaType, mediaTitle);
+    public void addToList(ActionEvent event)
+    {
+        appController.addToUserList(currentUser, mediaType, mediaTitle);
+        addToListButton.setVisible(false);
+        removeFromListButton.setVisible(true);
 
-
-            System.out.println("MediaController " + mediaTitle);
-            StateController.addToList(mediaTitle);
-
+        StateController.addToList(mediaTitle);
     }
 
     public void removeFromList() {
-        boolean success;
+        appController.removeFromUserList(currentUser, mediaType, mediaTitle);
+        addToListButton.setVisible(true);
+        removeFromListButton.setVisible(false);
 
-        success = appController.removeFromUserList(currentUser, mediaType, mediaTitle);
+        StateController.removeFromList(mediaTitle);
     }
 
     public void loadOverview() throws IOException {
