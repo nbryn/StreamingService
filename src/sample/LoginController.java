@@ -23,7 +23,7 @@ public class LoginController
         appController = new AppController(new SQLUserMapper(), new SQLMediaMapper());
     }
 
-    public void logInButtonClicked(ActionEvent event) throws IOException
+    public void login(ActionEvent event) throws IOException
     {
         String username = usernameField.getText();
         String password = passwordField.getText();
@@ -41,7 +41,7 @@ public class LoginController
         }
     }
 
-    public void registerButtonClicked(ActionEvent event) throws IOException {
+    public void register(ActionEvent event) throws IOException {
         SceneController.changeScene("RegisterScene.fxml");
     }
 }

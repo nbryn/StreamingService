@@ -55,7 +55,12 @@ public class MediaViewController {
     public void addToList() {
         boolean success;
 
-        success = appController.addToUserList(currentUser, mediaType, mediaTitle);
+       // success = appController.addToUserList(currentUser, mediaType, mediaTitle);
+
+
+            System.out.println("MediaController " + mediaTitle);
+            StateController.addToList(mediaTitle);
+
     }
 
     public void removeFromList() {

@@ -61,7 +61,7 @@ public class OverviewController {
         showAll(new ActionEvent());
 
         comboBox.getItems().removeAll(comboBox.getItems());
-        comboBox.getItems().addAll("Movies", "Series", "Rating", "Release", "Release > 2000", "Rating > 8");
+        comboBox.getItems().addAll("Movies", "Series", "Release > 2000", "Rating > 8");
     }
 
     public void updateView(List<Media> mediaList) {
@@ -112,6 +112,17 @@ public class OverviewController {
 
         List<Media> result = appController.fetchByName(searchString, "all");
 
+        updateView(result);
+    }
+
+    @FXML
+    public void showMyList(ActionEvent e) {
+        List<Media> result = new ArrayList<>();
+        List<String> titles = StateController.getUserList();
+
+        for (String title : titles) {
+            result.add(appController.fetchByName(title, "all").get(0));
+        }
         updateView(result);
     }
 
