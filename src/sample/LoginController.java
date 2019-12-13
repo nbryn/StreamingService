@@ -34,10 +34,8 @@ public class LoginController
         {
             StateController.setCurrentUser(username);
             SceneController.changeScene("OverviewScene.fxml");
-            System.out.println("Correct");
         }
         else {
-            System.out.println("Wrong");
             System.out.println(usernameField.getText());
             System.out.println(passwordField.getText());
         }

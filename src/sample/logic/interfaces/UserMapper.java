@@ -3,6 +3,7 @@ package sample.logic.interfaces;
 import sample.logic.entities.User;
 import sample.logic.exceptions.NoSuchUserException;
 import sample.logic.exceptions.EmailAlreadyExistException;
+import sample.logic.exceptions.UserException;
 import sample.logic.exceptions.UserListException;
 
 import java.sql.SQLException;
@@ -18,10 +19,10 @@ public interface UserMapper {
 
     public void addToUserList(String username, String media, String mediaTitle) throws UserListException;
 
-    public void removeFromUserList(String username, String media, String mediaTitle);
+    public void removeFromUserList(String username, String media, String mediaTitle) throws UserListException;
 
-    public void updateUserInfo(String username, String password);
+    public void updateUserInfo(String username, String password) throws UserException;
 
-    public void deleteUser(String username, String password);
+    public void deleteUser(String username, String password) throws UserException;
 
 }
