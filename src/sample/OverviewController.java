@@ -80,6 +80,7 @@ public class OverviewController {
         File[] seriesImg = new File(seriesPath).listFiles();
         File[] moviesImg = new File(moviePath).listFiles();
 
+
         List<File> images = new ArrayList<>(Arrays.asList(seriesImg));
         Collections.addAll(images, moviesImg);
 
@@ -152,7 +153,6 @@ public class OverviewController {
 
         updateView(movies);
     }
-
 
     @FXML
     public void showAction(ActionEvent event) {
@@ -245,8 +245,6 @@ public class OverviewController {
                 result = appController.fetchRatingOver(8, "all");
                 updateView(result);
                 break;
-
-
         }
     }
 

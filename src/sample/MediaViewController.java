@@ -73,7 +73,10 @@ public class MediaViewController {
         }
     }
 
-    public void addToList(ActionEvent event) {
+
+    public void addToList(ActionEvent event)
+    {
+
         appController.addToUserList(currentUser, mediaType, mediaTitle);
         addToListButton.setVisible(false);
         removeFromListButton.setVisible(true);
