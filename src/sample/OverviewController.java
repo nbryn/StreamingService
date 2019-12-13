@@ -72,16 +72,14 @@ public class OverviewController {
 
         String os = System.getProperty("os.name");
 
+
+
         URL movieURL = getClass().getResource("resources/movieimg");
         URL seriesURL = getClass().getResource("resources/seriesimg");
 
         String moviePath = "/" + movieURL.toString().substring(6, movieURL.toString().length() - 1);
         String seriesPath = "/" + seriesURL.toString().substring(6, seriesURL.toString().length() - 1);
 
-        String moviePathWindows = "\\\\" + movieURL.toString().substring(6, movieURL.toString().length() - 1);
-        String seriesPathWindows = "\\\\" + seriesURL.toString().substring(6, seriesURL.toString().length() - 1);
-
-        moviePathWindows.replaceAll(Pattern.quote("/"),"Q");
 
         File[] seriesImg = new File(seriesPath).listFiles();
         File[] moviesImg = new File(moviePath).listFiles();
@@ -90,8 +88,6 @@ public class OverviewController {
         System.out.println(moviePath);
         System.out.println(seriesPath);
 
-        System.out.println(moviePathWindows);
-        System.out.println(seriesPathWindows);
 
         List<File> images = new ArrayList<>(Arrays.asList(seriesImg));
         Collections.addAll(images, moviesImg);

@@ -63,11 +63,13 @@ public class MediaViewController {
         sb.deleteCharAt(sb.length() - 2);
         genre.setText("Genre: " + sb.toString());
 
+        addToListButton.setVisible(true);
+
         for (String title : StateController.getUserList()) {
             if (mediaTitle.equalsIgnoreCase(title)) {
                 System.out.println(title);
                 addToListButton.setVisible(false);
-                addToListButton.setVisible(true);
+                removeFromListButton.setVisible(true);
             }
         }
     }
