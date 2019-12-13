@@ -52,7 +52,7 @@ public class OverviewController {
     private VBox Selections;
 
     @FXML
-    private AnchorPane Settings;
+    private VBox Users;
 
     public OverviewController() {
         appController = new AppController(new SQLUserMapper(), new SQLMediaMapper());
@@ -96,18 +96,14 @@ public class OverviewController {
         Selections.setVisible(true);
     }
 
-    public void showSettings(ActionEvent event) {
-        closeAll();
-        Settings.setVisible(true);
-    }
-
     public void showUsers(ActionEvent event) {
         closeAll();
+        Users.setVisible(true);
     }
 
     public void closeAll() {
         Selections.setVisible(false);
-        Settings.setVisible(false);
+        Users.setVisible(false);
     }
 
     @FXML

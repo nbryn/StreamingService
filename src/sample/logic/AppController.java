@@ -90,17 +90,27 @@ public class AppController {
         return result;
     }
 
-    public void addToUserList(String username, String media, String mediaTitle) {
+    public boolean addToUserList(String username, String media, String mediaTitle) {
+        boolean success = false;
         try {
             userMapper.addToUserList(username, media, mediaTitle);
+            success = true;
+
+
+        } catch (UserListException e) {
+            success = false;
+            return success;
+        }
+
+        return success;
+    }
+
+    public void removeFromUserList(String username, String media, String mediaTitle) {
+        try {
+            userMapper.removeFromUserList(username, media, mediaTitle);
 
         } catch (UserListException e) {
             e.printStackTrace();
         }
-    }
-
-    public void removeFromUserList(String username, String media, String mediaTitle) {
-        userMapper.removeFromUserList(username, media, mediaTitle);
-
     }
 }

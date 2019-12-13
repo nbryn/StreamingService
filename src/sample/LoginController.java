@@ -2,7 +2,6 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -40,13 +39,9 @@ public class LoginController
         {
             StateController.setCurrentUser(username);
             SceneController.changeScene("OverviewScene.fxml");
-            System.out.println("Correct");
         }
         else {
-            System.out.println("Wrong");
-            wrongUser(event);
-            System.out.println(usernameField.getText());
-            System.out.println(passwordField.getText());
+            wrongUser();
         }
     }
 
@@ -54,10 +49,9 @@ public class LoginController
         SceneController.changeScene("RegisterScene.fxml");
     }
 
-    public void wrongUser(ActionEvent event)
+    public void wrongUser()
     {
         errorButton.setFont(Font.font(25));
-        errorButton.setPadding(new Insets(0,0,15,0));
         errorButton.setVisible(true);
     }
 }

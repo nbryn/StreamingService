@@ -17,7 +17,18 @@
                   <Font size="96.0" />
                </font>
             </Text>
-            <TextField fx:id="name" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="350.0" promptText="Full Name" VBox.vgrow="NEVER">
+            <Button fx:id="errorButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="0.0" prefWidth="350.0" style="-fx-background-color: #E53935;" text="Passwords does not match" textAlignment="CENTER" textFill="#e9effd" visible="false">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="1.0" />
+               </font>
+            </Button>
+            <TextField fx:id="nameField" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="350.0" promptText="Full Name" VBox.vgrow="NEVER">
                <font>
                   <Font size="25.0" />
                </font>
@@ -25,7 +36,7 @@
                   <Insets bottom="15.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="email" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="350.0" promptText="Email" VBox.vgrow="NEVER">
+            <TextField fx:id="emailField" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="350.0" promptText="Email" VBox.vgrow="NEVER">
                <font>
                   <Font size="25.0" />
                </font>
@@ -33,7 +44,7 @@
                   <Insets bottom="15.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="birthday" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="350.0" promptText="Birthday: dd.mm.yyyy" VBox.vgrow="NEVER">
+            <TextField fx:id="birthdayField" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="350.0" promptText="Birthday: dd.mm.yyyy" VBox.vgrow="NEVER">
                <font>
                   <Font size="25.0" />
                </font>
@@ -41,7 +52,7 @@
                   <Insets bottom="15.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="password" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="350.0" promptText="Password" VBox.vgrow="NEVER">
+            <TextField fx:id="passwordField" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="350.0" promptText="Password" VBox.vgrow="NEVER">
                <font>
                   <Font size="25.0" />
                </font>
@@ -49,7 +60,7 @@
                   <Insets bottom="15.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="passwordRepeat" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="350.0" promptText="Repeat Password" VBox.vgrow="NEVER">
+            <TextField fx:id="passwordRepeatField" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="350.0" promptText="Repeat Password" VBox.vgrow="NEVER">
                <font>
                   <Font size="25.0" />
                </font>

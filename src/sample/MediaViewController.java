@@ -38,6 +38,12 @@ public class MediaViewController
     @FXML
     private Label genre;
 
+    @FXML
+    private Button addToListButton;
+
+    @FXML
+    private Button removeFromListButton;
+
     public MediaViewController() {
         appController = new AppController(new SQLUserMapper(), new SQLMediaMapper());
         currentUser = StateController.currentUser;
@@ -52,17 +58,12 @@ public class MediaViewController
         mediaType = media instanceof Movie ? "Movie" :  "Series";
 
         title.setText(media.getTitle());
-        rating.setText("Rating: " + String.valueOf(media.getRating()));
+        rating.setText("Rating: " + media.getRating());
         List<String> genres = media.getGenre();
         genres.forEach(element -> sb.append(element + ", "));
         sb.deleteCharAt(sb.length() - 2);
         genre.setText("Genre: " + sb.toString());
     }
-
-    @FXML
-    private Button addToListButton;
-    @FXML
-    private Button removeFromListButton;
 
     public void addToList(ActionEvent event)
     {
