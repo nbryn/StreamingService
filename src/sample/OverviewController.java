@@ -25,6 +25,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 import java.net.URL;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 
@@ -81,8 +82,19 @@ public class OverviewController {
         String moviePath = "/" + movieURL.toString().substring(6, movieURL.toString().length() - 1);
         String seriesPath = "/" + seriesURL.toString().substring(6, seriesURL.toString().length() - 1);
 
+        String moviePathWindows = "\\\\" + movieURL.toString().substring(6, movieURL.toString().length() - 1);
+        String seriesPathWindows = "\\\\" + seriesURL.toString().substring(6, seriesURL.toString().length() - 1);
+
+        moviePathWindows.replaceAll(Pattern.quote("/"),"Q");
+
         File[] seriesImg = new File("D:\\Streaming\\StreamingService\\src\\sample\\resources\\seriesimg").listFiles();
         File[] moviesImg = new File("D:\\Streaming\\StreamingService\\src\\sample\\resources\\movieimg").listFiles();
+
+        System.out.println(moviePath);
+        System.out.println(seriesPath);
+
+        System.out.println(moviePathWindows);
+        System.out.println(seriesPathWindows);
 
         List<File> images = new ArrayList<>(Arrays.asList(seriesImg));
         Collections.addAll(images, moviesImg);

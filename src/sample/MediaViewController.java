@@ -63,7 +63,7 @@ public class MediaViewController {
         sb.deleteCharAt(sb.length() - 2);
         genre.setText("Genre: " + sb.toString());
     }
-    
+
     public void addToList(ActionEvent event)
     {
         appController.addToUserList(currentUser, mediaType, mediaTitle);
