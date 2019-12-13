@@ -233,7 +233,7 @@
                   <Insets bottom="50.0" />
                </padding>
                <children>
-                  <Hyperlink fx:id="myListButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="My List" textAlignment="CENTER" textFill="WHITE">
+                  <Hyperlink fx:id="myListButton" onAction="#showMyList" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="My List" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>

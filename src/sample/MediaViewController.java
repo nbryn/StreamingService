@@ -62,19 +62,31 @@ public class MediaViewController {
         genres.forEach(element -> sb.append(element + ", "));
         sb.deleteCharAt(sb.length() - 2);
         genre.setText("Genre: " + sb.toString());
-    }
 
+        for (String title : StateController.getUserList()) {
+            if (mediaTitle.equalsIgnoreCase(title)) {
+                System.out.println(title);
+                addToListButton.setVisible(false);
+                addToListButton.setVisible(true);
+            }
+        }
+    }
+    
     public void addToList(ActionEvent event)
     {
         appController.addToUserList(currentUser, mediaType, mediaTitle);
         addToListButton.setVisible(false);
         removeFromListButton.setVisible(true);
+
+        StateController.addToList(mediaTitle);
     }
 
     public void removeFromList() {
         appController.removeFromUserList(currentUser, mediaType, mediaTitle);
         addToListButton.setVisible(true);
         removeFromListButton.setVisible(false);
+
+        StateController.removeFromList(mediaTitle);
     }
 
     public void loadOverview() throws IOException {

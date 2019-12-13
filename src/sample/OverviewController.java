@@ -1,19 +1,15 @@
 package sample;
 
-import javafx.beans.binding.DoubleBinding;
-import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.control.*;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.stage.Screen;
 import sample.data.SQLMediaMapper;
 import sample.data.SQLUserMapper;
 import sample.logic.AppController;
@@ -66,7 +62,7 @@ public class OverviewController {
         showAll(new ActionEvent());
 
         comboBox.getItems().removeAll(comboBox.getItems());
-        comboBox.getItems().addAll("Movies", "Series", "Rating", "Release", "Release > 2000", "Rating > 8");
+        comboBox.getItems().addAll("Movies", "Series", "Release > 2000", "Rating > 8");
     }
 
     public void updateView(List<Media> mediaList) {
@@ -89,6 +85,7 @@ public class OverviewController {
 
         File[] seriesImg = new File("D:\\Streaming\\StreamingService\\src\\sample\\resources\\seriesimg").listFiles();
         File[] moviesImg = new File("D:\\Streaming\\StreamingService\\src\\sample\\resources\\movieimg").listFiles();
+
 
         System.out.println(moviePath);
         System.out.println(seriesPath);
@@ -124,6 +121,17 @@ public class OverviewController {
 
         List<Media> result = appController.fetchByName(searchString, "all");
 
+        updateView(result);
+    }
+
+    @FXML
+    public void showMyList(ActionEvent e) {
+        List<Media> result = new ArrayList<>();
+        List<String> titles = StateController.getUserList();
+
+        for (String title : titles) {
+            result.add(appController.fetchByName(title, "all").get(0));
+        }
         updateView(result);
     }
 

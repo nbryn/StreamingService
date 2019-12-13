@@ -2,9 +2,6 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -44,7 +41,10 @@
                   <Insets bottom="15.0" />
                </VBox.margin>
             </PasswordField>
-            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#logInButtonClicked" prefHeight="50.0" prefWidth="350.0" style="-fx-background-color: #00A3DA#d61a3c;" text="Login" textAlignment="CENTER" textFill="#e9effd">
+
+            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#login" prefHeight="50.0" prefWidth="350.0" style="-fx-background-color: #00A3DA#d61a3c;" text="Log ind" textAlignment="CENTER" textFill="#e9effd">
+=======
+
                <font>
                   <Font size="25.0" />
                </font>
@@ -52,7 +52,10 @@
                   <Insets bottom="15.0" />
                </VBox.margin>
             </Button>
-            <Hyperlink onAction="#registerButtonClicked" text="Sign Up" textFill="#e9effd">
+
+            <Hyperlink onAction="#register" text="New Account" textFill="#e9effd">
+=======
+
                <font>
                   <Font size="30.0" />
                </font>
