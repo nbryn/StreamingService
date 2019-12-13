@@ -2,8 +2,10 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Font;
 import sample.data.SQLMediaMapper;
 import sample.data.SQLUserMapper;
 import sample.logic.AppController;
@@ -15,9 +17,6 @@ import java.io.IOException;
 public class RegisterController
 {
     private AppController appController;
-
-    @FXML
-    private TextArea output;
 
     @FXML
     private TextField nameField;
@@ -34,6 +33,9 @@ public class RegisterController
     @FXML
     private TextField passwordRepeatField;
 
+    @FXML
+    private Button errorButton;
+
     public RegisterController() {
         appController = new AppController(new SQLUserMapper(), new SQLMediaMapper());
     }
@@ -45,8 +47,9 @@ public class RegisterController
         String password = passwordField.getText().trim();
         String repeatPassword = passwordRepeatField.getText().trim();
 
-        if(!password.equals(repeatPassword)) {
-            setOutput("Passwords Does Not Match");
+        if(!password.equals(repeatPassword))
+        {
+            wrongUser("Passwords does not match");
 
         } else {
             User user = new User(fullName, birthday, email, password);
@@ -55,8 +58,9 @@ public class RegisterController
 
             SceneController.changeScene("LoginScene.fxml");
 
-            if(!success) {
-                setOutput("Email already exists in the system");
+            if(!success)
+            {
+                wrongUser("Email already exist");
             }
         }
     }
@@ -65,7 +69,10 @@ public class RegisterController
         SceneController.changeScene("LoginScene.fxml");
     }
 
-    private void setOutput(String text) {
-        output.setText(text);
+    public void wrongUser(String errorMessage)
+    {
+        errorButton.setFont(Font.font(25));
+        errorButton.setText(errorMessage);
+        errorButton.setVisible(true);
     }
 }

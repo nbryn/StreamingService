@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 import java.net.URL;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 
@@ -48,7 +49,7 @@ public class OverviewController {
     private VBox Selections;
 
     @FXML
-    private AnchorPane Settings;
+    private VBox Users;
 
     public OverviewController() {
         appController = new AppController(new SQLUserMapper(), new SQLMediaMapper());
@@ -61,7 +62,7 @@ public class OverviewController {
         showAll(new ActionEvent());
 
         comboBox.getItems().removeAll(comboBox.getItems());
-        comboBox.getItems().addAll("Movies", "Series", "Rating", "Release", "Release > 2000", "Rating > 8");
+        comboBox.getItems().addAll("Movies", "Series", "Release > 2000", "Rating > 8");
     }
 
     public void updateView(List<Media> mediaList) {
@@ -77,8 +78,20 @@ public class OverviewController {
         String moviePath = "/" + movieURL.toString().substring(6, movieURL.toString().length() - 1);
         String seriesPath = "/" + seriesURL.toString().substring(6, seriesURL.toString().length() - 1);
 
-        File[] seriesImg = new File(seriesPath).listFiles();
-        File[] moviesImg = new File(moviePath).listFiles();
+        String moviePathWindows = "\\\\" + movieURL.toString().substring(6, movieURL.toString().length() - 1);
+        String seriesPathWindows = "\\\\" + seriesURL.toString().substring(6, seriesURL.toString().length() - 1);
+
+        moviePathWindows.replaceAll(Pattern.quote("/"),"Q");
+
+        File[] seriesImg = new File("D:\\Streaming\\StreamingService\\src\\sample\\resources\\seriesimg").listFiles();
+        File[] moviesImg = new File("D:\\Streaming\\StreamingService\\src\\sample\\resources\\movieimg").listFiles();
+
+
+        System.out.println(moviePath);
+        System.out.println(seriesPath);
+
+        System.out.println(moviePathWindows);
+        System.out.println(seriesPathWindows);
 
         List<File> images = new ArrayList<>(Arrays.asList(seriesImg));
         Collections.addAll(images, moviesImg);
@@ -92,18 +105,14 @@ public class OverviewController {
         Selections.setVisible(true);
     }
 
-    public void showSettings(ActionEvent event) {
-        closeAll();
-        Settings.setVisible(true);
-    }
-
     public void showUsers(ActionEvent event) {
         closeAll();
+        Users.setVisible(true);
     }
 
     public void closeAll() {
         Selections.setVisible(false);
-        Settings.setVisible(false);
+        Users.setVisible(false);
     }
 
     @FXML
@@ -112,6 +121,17 @@ public class OverviewController {
 
         List<Media> result = appController.fetchByName(searchString, "all");
 
+        updateView(result);
+    }
+
+    @FXML
+    public void showMyList(ActionEvent e) {
+        List<Media> result = new ArrayList<>();
+        List<String> titles = StateController.getUserList();
+
+        for (String title : titles) {
+            result.add(appController.fetchByName(title, "all").get(0));
+        }
         updateView(result);
     }
 
@@ -270,12 +290,13 @@ public class OverviewController {
         ColorAdjust colorAdjust = new ColorAdjust();
 
         ImageView imgView = new ImageView(img);
+
         gridPane.setHgap(5);
         gridPane.setVgap(5);
         gridPane.setPadding(new Insets(5, 5, 5, 5));
+
         imgView.setFitWidth(175);
         imgView.setFitHeight(250);
-
 
         GridPane.setConstraints(imgView, column, row);
         gridPane.getChildren().add(imgView);
@@ -285,7 +306,6 @@ public class OverviewController {
         onImageExit(imgView, colorAdjust);
 
         onImageClick(imgView);
-
     }
 
     private void onImageClick(ImageView imgView) {
