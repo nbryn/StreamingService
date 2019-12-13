@@ -13,8 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class MediaViewController
-{
+public class MediaViewController {
     private AppController appController;
 
     private String currentUser;
@@ -43,7 +42,7 @@ public class MediaViewController
         List<Media> result = appController.fetchByName(mediaTitle, "all");
 
         Media media = result.get(0);
-        mediaType = media instanceof Movie ? "Movie" :  "Series";
+        mediaType = media instanceof Movie ? "Movie" : "Series";
 
         title.setText(media.getTitle());
         rating.setText("Rating: " + media.getRating());
@@ -54,12 +53,15 @@ public class MediaViewController
     }
 
     public void addToList() {
+        boolean success;
 
-        appController.addToUserList(currentUser, mediaType, mediaTitle);
+        success = appController.addToUserList(currentUser, mediaType, mediaTitle);
     }
 
     public void removeFromList() {
-        appController.removeFromUserList(currentUser, mediaType, mediaTitle);
+        boolean success;
+
+        success = appController.removeFromUserList(currentUser, mediaType, mediaTitle);
     }
 
     public void loadOverview() throws IOException {
