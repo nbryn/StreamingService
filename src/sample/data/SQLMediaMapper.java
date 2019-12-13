@@ -77,11 +77,10 @@ public class SQLMediaMapper implements MediaMapper {
 
     @Override
     public List<Media> getUserList(String username) {
-        int userID = getUserID(username);
         List<Integer> movieIDs, seriesIDs = null;
         List<Media> userMedia = null;
-        ResultSet movieResults = dataBase.sendStatement("SELECT * FROM myMovieList WHERE user_id = '" + userID + "';");
-        ResultSet seriesResults = dataBase.sendStatement("SELECT * FROM mySeriesList WHERE user_id = '" + userID + "';");
+        ResultSet movieResults = dataBase.sendStatement("SELECT * FROM myMovieList WHERE user_id = (SELECT user_id FROM users WHERE username = '" + username + "');");
+        ResultSet seriesResults = dataBase.sendStatement("SELECT * FROM mySeriesList WHERE user_id = (SELECT user_id FROM users WHERE username = '" + username + "');");
         movieIDs = getMediaIDs(seriesResults,"movie_id");
         seriesIDs = getMediaIDs(movieResults,"series_id");
         userMedia = getMediaByID(movieIDs, "movie");
