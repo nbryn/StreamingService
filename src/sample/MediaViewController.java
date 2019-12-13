@@ -97,7 +97,7 @@ public class MediaViewController {
         addToListButton.setVisible(false);
         removeFromListButton.setVisible(true);
 
-        StateController.addToList(mediaTitle);
+        //StateController.addToList(mediaTitle);
     }
 
     public void removeFromList() {
@@ -105,7 +105,7 @@ public class MediaViewController {
         addToListButton.setVisible(true);
         removeFromListButton.setVisible(false);
 
-        StateController.removeFromList(mediaTitle);
+        //StateController.removeFromList(mediaTitle);
     }
 
     public void loadOverview() throws IOException {
