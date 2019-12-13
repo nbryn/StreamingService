@@ -56,39 +56,15 @@ public class MediaViewController {
     }
 
     public void initialize() {
-        StringBuilder sb = new StringBuilder("");
         List<Media> result = appController.fetchByName(mediaTitle, "all");
-
         Media media = result.get(0);
-        mediaType = media instanceof Movie ? "Movie" : "Series";
 
-        title.setText(media.getTitle());
-        rating.setText("Rating: " + media.getRating());
-        List<String> genres = media.getGenre();
-        genres.forEach(element -> sb.append(element + ", "));
-        sb.deleteCharAt(sb.length() - 2);
-        genre.setText("Genre: " + sb.toString());
-
-        List<File> images = StateController.allImages;
-
-        images.forEach(img -> {
-            String path = img.getPath();
-          if (mediaTitle.equalsIgnoreCase(path.substring(path.lastIndexOf("/") + 1, path.length()-4))) {
-              Image image = new Image(img.toURI().toString());
-              mediaImage.setImage(image);
-            }
-        });
+        setMedia(media);
+        setImage();
+        modifyButton();
 
         addToListButton.setVisible(true);
 
-        List<Media> userList = appController.fetchUserList(currentUser);
-
-        userList.forEach(element -> {
-            if (mediaTitle.equalsIgnoreCase(element.getTitle())) {
-                addToListButton.setVisible(false);
-                removeFromListButton.setVisible(true);
-            }
-        });
 
 //        for (String title : StateController.getUserList()) {
 //            if (mediaTitle.equalsIgnoreCase(title)) {
@@ -99,8 +75,7 @@ public class MediaViewController {
     }
 
 
-    public void addToList(ActionEvent event)
-    {
+    public void addToList(ActionEvent event) {
 
         appController.addToUserList(currentUser, mediaType, mediaTitle);
         addToListButton.setVisible(false);
@@ -119,5 +94,40 @@ public class MediaViewController {
 
     public void loadOverview() throws IOException {
         SceneController.changeScene("OverviewScene.fxml");
+    }
+
+    private void setMedia(Media media) {
+        StringBuilder sb = new StringBuilder("");
+        mediaType = media instanceof Movie ? "Movie" : "Series";
+
+        title.setText(media.getTitle());
+        rating.setText("Rating: " + media.getRating());
+        List<String> genres = media.getGenre();
+        genres.forEach(element -> sb.append(element + ", "));
+        sb.deleteCharAt(sb.length() - 2);
+        genre.setText("Genre: " + sb.toString());
+    }
+
+    private void setImage() {
+        List<File> images = StateController.allImages;
+
+        images.forEach(img -> {
+            String path = img.getPath();
+            if (mediaTitle.equalsIgnoreCase(path.substring(path.lastIndexOf("/") + 1, path.length() - 4))) {
+                Image image = new Image(img.toURI().toString());
+                mediaImage.setImage(image);
+            }
+        });
+    }
+
+    private void modifyButton() {
+        List<Media> userList = appController.fetchUserList(currentUser);
+
+        userList.forEach(element -> {
+            if (mediaTitle.equalsIgnoreCase(element.getTitle())) {
+                addToListButton.setVisible(false);
+                removeFromListButton.setVisible(true);
+            }
+        });
     }
 }

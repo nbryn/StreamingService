@@ -1,10 +1,13 @@
 package sample;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import sample.data.SQLMediaMapper;
 import sample.data.SQLUserMapper;
@@ -34,10 +37,19 @@ public class RegisterController
     private PasswordField passwordRepeatField;
 
     @FXML
+    private Button registerButton;
+
+    @FXML
     private Button errorButton;
 
     public RegisterController() {
         appController = new AppController(new SQLUserMapper(), new SQLMediaMapper());
+    }
+
+    public void initialize() {
+        onButtonHover(registerButton);
+        onButtonExit(registerButton);
+
     }
 
     public void register(ActionEvent event) throws IOException {
@@ -73,10 +85,32 @@ public class RegisterController
         SceneController.changeScene("LoginScene.fxml");
     }
 
-    public void setErrorMessage(String errorMessage)
+    private void setErrorMessage(String errorMessage)
     {
         errorButton.setFont(Font.font(25));
         errorButton.setText(errorMessage);
         errorButton.setVisible(true);
+    }
+
+    private void onButtonHover(Button button) {
+        button.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                ColorAdjust colorAdjust = new ColorAdjust();
+                colorAdjust.setBrightness(-0.5);
+                button.setEffect(colorAdjust);
+            }
+        });
+    }
+
+    private void onButtonExit(Button button) {
+        button.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                ColorAdjust colorAdjust = new ColorAdjust();
+                colorAdjust.setBrightness(0.0);
+                button.setEffect(colorAdjust);
+            }
+        });
     }
 }
