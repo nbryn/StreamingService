@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import sample.data.SQLMediaMapper;
 import sample.data.SQLUserMapper;
 import sample.logic.AppController;
@@ -20,6 +22,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class MediaViewController {
+
     private AppController appController;
 
     private String currentUser;
@@ -36,6 +39,9 @@ public class MediaViewController {
 
     @FXML
     private Label genre;
+
+    @FXML
+    private ImageView mediaImage;
 
     @FXML
     private Button addToListButton;
@@ -62,6 +68,16 @@ public class MediaViewController {
         genres.forEach(element -> sb.append(element + ", "));
         sb.deleteCharAt(sb.length() - 2);
         genre.setText("Genre: " + sb.toString());
+
+        List<File> images = StateController.allImages;
+
+        images.forEach(img -> {
+            String path = img.getPath();
+          if (mediaTitle.equalsIgnoreCase(path.substring(path.lastIndexOf("/") + 1, path.length()-4))) {
+              Image image = new Image(img.toURI().toString());
+              mediaImage.setImage(image);
+            }
+        });
 
         addToListButton.setVisible(true);
 

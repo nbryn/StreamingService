@@ -23,7 +23,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <ImageView fx:id="MoviePoster" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS" />
+                  <ImageView fx:id="mediaImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS" />
                   <Label fx:id="genre" alignment="CENTER" text="Genre:" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font size="20.0" />

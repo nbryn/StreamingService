@@ -80,9 +80,10 @@ public class OverviewController {
         File[] seriesImg = new File(seriesPath).listFiles();
         File[] moviesImg = new File(moviePath).listFiles();
 
-
         List<File> images = new ArrayList<>(Arrays.asList(seriesImg));
         Collections.addAll(images, moviesImg);
+
+        StateController.setImages(images);
 
         addToFileList(images, mediaList);
         generateView();
@@ -114,17 +115,16 @@ public class OverviewController {
 
     @FXML
     public void showMyList(ActionEvent e) {
+        List<Media> result = new ArrayList<>();
+        List<String> titles = StateController.getUserList();
 
-        List<Media> result = appController.fetchUserList(StateController.currentUser);
-
+        for (String title : titles) {
+            result.add(appController.fetchByName(title, "all").get(0));
+        }
         updateView(result);
 
-//        List<Media> result = new ArrayList<>();
-//        List<String> titles = StateController.getUserList();
+//        List<Media> result = appController.fetchUserList(StateController.currentUser);
 //
-//        for (String title : titles) {
-//            result.add(appController.fetchByName(title, "all").get(0));
-//        }
 //        updateView(result);
     }
 
