@@ -2,6 +2,7 @@ package sample.data;
 
 import sample.data.setup.H2DataBase;
 import sample.logic.entities.Media;
+import sample.logic.entities.Movie;
 import sample.logic.interfaces.MediaMapper;
 
 
@@ -77,14 +78,14 @@ public class SQLMediaMapper implements MediaMapper {
 
     @Override
     public List<Media> getUserList(String username) {
-        List<Integer> movieIDs, seriesIDs = null;
+        List<Integer> movieIDs = null, seriesIDs = null;
         List<Media> userMedia = null;
         ResultSet movieResults = dataBase.sendStatement("SELECT * FROM myMovieList WHERE user_id = (SELECT user_id FROM users WHERE username = '" + username + "');");
         ResultSet seriesResults = dataBase.sendStatement("SELECT * FROM mySeriesList WHERE user_id = (SELECT user_id FROM users WHERE username = '" + username + "');");
-        movieIDs = getMediaIDs(seriesResults,"movie_id");
-        seriesIDs = getMediaIDs(movieResults,"series_id");
+        movieIDs = getMediaIDs(movieResults,"movie_id");
+        seriesIDs = getMediaIDs(seriesResults,"series_id");
         userMedia = getMediaByID(movieIDs, "movie");
-        userMedia.addAll(getMediaByID(movieIDs,"series"));
+        userMedia.addAll(getMediaByID(seriesIDs,"series"));
         return userMedia;
 
     }
@@ -147,19 +148,21 @@ public class SQLMediaMapper implements MediaMapper {
         return mediaIDs;
     }
     private List<Media> getMediaByID (List<Integer> mediaIDs, String media){
-        List<Media> mediaList = null;
+        List<Media> mediaList = new ArrayList<>();
         if (media.equalsIgnoreCase("movie")){
             for (int mediaID: mediaIDs){
                 List<Media> mediaTemp = null;
                 mediaTemp = dataBase.getMovies("SELECT * FROM movies where movie_id = '" + mediaID + "';");
-                mediaList.add(mediaTemp.get(0));
+                Media movie = mediaTemp.get(0);
+                mediaList.add(movie);
             }
         }
         if (media.equalsIgnoreCase("series")){
             for (int mediaID: mediaIDs){
                 List<Media> mediaTemp = null;
-                mediaTemp = dataBase.getMovies("SELECT * FROM series where series_id = '" + mediaID + "';");
-                mediaList.add(mediaTemp.get(0));
+                mediaTemp = dataBase.getSeries("SELECT * FROM series where series_id = '" + mediaID + "';");
+                Media series = mediaTemp.get(0);
+                mediaList.add(series);
             }
         }
         return mediaList;

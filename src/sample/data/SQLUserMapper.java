@@ -53,7 +53,7 @@ public class SQLUserMapper implements UserMapper {
                     if (media.equalsIgnoreCase("series")) dataBase.executeUpdate("INSERT INTO mySeriesList (user_id,series_id) VALUES " +
                             "((SELECT user_id FROM users WHERE username = '" + username + "'),(SELECT series_id FROM series WHERE name = '" + mediaTitle +"'));");
                     if (media.equalsIgnoreCase("movie")) dataBase.executeUpdate("INSERT INTO myMovieList (user_id,movie_id) VALUES " +
-                            "((SELECT user_id FROM users WHERE username = '" + username + "'),(SELECT movie_id FROM series WHERE name = '" + mediaTitle +"'));");
+                            "((SELECT user_id FROM users WHERE username = '" + username + "'),(SELECT movie_id FROM movies WHERE name = '" + mediaTitle +"'));");
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
