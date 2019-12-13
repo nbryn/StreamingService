@@ -2,7 +2,6 @@ package sample.logic.interfaces;
 
 import sample.logic.entities.Media;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface MediaMapper {

@@ -65,7 +65,7 @@ public class OverviewController {
         showAll(new ActionEvent());
 
         comboBox.getItems().removeAll(comboBox.getItems());
-        comboBox.getItems().addAll("Movies", "Series", "Release > 2000", "Rating > 8");
+        comboBox.getItems().addAll("Movies", "Series", "Rating", "Release", "Release > 2000", "Rating > 8");
     }
 
     public void updateView(List<Media> mediaList) {
@@ -215,6 +215,15 @@ public class OverviewController {
 
         switch (sortBy) {
 
+            case "Series":
+                showAllSeries(event);
+                break;
+
+            case "Movies":
+                showAllMovies(event);
+                break;
+
+
             case "Release > 2000":
                 result = appController.fetchReleaseAfter(2000, "all");
                 updateView(result);
@@ -225,13 +234,7 @@ public class OverviewController {
                 updateView(result);
                 break;
 
-            case "Series":
-                showAllSeries(event);
-                break;
 
-            case "Movies":
-                showAllMovies(event);
-                break;
         }
     }
 

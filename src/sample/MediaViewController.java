@@ -19,8 +19,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class MediaViewController
-{
+public class MediaViewController {
     private AppController appController;
 
     private String currentUser;
@@ -55,7 +54,7 @@ public class MediaViewController
         List<Media> result = appController.fetchByName(mediaTitle, "all");
 
         Media media = result.get(0);
-        mediaType = media instanceof Movie ? "Movie" :  "Series";
+        mediaType = media instanceof Movie ? "Movie" : "Series";
 
         title.setText(media.getTitle());
         rating.setText("Rating: " + media.getRating());
@@ -64,7 +63,7 @@ public class MediaViewController
         sb.deleteCharAt(sb.length() - 2);
         genre.setText("Genre: " + sb.toString());
     }
-
+    
     public void addToList(ActionEvent event)
     {
         appController.addToUserList(currentUser, mediaType, mediaTitle);
@@ -72,8 +71,7 @@ public class MediaViewController
         removeFromListButton.setVisible(true);
     }
 
-    public void removeFromList()
-    {
+    public void removeFromList() {
         appController.removeFromUserList(currentUser, mediaType, mediaTitle);
         addToListButton.setVisible(true);
         removeFromListButton.setVisible(false);
