@@ -50,6 +50,15 @@ public class OverviewController {
     @FXML
     private VBox Users;
 
+    @FXML
+    private Button userButton;
+
+
+    @FXML
+    private Button genreButton;
+
+
+
     public OverviewController() {
         appController = new AppController(new SQLUserMapper(), new SQLMediaMapper());
         fileList = new ArrayList<>();
@@ -60,8 +69,15 @@ public class OverviewController {
         allMedia = appController.fetchAll("all");
         showAll(new ActionEvent());
 
+        onButtonHover(userButton);
+        onButtonExit(userButton);
+
+        onButtonHover(genreButton);
+        onButtonExit(genreButton);
+
         comboBox.getItems().removeAll(comboBox.getItems());
         comboBox.getItems().addAll("Movies", "Series", "Release > 2000", "Rating > 8");
+
     }
 
     public void updateView(List<Media> mediaList) {
@@ -115,17 +131,17 @@ public class OverviewController {
 
     @FXML
     public void showMyList(ActionEvent e) {
-        List<Media> result = new ArrayList<>();
-        List<String> titles = StateController.getUserList();
-
-        for (String title : titles) {
-            result.add(appController.fetchByName(title, "all").get(0));
-        }
-        updateView(result);
-
-//        List<Media> result = appController.fetchUserList(StateController.currentUser);
+//        List<Media> result = new ArrayList<>();
+//        List<String> titles = StateController.getUserList();
 //
+//        for (String title : titles) {
+//            result.add(appController.fetchByName(title, "all").get(0));
+//        }
 //        updateView(result);
+
+        List<Media> result = appController.fetchUserList(StateController.currentUser);
+
+        updateView(result);
     }
 
     public void showAll(ActionEvent event) {
@@ -316,6 +332,29 @@ public class OverviewController {
 
         });
     }
+
+    private void onButtonHover(Button button) {
+        button.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                ColorAdjust colorAdjust = new ColorAdjust();
+                colorAdjust.setBrightness(-0.5);
+                button.setEffect(colorAdjust);
+            }
+        });
+    }
+
+    private void onButtonExit(Button button) {
+        button.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                ColorAdjust colorAdjust = new ColorAdjust();
+                colorAdjust.setBrightness(0.0);
+                button.setEffect(colorAdjust);
+            }
+        });
+    }
+
 
     private void onImageHover(ImageView imgView, ColorAdjust colorAdjust) {
         imgView.setOnMouseEntered(new EventHandler<MouseEvent>() {

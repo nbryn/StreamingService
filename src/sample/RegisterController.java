@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Font;
 import sample.data.SQLMediaMapper;
@@ -47,10 +46,14 @@ public class RegisterController
         String birthday = birthdayField.getText().trim();
         String password = passwordField.getText().trim();
         String repeatPassword = passwordRepeatField.getText().trim();
+        
+        if (fullName.isEmpty() || email.isEmpty() || birthday.isEmpty() || password.isEmpty() || password.isEmpty()) {
+            setErrorMessage("Please fill all fields");
+        }
 
         if(!password.equals(repeatPassword))
         {
-            wrongUser("Passwords does not match");
+            setErrorMessage("Passwords does not match");
 
         } else {
             User user = new User(fullName, birthday, email, password);
@@ -61,7 +64,7 @@ public class RegisterController
 
             if(!success)
             {
-                wrongUser("Email already exist");
+                setErrorMessage("Email already exist");
             }
         }
     }
@@ -70,7 +73,7 @@ public class RegisterController
         SceneController.changeScene("LoginScene.fxml");
     }
 
-    public void wrongUser(String errorMessage)
+    public void setErrorMessage(String errorMessage)
     {
         errorButton.setFont(Font.font(25));
         errorButton.setText(errorMessage);
