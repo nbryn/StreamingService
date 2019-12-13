@@ -90,6 +90,14 @@ public class AppController {
         return result;
     }
 
+    public List<Media> fetchUserList(String username) {
+        List<Media> result = null;
+
+        result = mediaMapper.getUserList(username);
+
+        return result;
+    }
+
     public boolean addToUserList(String username, String media, String mediaTitle) {
         boolean success = false;
         try {
