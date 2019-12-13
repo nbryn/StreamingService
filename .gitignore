@@ -1,6 +1,6 @@
-mem.h2.db
-mem.lock.db
-mem.trace.db
+/*.h2.db
+/*.lock.db
+/*.trace.db
 
 .mtj.tmp/
 *.class
