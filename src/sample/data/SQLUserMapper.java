@@ -109,7 +109,7 @@ public class SQLUserMapper implements UserMapper {
         }
     }
     private String getUserID(String username){
-        ResultSet results = dataBase.sendStatement("SELECT * FROM users WHERE username = '" + username +"';");
+        ResultSet results = dataBase.sendStatement("SELECT * FROM users WHERE 'username' = " + username +";");
         if (results != null) {
             try {
                 return results.getString("username");
