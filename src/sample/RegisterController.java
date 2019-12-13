@@ -32,7 +32,7 @@ public class RegisterController
     private TextField passwordField;
 
     @FXML
-    private TextField repeatPasswordField;
+    private TextField passwordRepeatField;
 
     public RegisterController() {
         appController = new AppController(new SQLUserMapper(), new SQLMediaMapper());
@@ -43,7 +43,7 @@ public class RegisterController
         String email = emailField.getText().trim();
         String birthday = birthdayField.getText().trim();
         String password = passwordField.getText().trim();
-        String repeatPassword = repeatPasswordField.getText().trim();
+        String repeatPassword = passwordRepeatField.getText().trim();
 
         if(!password.equals(repeatPassword)) {
             setOutput("Passwords Does Not Match");

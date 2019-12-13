@@ -41,15 +41,12 @@ public class H2DataBase {
         return resultSet;
     }
 
-    public void executeUpdate(String query) {
+    public void executeUpdate(String query) throws SQLException {
         PreparedStatement preparedStatement;
 
-        try {
-            preparedStatement = SQL.preparedStatement(query);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        preparedStatement = SQL.preparedStatement(query);
+        preparedStatement.executeUpdate();
+
     }
 
     public List<Media> getMovies(String query) {

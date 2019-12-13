@@ -46,7 +46,7 @@ public class MediaViewController
         mediaType = media instanceof Movie ? "Movie" :  "Series";
 
         title.setText(media.getTitle());
-        rating.setText("Rating: " + String.valueOf(media.getRating()));
+        rating.setText("Rating: " + media.getRating());
         List<String> genres = media.getGenre();
         genres.forEach(element -> sb.append(element + ", "));
         sb.deleteCharAt(sb.length() - 2);
@@ -54,6 +54,7 @@ public class MediaViewController
     }
 
     public void addToList() {
+
         appController.addToUserList(currentUser, mediaType, mediaTitle);
     }
 
