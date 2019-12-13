@@ -86,7 +86,6 @@ public class OverviewController {
         File[] seriesImg = new File("D:\\Streaming\\StreamingService\\src\\sample\\resources\\seriesimg").listFiles();
         File[] moviesImg = new File("D:\\Streaming\\StreamingService\\src\\sample\\resources\\movieimg").listFiles();
 
-
         System.out.println(moviePath);
         System.out.println(seriesPath);
 
@@ -160,7 +159,6 @@ public class OverviewController {
 
         updateView(movies);
     }
-
 
     @FXML
     public void showAction(ActionEvent event) {
@@ -253,8 +251,6 @@ public class OverviewController {
                 result = appController.fetchRatingOver(8, "all");
                 updateView(result);
                 break;
-
-
         }
     }
 

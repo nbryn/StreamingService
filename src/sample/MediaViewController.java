@@ -71,7 +71,7 @@ public class MediaViewController {
             }
         }
     }
-    
+
     public void addToList(ActionEvent event)
     {
         appController.addToUserList(currentUser, mediaType, mediaTitle);
