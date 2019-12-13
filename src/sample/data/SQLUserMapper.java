@@ -65,10 +65,10 @@ public class SQLUserMapper implements UserMapper {
         try {
 
             if (media.equalsIgnoreCase("movie")) {
-                dataBase.executeUpdate("DELETE FROM myMovieList WHERE user_id = (SELECT user_id FROM users WHERE username = '" + username + "') AND WHERE (SELECT movie_id FROM series WHERE name = '" + mediaTitle +"');");
+                dataBase.executeUpdate("DELETE FROM myMovieList WHERE user_id = (SELECT user_id FROM users WHERE username = '" + username + "') AND movie_id = (SELECT movie_id FROM movies WHERE name = '" + mediaTitle +"');");
             }
             if (media.equalsIgnoreCase("series")) {
-                dataBase.executeUpdate("DELETE FROM mySeriesList WHERE user_id = (SELECT user_id FROM users WHERE username = '" + username + "') AND WHERE series_id = (SELECT series_id FROM series WHERE name = '" + mediaTitle +"');");
+                dataBase.executeUpdate("DELETE FROM mySeriesList WHERE user_id = (SELECT user_id FROM users WHERE username = '" + username + "') AND series_id = (SELECT series_id FROM series WHERE name = '" + mediaTitle +"');");
             }
         } catch (SQLException e) {
             throw new UserListException();
