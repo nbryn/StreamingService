@@ -83,8 +83,8 @@ public class OverviewController {
 
         moviePathWindows.replaceAll(Pattern.quote("/"),"Q");
 
-        File[] seriesImg = new File("D:\\Streaming\\StreamingService\\src\\sample\\resources\\seriesimg").listFiles();
-        File[] moviesImg = new File("D:\\Streaming\\StreamingService\\src\\sample\\resources\\movieimg").listFiles();
+        File[] seriesImg = new File(seriesPath).listFiles();
+        File[] moviesImg = new File(moviePath).listFiles();
 
 
         System.out.println(moviePath);
