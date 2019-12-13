@@ -1,15 +1,19 @@
 package sample;
 
+import javafx.beans.binding.DoubleBinding;
+import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.*;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
+import javafx.stage.Screen;
 import sample.data.SQLMediaMapper;
 import sample.data.SQLUserMapper;
 import sample.logic.AppController;
@@ -77,8 +81,8 @@ public class OverviewController {
         String moviePath = "/" + movieURL.toString().substring(6, movieURL.toString().length() - 1);
         String seriesPath = "/" + seriesURL.toString().substring(6, seriesURL.toString().length() - 1);
 
-        File[] seriesImg = new File(seriesPath).listFiles();
-        File[] moviesImg = new File(moviePath).listFiles();
+        File[] seriesImg = new File("D:\\Streaming\\StreamingService\\src\\sample\\resources\\seriesimg").listFiles();
+        File[] moviesImg = new File("D:\\Streaming\\StreamingService\\src\\sample\\resources\\movieimg").listFiles();
 
         List<File> images = new ArrayList<>(Arrays.asList(seriesImg));
         Collections.addAll(images, moviesImg);
@@ -267,9 +271,11 @@ public class OverviewController {
         ColorAdjust colorAdjust = new ColorAdjust();
 
         ImageView imgView = new ImageView(img);
+
         gridPane.setHgap(5);
         gridPane.setVgap(5);
         gridPane.setPadding(new Insets(5, 5, 5, 5));
+
         imgView.setFitWidth(175);
         imgView.setFitHeight(250);
 

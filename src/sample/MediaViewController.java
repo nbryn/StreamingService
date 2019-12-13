@@ -1,6 +1,8 @@
 package sample;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import sample.data.SQLMediaMapper;
@@ -11,6 +13,10 @@ import sample.logic.entities.Movie;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class MediaViewController
@@ -53,12 +59,23 @@ public class MediaViewController
         genre.setText("Genre: " + sb.toString());
     }
 
-    public void addToList() {
+    @FXML
+    private Button addToListButton;
+    @FXML
+    private Button removeFromListButton;
+
+    public void addToList(ActionEvent event)
+    {
         appController.addToUserList(currentUser, mediaType, mediaTitle);
+        addToListButton.setVisible(false);
+        removeFromListButton.setVisible(true);
     }
 
-    public void removeFromList() {
+    public void removeFromList()
+    {
         appController.removeFromUserList(currentUser, mediaType, mediaTitle);
+        addToListButton.setVisible(true);
+        removeFromListButton.setVisible(false);
     }
 
     public void loadOverview() throws IOException {

@@ -57,7 +57,7 @@
                   <Insets bottom="15.0" />
                </VBox.margin>
             </TextField>
-            <Button fx:id="registerButton" mnemonicParsing="false" onAction="#register" prefHeight="50.0" prefWidth="350.0" style="-fx-background-color: #00A3DA#d61a3c;" text="Register" textFill="#e9effd">
+            <Button fx:id="registerButton" mnemonicParsing="false" onAction="#register" prefHeight="50.0" prefWidth="350.0" style="-fx-background-color: #00A3DA#d61a3c;" text="Sign Up" textFill="#e9effd">
                <font>
                   <Font size="25.0" />
                </font>

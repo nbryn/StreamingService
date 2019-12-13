@@ -40,12 +40,12 @@
                   </Label>
                   <AnchorPane>
                      <children>
-                        <Button fx:id="addToList" alignment="CENTER" mnemonicParsing="false" onAction="#addToList" prefWidth="250.0" style="-fx-background-color: #00A3DA#d61a3c;" text="Add to list" textAlignment="CENTER" textFill="#e9effd">
+                        <Button fx:id="addToListButton" alignment="CENTER" mnemonicParsing="false" onAction="#addToList" prefWidth="250.0" style="-fx-background-color: #00A3DA#d61a3c;" text="Add to list" textAlignment="CENTER" textFill="#e9effd">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Button>
-                        <Button fx:id="removeFromList" alignment="CENTER" mnemonicParsing="false" onAction="#removeFromList" prefWidth="250.0" style="-fx-background-color: #00A3DA#d61a3c;" text="Remove from list" textAlignment="CENTER" textFill="#e9effd" visible="false">
+                        <Button fx:id="removeFromListButton" alignment="CENTER" mnemonicParsing="false" onAction="#removeFromList" prefWidth="250.0" style="-fx-background-color: #00A3DA#d61a3c;" text="Remove from list" textAlignment="CENTER" textFill="#e9effd" visible="false">
                            <font>
                               <Font size="20.0" />
                            </font>
