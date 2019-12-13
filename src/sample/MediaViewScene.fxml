@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -22,6 +23,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
+                  <ImageView fx:id="MoviePoster" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS" />
                   <Label fx:id="genre" alignment="CENTER" text="Genre:" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
