@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -22,6 +23,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
+                  <ImageView fx:id="MoviePoster" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS" />
                   <Label fx:id="genre" alignment="CENTER" text="Genre:" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
@@ -45,7 +47,7 @@
                               <Font size="20.0" />
                            </font>
                         </Button>
-                        <Button fx:id="removeFromListButton" alignment="CENTER" mnemonicParsing="false" onAction="#removeFromList" prefWidth="250.0" style="-fx-background-color: #00A3DA#d61a3c;" text="Remove from list" textAlignment="CENTER" textFill="#e9effd" visible="false">
+                        <Button fx:id="removeFromListButton" alignment="CENTER" mnemonicParsing="false" onAction="#removeFromList" prefWidth="250.0" style="-fx-background-color: #E53935;" text="Remove from list" textAlignment="CENTER" textFill="#e9effd" visible="false">
                            <font>
                               <Font size="20.0" />
                            </font>

@@ -67,15 +67,16 @@ public class MediaViewController {
 
         for (String title : StateController.getUserList()) {
             if (mediaTitle.equalsIgnoreCase(title)) {
-                System.out.println(title);
                 addToListButton.setVisible(false);
                 removeFromListButton.setVisible(true);
             }
         }
     }
-    
+
+
     public void addToList(ActionEvent event)
     {
+
         appController.addToUserList(currentUser, mediaType, mediaTitle);
         addToListButton.setVisible(false);
         removeFromListButton.setVisible(true);

@@ -21,7 +21,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 import java.net.URL;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 
@@ -72,21 +71,14 @@ public class OverviewController {
 
         String os = System.getProperty("os.name");
 
-
-
         URL movieURL = getClass().getResource("resources/movieimg");
         URL seriesURL = getClass().getResource("resources/seriesimg");
 
         String moviePath = "/" + movieURL.toString().substring(6, movieURL.toString().length() - 1);
         String seriesPath = "/" + seriesURL.toString().substring(6, seriesURL.toString().length() - 1);
 
-
         File[] seriesImg = new File(seriesPath).listFiles();
         File[] moviesImg = new File(moviePath).listFiles();
-
-
-        System.out.println(moviePath);
-        System.out.println(seriesPath);
 
 
         List<File> images = new ArrayList<>(Arrays.asList(seriesImg));
@@ -122,13 +114,18 @@ public class OverviewController {
 
     @FXML
     public void showMyList(ActionEvent e) {
-        List<Media> result = new ArrayList<>();
-        List<String> titles = StateController.getUserList();
 
-        for (String title : titles) {
-            result.add(appController.fetchByName(title, "all").get(0));
-        }
+        List<Media> result = appController.fetchUserList(StateController.currentUser);
+
         updateView(result);
+
+//        List<Media> result = new ArrayList<>();
+//        List<String> titles = StateController.getUserList();
+//
+//        for (String title : titles) {
+//            result.add(appController.fetchByName(title, "all").get(0));
+//        }
+//        updateView(result);
     }
 
     public void showAll(ActionEvent event) {
@@ -156,7 +153,6 @@ public class OverviewController {
 
         updateView(movies);
     }
-
 
     @FXML
     public void showAction(ActionEvent event) {
@@ -249,8 +245,6 @@ public class OverviewController {
                 result = appController.fetchRatingOver(8, "all");
                 updateView(result);
                 break;
-
-
         }
     }
 
