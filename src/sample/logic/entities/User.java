@@ -5,14 +5,13 @@ import java.util.List;
 
 public class User {
 
+    private int id;
     private String name;
     private String username;
     private String password;
     private String birthday;
-    private static int count;
-    private int id;
 
-    private List<Media> myList;
+    private List<Media> mediaList;
 
     public User(String name, String birthday, String username, String password) {
         this.name = name;
@@ -20,8 +19,17 @@ public class User {
         this.password = password;
         this.birthday = birthday;
 
-        id = count++;
-        myList = new ArrayList<>();
+        mediaList = new ArrayList<>();
+    }
+
+    public User(int id, String name, String birthday, String username, String password) {
+        this.id = id;
+        this.name = name;
+        this.username = username;
+        this.password = password;
+        this.birthday = birthday;
+
+        mediaList = new ArrayList<>();
     }
 
     public int getId() {
@@ -44,16 +52,16 @@ public class User {
         return this.birthday;
     }
 
-    public List<Media> getMyList() {
-        return this.myList;
+    public List<Media> getUserList() {
+        return this.mediaList;
     }
 
     public void addToList(Media media) {
-        myList.add(media);
+        mediaList.add(media);
     }
 
     public void removeFromList(Media media) {
-        myList.remove(media);
+        mediaList.remove(media);
     }
 
 }

@@ -96,21 +96,22 @@ public class AppController {
             userMapper.addToUserList(username, media, mediaTitle);
             success = true;
 
-
         } catch (UserListException e) {
-            success = false;
             return success;
         }
 
         return success;
     }
 
-    public void removeFromUserList(String username, String media, String mediaTitle) {
+    public boolean removeFromUserList(String username, String media, String mediaTitle) {
+        boolean success = false;
         try {
             userMapper.removeFromUserList(username, media, mediaTitle);
+            success = true;
 
         } catch (UserListException e) {
-            e.printStackTrace();
+            return success;
         }
+        return success;
     }
 }
