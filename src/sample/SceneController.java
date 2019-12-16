@@ -11,11 +11,11 @@ public class SceneController
 
     public static void changeScene(String sceneToGo) throws IOException
     {
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource(sceneToGo));
-        Main.setRoot(loader.load());
-        Scene scene = new Scene(Main.getRoot());
-        Main.getStage().setScene(scene);
-        Main.getStage().show();
+        FXMLLoader loader = new FXMLLoader(MainFX.class.getResource(sceneToGo));
+        MainFX.setRoot(loader.load());
+        Scene scene = new Scene(MainFX.getRoot());
+        MainFX.getStage().setScene(scene);
+        MainFX.getStage().show();
     }
 
 }

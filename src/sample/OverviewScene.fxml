@@ -58,7 +58,7 @@
                      <graphic>
                         <ImageView fx:id="userView" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@resources/Interface/User Icon.png" />
+                              <Image url="@../../resources/Interface/User Icon.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -70,7 +70,7 @@
                      <graphic>
                         <ImageView fx:id="optionView" fitHeight="30.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 500;">
                            <image>
-                              <Image url="@resources/Interface/Genre Icon.png" />
+                              <Image url="@../../resources/Interface/Genre Icon.png" />
                            </image>
                         </ImageView>
                      </graphic>

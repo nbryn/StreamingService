@@ -4,25 +4,40 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+
+
+import org.apache.commons.io.FileUtils;
 import sample.data.SQLMediaMapper;
 import sample.data.SQLUserMapper;
 import sample.logic.AppController;
+
 import sample.logic.entities.Media;
 import sample.logic.entities.Movie;
 import sample.logic.entities.Series;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.*;
+import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+import org.apache.commons.io.IOUtils;
 
 public class OverviewController {
 
@@ -58,14 +73,13 @@ public class OverviewController {
     private Button genreButton;
 
 
-
     public OverviewController() {
         appController = new AppController(new SQLUserMapper(), new SQLMediaMapper());
         fileList = new ArrayList<>();
         allMedia = new ArrayList<>();
     }
 
-    public void initialize() {
+    public void initialize() throws IOException, URISyntaxException {
         allMedia = appController.fetchAll("all");
         showAll(new ActionEvent());
 
@@ -80,29 +94,66 @@ public class OverviewController {
 
     }
 
-    public void updateView(List<Media> mediaList) {
+    public void updateView(List<Media> mediaList) throws IOException, URISyntaxException {
         fileList.clear();
-
         gridPane.getChildren().clear();
 
-        String os = System.getProperty("os.name");
+        //InputStream in = OverviewController.class.getResourceAsStream("/resources/movieimg/Fargo.jpg");
 
-        URL movieURL = getClass().getResource("resources/movieimg");
-        URL seriesURL = getClass().getResource("resources/seriesimg");
+        List<File> images = new ArrayList<>();
 
-        String moviePath = "/" + movieURL.toString().substring(6, movieURL.toString().length() - 1);
-        String seriesPath = "/" + seriesURL.toString().substring(6, seriesURL.toString().length() - 1);
+        URI uri = OverviewController.class.getResource("/resources/movieimg").toURI();
+        Path myPath;
+        FileSystem fileSystem = null;
+        if (uri.getScheme().equals("jar")) {
+            fileSystem = FileSystems.newFileSystem(uri, Collections.<String, Object>emptyMap());
+            myPath = fileSystem.getPath("/resources/movieimg");
 
-        File[] seriesImg = new File(seriesPath).listFiles();
-        File[] moviesImg = new File(moviePath).listFiles();
+        } else {
+            myPath = Paths.get(uri);
+        }
+        Stream<Path> walk = Files.walk(myPath, 1);
 
-        List<File> images = new ArrayList<>(Arrays.asList(seriesImg));
-        Collections.addAll(images, moviesImg);
+        walk.forEach(path -> {
+            try {
+
+                if (uri.getScheme().equals("jar")) {
+                    String paths = path.toString().substring(path.toString().lastIndexOf("/") + 1);
+                    System.out.println("HERE: " + paths);
+                    System.out.println(path.toString());
+                    InputStream in = OverviewController.class.getResourceAsStream(path.toString());
+
+                    File tempFile = File.createTempFile("...", "  " + paths);
+                    tempFile.deleteOnExit();
+
+                    FileUtils.copyInputStreamToFile(in, tempFile);
+                    images.add(tempFile);
+
+                } else {
+                    String paths = path.toString().substring(path.toString().lastIndexOf("/") + 1);
+                    InputStream in = OverviewController.class.getResourceAsStream(path.toString().substring(68));
+
+                    File tempFile = File.createTempFile("...", "  " + paths);
+                    tempFile.deleteOnExit();
+
+                    FileUtils.copyInputStreamToFile(in, tempFile);
+                    images.add(tempFile);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 
         StateController.setImages(images);
 
         addToFileList(images, mediaList);
+
         generateView();
+
+        if (uri.getScheme().equals("jar")) {
+            fileSystem.close();
+        }
+
     }
 
     public void showSelections(ActionEvent event) {
@@ -121,7 +172,7 @@ public class OverviewController {
     }
 
     @FXML
-    public void search(ActionEvent event) {
+    public void search(ActionEvent event) throws IOException, URISyntaxException {
         String searchString = searchTextField.getText().trim();
 
         List<Media> result = appController.fetchByName(searchString, "all");
@@ -130,28 +181,20 @@ public class OverviewController {
     }
 
     @FXML
-    public void showMyList(ActionEvent e) {
-//        List<Media> result = new ArrayList<>();
-//        List<String> titles = StateController.getUserList();
-//
-//        for (String title : titles) {
-//            result.add(appController.fetchByName(title, "all").get(0));
-//        }
-//        updateView(result);
-
+    public void showMyList(ActionEvent e) throws IOException, URISyntaxException {
         List<Media> result = appController.fetchUserList(StateController.currentUser);
 
         updateView(result);
     }
 
-    public void showAll(ActionEvent event) {
+    public void showAll(ActionEvent event) throws IOException, URISyntaxException {
         List<Media> result = appController.fetchAll("all");
 
         updateView(result);
     }
 
     @FXML
-    public void showAllSeries(ActionEvent event) {
+    public void showAllSeries(ActionEvent event) throws IOException, URISyntaxException {
         List<Media> series = allMedia
                 .stream()
                 .filter(media -> media instanceof Series)
@@ -161,7 +204,7 @@ public class OverviewController {
     }
 
     @FXML
-    public void showAllMovies(ActionEvent event) {
+    public void showAllMovies(ActionEvent event) throws IOException, URISyntaxException {
         List<Media> movies = allMedia
                 .stream()
                 .filter(media -> media instanceof Movie)
@@ -171,28 +214,28 @@ public class OverviewController {
     }
 
     @FXML
-    public void showAction(ActionEvent event) {
+    public void showAction(ActionEvent event) throws IOException, URISyntaxException {
         List<Media> result = appController.fetchAllFromGenre("Action", "all");
 
         updateView(result);
     }
 
     @FXML
-    public void showAdventure(ActionEvent event) {
+    public void showAdventure(ActionEvent event) throws IOException, URISyntaxException {
         List<Media> result = appController.fetchAllFromGenre("Adventure", "all");
 
         updateView(result);
     }
 
     @FXML
-    public void showCrime(ActionEvent event) {
+    public void showCrime(ActionEvent event) throws IOException, URISyntaxException {
         List<Media> result = appController.fetchAllFromGenre("Crime", "all");
 
         updateView(result);
     }
 
     @FXML
-    public void showComedy(ActionEvent event) {
+    public void showComedy(ActionEvent event) throws IOException, URISyntaxException {
         List<Media> result = appController.fetchAllFromGenre("Comedy", "all");
 
 
@@ -200,14 +243,14 @@ public class OverviewController {
     }
 
     @FXML
-    public void showDocumentary(ActionEvent event) {
+    public void showDocumentary(ActionEvent event) throws IOException, URISyntaxException {
         List<Media> result = appController.fetchAllFromGenre("Documentary", "all");
 
         updateView(result);
     }
 
     @FXML
-    public void showDrama(ActionEvent event) {
+    public void showDrama(ActionEvent event) throws IOException, URISyntaxException {
         List<Media> result = appController.fetchAllFromGenre("Drama", "all");
 
         updateView(result);
@@ -215,7 +258,7 @@ public class OverviewController {
 
 
     @FXML
-    public void showHorror(ActionEvent event) {
+    public void showHorror(ActionEvent event) throws IOException, URISyntaxException {
         List<Media> result = appController.fetchAllFromGenre("Horror", "all");
 
         updateView(result);
@@ -223,7 +266,7 @@ public class OverviewController {
 
 
     @FXML
-    public void showHistory(ActionEvent event) {
+    public void showHistory(ActionEvent event) throws IOException, URISyntaxException {
         List<Media> result = appController.fetchAllFromGenre("History", "all");
 
         updateView(result);
@@ -231,13 +274,13 @@ public class OverviewController {
 
 
     @FXML
-    public void showThriller(ActionEvent event) {
+    public void showThriller(ActionEvent event) throws IOException, URISyntaxException {
         List<Media> result = appController.fetchAllFromGenre("Thriller", "all");
 
         updateView(result);
     }
 
-    public void sort(ActionEvent event) {
+    public void sort(ActionEvent event) throws IOException, URISyntaxException {
         String sortBy = comboBox.getValue().toString();
         List<Media> result = null;
 
@@ -267,8 +310,10 @@ public class OverviewController {
     private void addToFileList(List<File> images, List<Media> mediaList) {
         for (File file : images) {
             for (Media media : mediaList) {
-                if (file.getName().equals(media.getTitle() + ".jpg")) {
-                    fileList.add(new File(file.toURI().toString()));
+                String url = file.getName().substring(file.getName().lastIndexOf("  ") + 2);
+                if (url.equalsIgnoreCase(media.getTitle() + ".jpg")) {
+                    System.out.println("HEJ");
+                    fileList.add(new File(file.toURI()));
                     mediaList.remove(media);
                     break;
                 }
@@ -292,7 +337,8 @@ public class OverviewController {
     }
 
     private void addImage(int index, int column, int row) {
-        Image img = new Image(String.valueOf(fileList.get(index)));
+        Image img = new Image(String.valueOf(fileList.get(index).toURI()));
+
         ColorAdjust colorAdjust = new ColorAdjust();
 
         ImageView imgView = new ImageView(img);
