@@ -15,29 +15,26 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
-
-import org.apache.commons.io.FileUtils;
 import sample.data.SQLMediaMapper;
 import sample.data.SQLUserMapper;
 import sample.logic.AppController;
-
 import sample.logic.entities.Media;
 import sample.logic.entities.Movie;
 import sample.logic.entities.Series;
 
-import java.io.*;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.*;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.apache.commons.io.IOUtils;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.io.*;
+import java.nio.file.*;
+
+import org.apache.commons.io.FileUtils;
+
 
 public class OverviewController {
 
@@ -46,6 +43,8 @@ public class OverviewController {
     private List<Media> allMedia;
 
     private List<File> fileList;
+
+    private List<File> images;
 
     @FXML
     private GridPane gridPane;
@@ -77,11 +76,11 @@ public class OverviewController {
         appController = new AppController(new SQLUserMapper(), new SQLMediaMapper());
         fileList = new ArrayList<>();
         allMedia = new ArrayList<>();
+        images = new ArrayList<>();
     }
 
     public void initialize() throws IOException, URISyntaxException {
         allMedia = appController.fetchAll("all");
-        showAll(new ActionEvent());
 
         onButtonHover(userButton);
         onButtonExit(userButton);
@@ -92,68 +91,22 @@ public class OverviewController {
         comboBox.getItems().removeAll(comboBox.getItems());
         comboBox.getItems().addAll("Movies", "Series", "Release > 2000", "Rating > 8");
 
-    }
-
-    public void updateView(List<Media> mediaList) throws IOException, URISyntaxException {
-        fileList.clear();
-        gridPane.getChildren().clear();
-
-        //InputStream in = OverviewController.class.getResourceAsStream("/resources/movieimg/Fargo.jpg");
-
-        List<File> images = new ArrayList<>();
-
-        URI uri = OverviewController.class.getResource("/resources/movieimg").toURI();
-        Path myPath;
-        FileSystem fileSystem = null;
-        if (uri.getScheme().equals("jar")) {
-            fileSystem = FileSystems.newFileSystem(uri, Collections.<String, Object>emptyMap());
-            myPath = fileSystem.getPath("/resources/movieimg");
-
-        } else {
-            myPath = Paths.get(uri);
-        }
-        Stream<Path> walk = Files.walk(myPath, 1);
-
-        walk.forEach(path -> {
-            try {
-
-                if (uri.getScheme().equals("jar")) {
-                    String paths = path.toString().substring(path.toString().lastIndexOf("/") + 1);
-                    System.out.println("HERE: " + paths);
-                    System.out.println(path.toString());
-                    InputStream in = OverviewController.class.getResourceAsStream(path.toString());
-
-                    File tempFile = File.createTempFile("...", "  " + paths);
-                    tempFile.deleteOnExit();
-
-                    FileUtils.copyInputStreamToFile(in, tempFile);
-                    images.add(tempFile);
-
-                } else {
-                    String paths = path.toString().substring(path.toString().lastIndexOf("/") + 1);
-                    InputStream in = OverviewController.class.getResourceAsStream(path.toString().substring(68));
-
-                    File tempFile = File.createTempFile("...", "  " + paths);
-                    tempFile.deleteOnExit();
-
-                    FileUtils.copyInputStreamToFile(in, tempFile);
-                    images.add(tempFile);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+        images.addAll(loadImages("/resources/movieimg"));
+        images.addAll(loadImages("/resources/seriesimg"));
 
         StateController.setImages(images);
 
-        addToFileList(images, mediaList);
+        showAll(new ActionEvent());
+
+    }
+
+    public void updateView(List<Media> mediaList) {
+        fileList.clear();
+        gridPane.getChildren().clear();
+
+        addToFileList(mediaList);
 
         generateView();
-
-        if (uri.getScheme().equals("jar")) {
-            fileSystem.close();
-        }
-
     }
 
     public void showSelections(ActionEvent event) {
@@ -307,12 +260,16 @@ public class OverviewController {
         }
     }
 
-    private void addToFileList(List<File> images, List<Media> mediaList) {
+    public void logOut(ActionEvent event) throws IOException {
+        SceneController.changeScene("LoginScene.fxml");
+    }
+
+    private void addToFileList(List<Media> mediaList) {
         for (File file : images) {
             for (Media media : mediaList) {
                 String url = file.getName().substring(file.getName().lastIndexOf("  ") + 2);
+                System.out.println(file.getName());
                 if (url.equalsIgnoreCase(media.getTitle() + ".jpg")) {
-                    System.out.println("HEJ");
                     fileList.add(new File(file.toURI()));
                     mediaList.remove(media);
                     break;
@@ -422,7 +379,49 @@ public class OverviewController {
         });
     }
 
-    public void logOut(ActionEvent event) throws IOException {
-        SceneController.changeScene("LoginScene.fxml");
+
+    private List<File> loadImages(String resource) throws IOException, URISyntaxException {
+        List<File> images = new ArrayList<>();
+
+        URI uri = OverviewController.class.getResource(resource).toURI();
+        Path myPath;
+        FileSystem fileSystem = null;
+        if (uri.getScheme().equals("jar")) {
+            fileSystem = FileSystems.newFileSystem(uri, Collections.<String, Object>emptyMap());
+            myPath = fileSystem.getPath(resource);
+
+        } else {
+            myPath = Paths.get(uri);
+        }
+        Stream<Path> paths = Files.walk(myPath, 1);
+
+        paths.forEach(path -> {
+            String url = path.toString().substring(path.toString().lastIndexOf("/") + 1);
+            InputStream in;
+            File tempFile;
+            try {
+                if (uri.getScheme().equals("jar")) {
+                    in = OverviewController.class.getResourceAsStream(path.toString());
+                } else {
+                    String normalURL = path.toString().substring(68);
+                    in = OverviewController.class.getResourceAsStream(normalURL);
+                }
+                tempFile = File.createTempFile("...", "  " + url);
+                tempFile.deleteOnExit();
+
+                if (!url.equalsIgnoreCase("movieimg") && !url.equalsIgnoreCase("seriesimg")) {
+                    FileUtils.copyInputStreamToFile(in, tempFile);
+
+                    images.add(tempFile);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        if (uri.getScheme().equals("jar")) {
+            fileSystem.close();
+        }
+        return images;
     }
 }
