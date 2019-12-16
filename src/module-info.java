@@ -5,6 +5,6 @@ module javafx
     requires java.sql;
     requires org.apache.commons.io;
 
-    opens sample;
+    opens streaming;
 
 }
