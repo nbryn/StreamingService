@@ -6,7 +6,6 @@ module javafx
     requires javafx.swt;
     requires javafx.base;
     requires javafx.media;
-    requires javafx.web;
     requires javafx.swing;
     requires java.sql;
     requires org.apache.commons.io;
