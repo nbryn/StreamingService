@@ -10,7 +10,7 @@
    <center>
       <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                <children>
                   <Label fx:id="title" alignment="CENTER" text="Title" textAlignment="CENTER" textFill="WHITE" VBox.vgrow="ALWAYS">
                      <font>
@@ -20,7 +20,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <ImageView fx:id="mediaImage" fitHeight="321.0" fitWidth="241.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+                  <ImageView fx:id="mediaImage" fitHeight="264.0" fitWidth="197.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin></ImageView>
@@ -73,7 +73,7 @@
                      </VBox.margin>
                   </Button>
 
-                  <AnchorPane maxWidth="-Infinity" prefHeight="250.0">
+                  <AnchorPane maxWidth="-Infinity" prefWidth="250.0">
                      <children>
                         <Button fx:id="addToListButton" alignment="CENTER" mnemonicParsing="false" onAction="#addToList" prefWidth="250.0" style="-fx-background-color: #00da37;" text="Add to list" textAlignment="CENTER" textFill="#e9effd" visible="false">
                            <font>

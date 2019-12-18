@@ -23,6 +23,10 @@ public abstract class Media {
         return this.title;
     }
 
+    public void addGenre(String genre) {
+        genres.add(genre);
+    }
+
     public List<String> getGenre() {
         return this.genres;
     }
@@ -35,7 +39,5 @@ public abstract class Media {
         return this.rating;
     }
 
-    public void addGenre(String genre) {
-        genres.add(genre);
-    }
+
 }
