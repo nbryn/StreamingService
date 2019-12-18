@@ -86,7 +86,6 @@ public class SQLDataScript {
                         "('From Here To Eternity', '1953', 'Drama, Romance, War', '7.7')," +
                         "('Saving Private Ryan', '1998', 'Drama, War', '8.6')," +
                         "('Unforgiven', '1992', 'Drama, Western', '8.2')," +
-                        "('Raiders Of The Lost Ark', '1981', 'Action, Adventure', '8.5')," +
                         "('Rocky', '1976', 'Drama, Sport', '8.1')," +
                         "('A Streetcar Named Desire', '1951', 'Drama', '8.0')," +
                         "('A Philadelphia Story', '1940', 'Comedy, Romance', '8.0')," +

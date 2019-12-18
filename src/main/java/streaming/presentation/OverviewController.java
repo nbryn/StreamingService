@@ -1,4 +1,4 @@
-package streaming;
+package streaming.presentation;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -267,7 +267,7 @@ public class OverviewController {
     }
 
     public void logOut(ActionEvent event) throws IOException {
-        SceneController.changeScene("LoginScene.fxml");
+        SceneController.changeScene("/LoginScene.fxml");
     }
 
     private void addToFileList(List<Media> mediaList) {

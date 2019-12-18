@@ -1,9 +1,9 @@
-package streaming;
+package streaming.presentation;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import streaming.MainFX;
+import streaming.presentation.MainFX;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package streaming;
+package streaming.presentation;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

@@ -1,4 +1,4 @@
-package streaming;
+package streaming.presentation;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -72,7 +72,7 @@ public class RegisterController
 
             boolean success = appController.registerUser(user);
 
-            SceneController.changeScene("LoginScene.fxml");
+            SceneController.changeScene("/LoginScene.fxml");
 
             if(!success)
             {
@@ -82,7 +82,7 @@ public class RegisterController
     }
 
     public void back(ActionEvent event) throws IOException {
-        SceneController.changeScene("LoginScene.fxml");
+        SceneController.changeScene("/LoginScene.fxml");
     }
 
     private void setErrorMessage(String errorMessage)

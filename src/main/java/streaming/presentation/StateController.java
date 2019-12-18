@@ -1,4 +1,4 @@
-package streaming;
+package streaming.presentation;
 
 import streaming.logic.entities.Media;
 

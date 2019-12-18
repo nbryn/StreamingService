@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #131313;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="streaming.LoginController">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: #131313;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="streaming.presentation.LoginController">
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
@@ -42,7 +42,7 @@
                </VBox.margin>
             </PasswordField>
 
-            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#login" prefHeight="50.0" prefWidth="350.0" style="-fx-background-color: #00A3DA#d61a3c;" text="Log ind" textAlignment="CENTER" textFill="#e9effd">
+            <Button fx:id="loginButton" mnemonicParsing="false" onAction="#login" prefHeight="50.0" prefWidth="350.0" style="-fx-background-color: #00A3DA#d61a3c;" text="Sign In" textAlignment="CENTER" textFill="#e9effd">
 =======
 
                <font>
@@ -53,7 +53,7 @@
                </VBox.margin>
             </Button>
 
-            <Hyperlink onAction="#register" text="New Account" textFill="#e9effd">
+            <Hyperlink onAction="#register" text="Register" textFill="#e9effd">
 =======
 
                <font>
