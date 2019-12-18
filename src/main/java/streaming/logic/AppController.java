@@ -44,7 +44,7 @@ public class AppController {
     }
 
     public List<Media> fetchAll(String media) {
-        List<Media> result = null;
+        List<Media> result;
 
         if (media.equalsIgnoreCase("all")) {
             result = mediaMapper.getAll();
@@ -59,7 +59,7 @@ public class AppController {
     }
 
     public List<Media> fetchAllFromGenre(String genre, String media) {
-        List<Media> result = null;
+        List<Media> result;
 
         result = mediaMapper.getAllFromGenre(genre, media);
 
@@ -67,7 +67,7 @@ public class AppController {
     }
 
     public List<Media> fetchRatingOver(double rating, String media) {
-        List<Media> result = null;
+        List<Media> result;
 
         result = mediaMapper.getByRating(rating, media);
 
@@ -75,7 +75,7 @@ public class AppController {
     }
 
     public List<Media> fetchByName(String name, String media) {
-        List<Media> result = null;
+        List<Media> result;
 
         result = mediaMapper.getByName(name, media);
 
@@ -91,7 +91,7 @@ public class AppController {
     }
 
     public List<Media> fetchUserList(String username) {
-        List<Media> result = null;
+        List<Media> result;
 
         result = mediaMapper.getUserList(username);
 
