@@ -17,8 +17,7 @@ import streaming.logic.entities.User;
 import java.io.IOException;
 
 
-public class RegisterController
-{
+public class RegisterController {
     private AppController appController;
 
     @FXML
@@ -58,14 +57,11 @@ public class RegisterController
         String birthday = birthdayField.getText().trim();
         String password = passwordField.getText().trim();
         String repeatPassword = passwordRepeatField.getText().trim();
-        
+
         if (fullName.isEmpty() || email.isEmpty() || birthday.isEmpty() || password.isEmpty() || password.isEmpty()) {
             setErrorMessage("Please fill all fields");
-        }
-
-        if(!password.equals(repeatPassword))
-        {
-            setErrorMessage("Passwords does not match");
+        } else if (!password.equals(repeatPassword)) {
+            setErrorMessage("Passwords must match");
 
         } else {
             User user = new User(fullName, birthday, email, password);
@@ -74,8 +70,7 @@ public class RegisterController
 
             SceneController.changeScene("/LoginScene.fxml");
 
-            if(!success)
-            {
+            if (!success) {
                 setErrorMessage("Email already exist");
             }
         }
@@ -85,8 +80,7 @@ public class RegisterController
         SceneController.changeScene("/LoginScene.fxml");
     }
 
-    private void setErrorMessage(String errorMessage)
-    {
+    private void setErrorMessage(String errorMessage) {
         errorButton.setFont(Font.font(25));
         errorButton.setText(errorMessage);
         errorButton.setVisible(true);

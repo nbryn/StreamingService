@@ -14,7 +14,7 @@
                   <Font size="96.0" />
                </font>
             </Text>
-            <Button fx:id="errorButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="0.0" prefWidth="350.0" style="-fx-background-color: #E53935;" text="Email or password is wrong" textAlignment="CENTER" textFill="#e9effd" visible="false">
+            <Button fx:id="errorButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" prefHeight="0.0" prefWidth="350.0" style="-fx-background-color: #E53935;" text="Wrong Email/Password" textAlignment="CENTER" textFill="#e9effd" visible="false">
                <font>
                   <Font size="1.0" />
                </font>
