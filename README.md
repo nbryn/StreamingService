@@ -14,7 +14,7 @@ Desktop app where you can create an user and afterwards browse various movies an
 <li> JavaFX - </li>
 <li> H2 - SQL engine used as for the app. </li>
 <li> JUnit - </li>
-<li> </li>
+<li> Maven - </li>
 <li> </li>
 
 <h2>Notes regarding the project</h2>
