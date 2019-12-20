@@ -1,19 +1,18 @@
 /home/nbryn/Desktop/temp/StreamingService/src/main/java/streaming/logic/entities/Media.java
 /home/nbryn/Desktop/temp/StreamingService/src/main/java/streaming/logic/AppController.java
-/home/nbryn/Desktop/temp/StreamingService/src/main/java/streaming/SuperMain.java
 /home/nbryn/Desktop/temp/StreamingService/src/main/java/streaming/data/DatabaseConnector.java
 /home/nbryn/Desktop/temp/StreamingService/src/main/java/streaming/data/setup/H2Database.java
 /home/nbryn/Desktop/temp/StreamingService/src/main/java/streaming/logic/interfaces/MediaMapper.java
 /home/nbryn/Desktop/temp/StreamingService/src/main/java/streaming/presentation/RegisterController.java
 /home/nbryn/Desktop/temp/StreamingService/src/main/java/streaming/presentation/SceneController.java
 /home/nbryn/Desktop/temp/StreamingService/src/main/java/streaming/data/SQLMediaMapper.java
+/home/nbryn/Desktop/temp/StreamingService/src/main/java/streaming/Main.java
 /home/nbryn/Desktop/temp/StreamingService/src/main/java/streaming/logic/entities/Movie.java
 /home/nbryn/Desktop/temp/StreamingService/src/main/java/streaming/presentation/MediaViewController.java
 /home/nbryn/Desktop/temp/StreamingService/src/main/java/streaming/presentation/MainFX.java
 /home/nbryn/Desktop/temp/StreamingService/src/main/java/streaming/data/setup/SQLDataScript.java
 /home/nbryn/Desktop/temp/StreamingService/src/main/java/streaming/data/SQLUserMapper.java
 /home/nbryn/Desktop/temp/StreamingService/src/main/java/streaming/logic/exceptions/UserListException.java
-/home/nbryn/Desktop/temp/StreamingService/src/main/java/streaming/data/mock/MockMediaMapper.java
 /home/nbryn/Desktop/temp/StreamingService/src/main/java/streaming/logic/exceptions/UserException.java
 /home/nbryn/Desktop/temp/StreamingService/src/main/java/streaming/logic/interfaces/UserMapper.java
 /home/nbryn/Desktop/temp/StreamingService/src/main/java/streaming/logic/exceptions/EmailAlreadyExistException.java
@@ -22,6 +21,5 @@
 /home/nbryn/Desktop/temp/StreamingService/src/main/java/streaming/logic/exceptions/NoSuchUserException.java
 /home/nbryn/Desktop/temp/StreamingService/src/main/java/streaming/data/setup/H2Init.java
 /home/nbryn/Desktop/temp/StreamingService/src/main/java/streaming/presentation/LoginController.java
-/home/nbryn/Desktop/temp/StreamingService/src/main/java/streaming/data/mock/MockUserMapper.java
 /home/nbryn/Desktop/temp/StreamingService/src/main/java/streaming/logic/entities/User.java
 /home/nbryn/Desktop/temp/StreamingService/src/main/java/streaming/logic/entities/Series.java

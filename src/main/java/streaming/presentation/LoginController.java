@@ -33,7 +33,9 @@ public class LoginController {
     private Button loginButton;
 
     public LoginController() {
+
         appController = new AppController(new SQLUserMapper(), new SQLMediaMapper());
+
     }
 
     public void initialize() {

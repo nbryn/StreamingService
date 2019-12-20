@@ -24,7 +24,7 @@
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin></ImageView>
-                  <Label fx:id="mediaLabel" alignment="CENTER" text="Media: Movie" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="mediaLabel" alignment="CENTER" text="Movie" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -64,7 +64,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="play" alignment="CENTER" mnemonicParsing="false" onAction="#addToList" prefWidth="250.0" style="-fx-background-color: #00A3DA#d61a3c;" text="Play" textAlignment="CENTER" textFill="#e9effd">
+                  <Button fx:id="playButton" alignment="CENTER" mnemonicParsing="false" prefWidth="250.0" style="-fx-background-color: #00A3DA#d61a3c;" text="Play" textAlignment="CENTER" textFill="#e9effd">
                      <font>
                         <Font size="20.0" />
                      </font>

@@ -1,5 +1,6 @@
 package streaming.data;
 
+import org.junit.Ignore;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import streaming.data.setup.H2Init;
@@ -12,6 +13,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Ignore
 class SQLMediaMapperTest {
 
     private static MediaMapper mediaMapper;

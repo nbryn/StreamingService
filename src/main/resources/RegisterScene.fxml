@@ -12,7 +12,7 @@
    <center>
       <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="545.0" prefWidth="1080.0" BorderPane.alignment="TOP_CENTER">
          <children>
-            <Text fill="#e9effd" strokeType="OUTSIDE" strokeWidth="0.0" text="NKG" textAlignment="CENTER">
+            <Text fill="#e9effd" strokeType="OUTSIDE" strokeWidth="0.0" text="PopcornTime" textAlignment="CENTER">
                <font>
                   <Font size="96.0" />
                </font>

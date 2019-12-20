@@ -9,7 +9,7 @@
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Text fill="#e9effd" strokeType="OUTSIDE" strokeWidth="0.0" text="NKG" textAlignment="CENTER">
+            <Text fill="#e9effd" strokeType="OUTSIDE" strokeWidth="0.0" text="PopcornTime" textAlignment="CENTER">
                <font>
                   <Font size="96.0" />
                </font>

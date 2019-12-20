@@ -16,7 +16,7 @@ public class SQLUserMapper implements UserMapper {
     private H2Database database;
 
 
-    public SQLUserMapper(){
+    public SQLUserMapper() {
         database = new H2Database("jdbc:h2:mem");
     }
 
@@ -27,7 +27,7 @@ public class SQLUserMapper implements UserMapper {
     }
 
     @Override
-    public User getUser(String username) throws NoSuchUserException{
+    public User getUser(String username) throws NoSuchUserException {
         List<User> users = database.getUsers("SELECT * FROM users WHERE username = '" + username + "';");
         if (users.size() > 0) return users.get(0);
         else throw new NoSuchUserException();
@@ -49,33 +49,33 @@ public class SQLUserMapper implements UserMapper {
 
     @Override
     public void addToUserList(String username, String media, String mediaTitle) throws UserListException {
-                try {
-                    if (media.equalsIgnoreCase("series")) database.executeUpdate("INSERT INTO mySeriesList (user_id,series_id) VALUES " +
-                            "((SELECT user_id FROM users WHERE username = '" + username + "'),(SELECT series_id FROM series WHERE name = '" + mediaTitle +"'));");
-                    if (media.equalsIgnoreCase("movie")) database.executeUpdate("INSERT INTO myMovieList (user_id,movie_id) VALUES " +
-                            "((SELECT user_id FROM users WHERE username = '" + username + "'),(SELECT movie_id FROM movies WHERE name = '" + mediaTitle +"'));");
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+        try {
+            if (media.equalsIgnoreCase("series"))
+                database.executeUpdate("INSERT INTO mySeriesList (user_id,series_id) VALUES " +
+                        "((SELECT user_id FROM users WHERE username = '" + username + "'),(SELECT series_id FROM series WHERE name = '" + mediaTitle + "'));");
+            if (media.equalsIgnoreCase("movie"))
+                database.executeUpdate("INSERT INTO myMovieList (user_id,movie_id) VALUES " +
+                        "((SELECT user_id FROM users WHERE username = '" + username + "'),(SELECT movie_id FROM movies WHERE name = '" + mediaTitle + "'));");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void removeFromUserList(String username, String media, String mediaTitle) throws UserListException {
-
         try {
 
             if (media.equalsIgnoreCase("movie")) {
-                database.executeUpdate("DELETE FROM myMovieList WHERE user_id = (SELECT user_id FROM users WHERE username = '" + username + "') AND movie_id = (SELECT movie_id FROM movies WHERE name = '" + mediaTitle +"');");
+                database.executeUpdate("DELETE FROM myMovieList WHERE user_id = (SELECT user_id FROM users WHERE username = '" + username + "') AND movie_id = (SELECT movie_id FROM movies WHERE name = '" + mediaTitle + "');");
             }
             if (media.equalsIgnoreCase("series")) {
-                database.executeUpdate("DELETE FROM mySeriesList WHERE user_id = (SELECT user_id FROM users WHERE username = '" + username + "') AND series_id = (SELECT series_id FROM series WHERE name = '" + mediaTitle +"');");
+                database.executeUpdate("DELETE FROM mySeriesList WHERE user_id = (SELECT user_id FROM users WHERE username = '" + username + "') AND series_id = (SELECT series_id FROM series WHERE name = '" + mediaTitle + "');");
             }
         } catch (SQLException e) {
             throw new UserListException();
         }
 
     }
-
 
     @Override
     public void updateUserInfo(String username, String password) throws UserException {
@@ -103,33 +103,19 @@ public class SQLUserMapper implements UserMapper {
             throw new UserException();
         }
     }
-    private int getUserID(String username){
-        ResultSet results = database.sendStatement("SELECT * FROM users WHERE username = '" + username +"';");
+
+    private int getUserID(String username) {
+        ResultSet results = database.sendStatement("SELECT * FROM users WHERE username = '" + username + "';");
         try {
             while (results.next()) {
-                String usernameInternal = results.getString("username");
                 int userID = results.getInt("user_id");
                 return userID;
             }
-        }catch (SQLException e) {
-                    e.printStackTrace();
-        }
-
-        return -1;
-    }
-    private int getMediaID(String name, String media){
-        ResultSet results = null;
-        if (media.equalsIgnoreCase("movie")) results = database.sendStatement("SELECT * FROM movies WHERE name = '" + name +"';");
-        if (media.equalsIgnoreCase("series")) results = database.sendStatement("SELECT * FROM series WHERE name = '" + name +"';");
-        try {
-            while (results.next()) {
-                if (media.equalsIgnoreCase("movie")) return results.getInt("movie_id");
-                if (media.equalsIgnoreCase("series")) return results.getInt("series_id");
-            }
-        }catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-
         }
+
         return -1;
     }
+
 }

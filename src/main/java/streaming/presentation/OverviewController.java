@@ -97,7 +97,7 @@ public class OverviewController {
             images.addAll(loadImages("/images/movieimg"));
             images.addAll(loadImages("/images/seriesimg"));
         } catch (Exception e) {
-            e.printStackTrace();
+            ;
         }
 
         StateController.setImages(images);
@@ -336,7 +336,8 @@ public class OverviewController {
                 SceneController.changeScene("/MediaViewScene.fxml");
 
             } catch (IOException e) {
-                e.printStackTrace();
+                // Load all again
+                showAll(new ActionEvent());
             }
 
         });
@@ -421,7 +422,8 @@ public class OverviewController {
                     images.add(tempFile);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                // Reload overview
+                initialize();
             }
         });
 

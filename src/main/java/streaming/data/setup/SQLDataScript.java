@@ -258,7 +258,8 @@ public class SQLDataScript {
 
         return
                 "INSERT INTO users (username,password,name,birthdate) VALUES" +
-                        "('Kris','Suppe','Kristian','110996');";
+                        "('Kris','Suppe','Kristian','110996')," +
+                        "('Test','1234','Test','110992');";
 
     }
 

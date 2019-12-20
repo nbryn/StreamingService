@@ -5,7 +5,6 @@ import java.util.List;
 
 public class User {
 
-    private int id;
     private String name;
     private String username;
     private String password;
@@ -20,20 +19,6 @@ public class User {
         this.birthday = birthday;
 
         mediaList = new ArrayList<>();
-    }
-
-    public User(int id, String name, String birthday, String username, String password) {
-        this.id = id;
-        this.name = name;
-        this.username = username;
-        this.password = password;
-        this.birthday = birthday;
-
-        mediaList = new ArrayList<>();
-    }
-
-    public int getId() {
-        return this.id;
     }
 
     public String getName() {
@@ -52,16 +37,6 @@ public class User {
         return this.birthday;
     }
 
-    public List<Media> getUserList() {
-        return this.mediaList;
-    }
 
-    public void addToList(Media media) {
-        mediaList.add(media);
-    }
-
-    public void removeFromList(Media media) {
-        mediaList.remove(media);
-    }
 
 }

@@ -52,6 +52,9 @@ public class MediaViewController {
     private Button removeFromListButton;
 
     @FXML
+    private Button playButton;
+
+    @FXML
     private Label seasonLabel;
 
     @FXML
@@ -77,6 +80,8 @@ public class MediaViewController {
         onButtonExit(addToListButton);
         onButtonHover(removeFromListButton);
         onButtonExit(removeFromListButton);
+        onButtonHover(playButton);
+        onButtonExit(playButton);
 
     }
 
@@ -104,7 +109,7 @@ public class MediaViewController {
         mediaType = media instanceof Movie ? "Movie" : "Series";
 
         if (mediaType.equalsIgnoreCase("Series")) {
-            mediaLabel.setText("Media: Series");
+            mediaLabel.setText("Series");
             seasonLabel.setVisible(true);
             episodeLabel.setVisible(true);
             Series series = (Series) media;
