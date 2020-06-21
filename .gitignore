@@ -2,6 +2,8 @@
 /*.lock.db
 /*.trace.db
 
+target
+
 .mtj.tmp/
 *.class
 *.jar
