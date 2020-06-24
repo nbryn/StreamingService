@@ -2,7 +2,7 @@
 /*.lock.db
 /*.trace.db
 
-target
+*/target/**
 
 .mtj.tmp/
 *.class
