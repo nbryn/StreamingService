@@ -3,7 +3,8 @@
 ## Summary
 Desktop app where it's possible to create an user and afterwards browse various movies and series which can be sorted by eg. genre, rating and release. 
 It is also possible to search for a specific movie or series and to add that movie/series to a custom favorite list. <br />
-You can try the app by downloading and running the included .jar file.
+
+In order to try the app download and run the included .jar file.
 
 ## Pictures of the App
 <p float="left">
